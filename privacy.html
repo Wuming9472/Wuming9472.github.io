@@ -21,13 +21,13 @@
       <a class="brand" href="index.html" aria-label="Saetta">
         <img src="assets/saetta-64.png" alt="" width="30" height="30">Saetta
       </a>
-      <div class="tools"><a class="chip-btn" href="#en" lang="en">English</a></div>
+      <div class="tools"><button class="chip-btn" id="lang" type="button" aria-label="Switch to English">EN</button></div>
     </div>
   </div>
 </header>
 
 <main class="wrap">
-  <article class="glass doc" lang="it">
+  <article class="glass doc" id="it" lang="it">
     <div class="eyebrow">Privacy</div>
     <h1>Informativa sulla privacy</h1>
     <p class="meta">Ultimo aggiornamento: 8 ottobre 2026</p>
@@ -88,5 +88,26 @@
     <nav aria-label="Saetta"><a href="index.html">Saetta</a></nav>
   </footer>
 </main>
+<script>
+/* One language at a time: Italian for Italian browsers, English for everyone else. The
+   button switches, and the choice is shared with the rest of the site. Without
+   JavaScript both stay visible. */
+(function () {
+  var button = document.getElementById("lang");
+  function show(lang) {
+    document.documentElement.lang = lang;
+    document.getElementById("it").hidden = lang !== "it";
+    document.getElementById("en").hidden = lang !== "en";
+    button.textContent = lang === "it" ? "EN" : "IT";
+    button.setAttribute("aria-label", lang === "it" ? "Switch to English" : "Passa all'italiano");
+    try { localStorage.setItem("saetta-lang", lang); } catch (e) {}
+  }
+  var saved = null;
+  try { saved = localStorage.getItem("saetta-lang"); } catch (e) {}
+  var browser = (navigator.language || "en").toLowerCase().indexOf("it") === 0 ? "it" : "en";
+  show(location.hash === "#en" ? "en" : location.hash === "#it" ? "it" : saved === "it" || saved === "en" ? saved : browser);
+  button.addEventListener("click", function () { show(document.documentElement.lang === "it" ? "en" : "it"); });
+})();
+</script>
 </body>
 </html>
