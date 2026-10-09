@@ -1,7 +1,7 @@
 /* English texts: a faithful translation of the Italian in index.html, key by key, in
    American spelling as in the app. A key missing here keeps the Italian text. */
 window.SAETTA_EN = {
-  "nav.label": "Sections", "nav.theme": "Light or dark theme",
+  "nav.label": "Sections", "nav.theme": "Light or dark theme", "nav.lang": "Language",
   "nav.speed": "Speed", "nav.how": "How to use it", "nav.engine": "Technology", "nav.features": "Features", "nav.prices": "Prices", "nav.faq": "Questions", "nav.get": "Download",
 
   "hero.eyebrow": "For Windows 11 and Windows 10",

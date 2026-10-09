@@ -2,9 +2,11 @@
 
 /* Set these before publishing. */
 const STORE_URL = "https://apps.microsoft.com/detail/9N3TNPDLFPZW";
-const PRO_PRICE = { it: "29,99 €", en: "€29.99" };
+const PRO_PRICE = { it: "29,99 €", en: "€29.99", de: "29,99 €", es: "29,99 €", zh: "€29.99" };
 
-const T = { en: window.SAETTA_EN || {}, it: {} };
+/* The app's five languages; LOCALES formats the numbers the page draws. */
+const T = { it: {}, en: window.SAETTA_EN || {}, de: window.SAETTA_DE || {}, es: window.SAETTA_ES || {}, zh: window.SAETTA_ZH || {} };
+const LOCALES = { it: "it-IT", en: "en-US", de: "de-DE", es: "es-ES", zh: "zh-CN" };
 const LIVE = window.SAETTA_LIVE;
 
 /* Italian is the page's own text: read once, before any switch. */
@@ -23,23 +25,25 @@ function setLang(next) {
   document.querySelectorAll("[data-i18n-aria]").forEach(el => { const v = t[el.dataset.i18nAria] || T.it[el.dataset.i18nAria]; if (v) el.setAttribute("aria-label", v); });
   document.querySelectorAll("[data-final]").forEach(el => { const v = t[el.dataset.final]; if (v) el.textContent = v; });
   document.querySelectorAll(".price-value").forEach(el => { el.textContent = PRO_PRICE[lang]; });
-  const button = document.getElementById("lang");
-  button.textContent = lang === "it" ? "EN" : "IT";
-  button.setAttribute("aria-label", lang === "it" ? "Switch to English" : "Passa all'italiano");
-  try { localStorage.setItem("saetta-lang", lang); } catch (e) {}
+  document.getElementById("lang").value = lang;
   renderWindow();
   renderRates();
   if (window.SaettaCharts) window.SaettaCharts.render(lang, Object.assign({}, T.it, T[lang], (window.SAETTA_CHART || {})[lang]));
 }
-document.getElementById("lang").addEventListener("click", () => setLang(lang === "it" ? "en" : "it"));
+/* A language picked here is remembered; otherwise the browser's own decides. */
+document.getElementById("lang").addEventListener("change", e => {
+  setLang(e.target.value);
+  try { localStorage.setItem("saetta-language", lang); } catch (e) {}
+});
 
-/* Theme: dark by default, as the app ships; the choice is remembered. */
+/* Theme: the device's own (the stylesheet follows prefers-color-scheme). The button swaps
+   it for this visit only, so the next one follows the device again. */
 document.getElementById("theme").addEventListener("click", () => {
   const root = document.documentElement;
-  root.dataset.theme = root.dataset.theme === "light" ? "dark" : "light";
-  try { localStorage.setItem("saetta-theme", root.dataset.theme); } catch (e) {}
+  const current = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+  root.dataset.theme = current === "light" ? "dark" : "light";
 });
-try { const saved = localStorage.getItem("saetta-theme"); if (saved) document.documentElement.dataset.theme = saved; } catch (e) {}
+try { localStorage.removeItem("saetta-theme"); } catch (e) {}
 
 document.querySelectorAll(".store-link").forEach(a => { a.href = STORE_URL; a.target = "_blank"; a.rel = "noopener"; });
 
@@ -53,7 +57,7 @@ document.querySelectorAll(".reveal").forEach(el => {
 });
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const fmt = (n, digits) => n.toLocaleString(lang === "it" ? "it-IT" : "en-US", { minimumFractionDigits: digits, maximumFractionDigits: digits, useGrouping: "always" });
+const fmt = (n, digits) => n.toLocaleString(LOCALES[lang], { minimumFractionDigits: digits, maximumFractionDigits: digits, useGrouping: "always" });
 
 /* Sections below the first screen settle into place when reached. Visible throughout. */
 if ("IntersectionObserver" in window && !reduced) {
@@ -222,8 +226,10 @@ if ("IntersectionObserver" in window && !reduced) {
   seen.observe(document.querySelector(".bench"));
 }
 
-/* The visitor's language: Italian for Italian browsers, English for everyone else. */
+/* The visitor's language: one picked here before, else the first of the browser's languages
+   the page has, else English. */
 let savedLang = null;
-try { savedLang = localStorage.getItem("saetta-lang"); } catch (e) {}
-const browserLang = (navigator.language || "it").toLowerCase().startsWith("it") ? "it" : "en";
-setLang(savedLang === "it" || savedLang === "en" ? savedLang : browserLang);
+try { savedLang = localStorage.getItem("saetta-language"); } catch (e) {}
+const browserLang = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en"])
+  .map(l => l.toLowerCase().slice(0, 2)).find(l => l in T) || "en";
+setLang(savedLang in T ? savedLang : browserLang);

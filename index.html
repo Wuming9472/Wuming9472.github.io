@@ -1,11 +1,12 @@
 <!doctype html>
-<html lang="it" data-theme="dark">
+<html lang="it">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Saetta</title>
 <meta name="description" content="Saetta copia, sposta ed elimina file su Windows alla velocità del disco: fino a 12 volte più veloce di Esplora file con migliaia di file piccoli. Gratis sul Microsoft Store.">
-<meta name="theme-color" content="#0a0d18">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0d18">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f5fb">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Saetta: copia file alla velocità del tuo disco">
 <meta property="og:description" content="Copia, sposta ed elimina file fino a 12 volte più velocemente. Integrato nel menu di Esplora file. Gratis, con Saetta Professional in acquisto unico.">
@@ -15,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
-<link rel="stylesheet" href="css/site.css?v=18">
+<link rel="stylesheet" href="css/site.css?v=19">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -49,7 +50,7 @@
         <a href="#domande" data-i18n="nav.faq">Domande</a>
       </nav>
       <div class="tools">
-        <button class="chip-btn" id="lang" type="button" aria-label="Switch to English">EN</button>
+        <select class="chip-btn lang-select" id="lang" aria-label="Lingua" data-i18n-aria="nav.lang"><option value="it">IT</option><option value="en">EN</option><option value="de">DE</option><option value="es">ES</option><option value="zh">中文</option></select>
         <button class="chip-btn" id="theme" type="button" aria-label="Tema chiaro o scuro" data-i18n-aria="nav.theme">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
         </button>
@@ -422,9 +423,12 @@
   </div>
 </main>
 
-<script src="js/i18n-en.js?v=18"></script>
-<script src="js/bench-data.js?v=18"></script>
-<script src="js/charts.js?v=18"></script>
-<script src="js/site.js?v=18"></script>
+<script src="js/i18n-en.js?v=19"></script>
+<script src="js/i18n-de.js?v=19"></script>
+<script src="js/i18n-es.js?v=19"></script>
+<script src="js/i18n-zh.js?v=19"></script>
+<script src="js/bench-data.js?v=19"></script>
+<script src="js/charts.js?v=19"></script>
+<script src="js/site.js?v=19"></script>
 </body>
 </html>

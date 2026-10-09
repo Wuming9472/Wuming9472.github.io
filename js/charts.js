@@ -9,7 +9,8 @@
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   let lang = "it", texts = {};
 
-  const fmt = (n, digits) => n.toLocaleString(lang === "it" ? "it-IT" : "en-US", { minimumFractionDigits: digits, maximumFractionDigits: digits, useGrouping: "always" });
+  const LOCALES = { it: "it-IT", en: "en-US", de: "de-DE", es: "es-ES", zh: "zh-CN" };
+  const fmt = (n, digits) => n.toLocaleString(LOCALES[lang] || "en-US", { minimumFractionDigits: digits, maximumFractionDigits: digits, useGrouping: "always" });
   const t = key => texts[key] || key;
   const clock = s => {
     if (s < 60) return fmt(s, 1) + " s";

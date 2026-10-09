@@ -1,16 +1,17 @@
 <!doctype html>
-<html lang="it" data-theme="dark">
+<html lang="it">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Privacy – Saetta</title>
 <meta name="description" content="Informativa sulla privacy di Saetta: nessun dato raccolto, nessun account, nessuna telemetria.">
-<meta name="theme-color" content="#0a0d18">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0d18">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f5fb">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/saetta-32.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
-<link rel="stylesheet" href="css/site.css?v=18">
+<link rel="stylesheet" href="css/site.css?v=19">
 </head>
 <body>
 <div class="sky" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -21,7 +22,7 @@
       <a class="brand" href="index.html" aria-label="Saetta">
         <img src="assets/saetta-64.png" alt="" width="30" height="30">Saetta
       </a>
-      <div class="tools"><button class="chip-btn" id="lang" type="button" aria-label="Switch to English">EN</button></div>
+      <div class="tools"><select class="chip-btn lang-select" id="lang" aria-label="Language"><option value="it">IT</option><option value="en">EN</option><option value="de">DE</option><option value="es">ES</option><option value="zh">中文</option></select></div>
     </div>
   </div>
 </header>
@@ -83,30 +84,120 @@
     <p>If this policy changes, the new version will be published here with an updated date. For any question: <a href="mailto:wumingdev9472@gmail.com">wumingdev9472@gmail.com</a></p>
   </article>
 
+  <article class="glass doc" id="de" lang="de">
+    <div class="eyebrow">Datenschutz</div>
+    <h1>Datenschutzerklärung</h1>
+    <p class="meta">Letzte Aktualisierung: 8. Oktober 2026</p>
+
+    <p class="key">Saetta erhebt keine personenbezogenen Daten. Es benötigt kein Konto, zeigt keine Werbung, hat keine Nutzungsstatistiken und sendet nichts, weder an uns noch an andere.</p>
+    <p>Saetta ist ein Windows-Programm von WumingDev, das Dateien kopiert, verschiebt und löscht. Es arbeitet nur mit den Dateien und Ordnern, die Sie ihm angeben, und deren Inhalt verlässt nie Ihren PC.</p>
+
+    <h2>Was auf Ihrem PC bleibt</h2>
+    <p>Um zu funktionieren, speichert Saetta in seinem eigenen Ordner auf Ihrem Computer:</p>
+    <ul>
+      <li>die Einstellungen;</li>
+      <li>den Verlauf der Vorgänge: Pfade, Anzahl der Dateien, Größen, Dauer und Ergebnis;</li>
+      <li>laufende Aufträge, damit sie nach einer Unterbrechung fortgesetzt werden können;</li>
+      <li>ein Fehlerprotokoll, um eventuelle Probleme zu diagnostizieren.</li>
+    </ul>
+    <p>Wenn Sie Berichte aktivieren, speichert Saetta sie in dem Ordner, den Sie auswählen. Den Verlauf löschen Sie in der App mit „Verlauf löschen“; beim Deinstallieren von Saetta wird alles andere gelöscht, außer den Berichten.</p>
+
+    <h2>Tastenkombinationen</h2>
+    <p>Wenn Sie sie aktivieren, reagiert Saetta nur auf Strg+V und Entf, während der Datei-Explorer im Vordergrund ist. Alle anderen Tasten werden ignoriert, und nichts von dem, was Sie eingeben, wird aufgezeichnet oder gesendet.</p>
+
+    <h2>Käufe</h2>
+    <p>Saetta Professional wird über den Microsoft Store gekauft: Zahlung und Lizenz verwaltet Microsoft gemäß seiner <a href="https://privacy.microsoft.com/" rel="noopener">Datenschutzerklärung</a>. Saetta fragt Windows nur, ob die Lizenz aktiv ist. Das ist der einzige Moment, in dem es das Netzwerk nutzt, und es läuft vollständig über Windows.</p>
+
+    <h2>Änderungen und Kontakt</h2>
+    <p>Wenn sich diese Erklärung ändert, wird die neue Version hier mit aktualisiertem Datum veröffentlicht. Bei Fragen: <a href="mailto:wumingdev9472@gmail.com">wumingdev9472@gmail.com</a></p>
+  </article>
+
+  <article class="glass doc" id="es" lang="es">
+    <div class="eyebrow">Privacidad</div>
+    <h1>Política de privacidad</h1>
+    <p class="meta">Última actualización: 8 de octubre de 2026</p>
+
+    <p class="key">Saetta no recopila datos personales. No necesita cuenta, no muestra publicidad, no tiene estadísticas de uso y no envía nada, ni a nosotros ni a nadie.</p>
+    <p>Saetta es un programa para Windows de WumingDev que copia, mueve y elimina archivos. Solo trabaja con los archivos y carpetas que le indicas, y su contenido nunca sale de tu PC.</p>
+
+    <h2>Qué queda en tu PC</h2>
+    <p>Para funcionar, Saetta guarda en su propia carpeta de tu ordenador:</p>
+    <ul>
+      <li>la configuración;</li>
+      <li>el historial de operaciones: rutas, número de archivos, tamaños, duración y resultado;</li>
+      <li>los trabajos en curso, para poder reanudarlos tras una interrupción;</li>
+      <li>un registro de errores, para diagnosticar posibles problemas.</li>
+    </ul>
+    <p>Si activas los informes, Saetta los guarda en la carpeta que elijas. El historial se borra desde la aplicación con «Borrar historial»; al desinstalar Saetta se borra todo lo demás, excepto los informes.</p>
+
+    <h2>Atajos de teclado</h2>
+    <p>Si los activas, Saetta solo actúa sobre Ctrl+V y Supr mientras el Explorador de archivos está en primer plano. Ignora todas las demás teclas y nunca registra ni envía nada de lo que escribes.</p>
+
+    <h2>Compras</h2>
+    <p>Saetta Professional se compra a través de Microsoft Store: el pago y la licencia los gestiona Microsoft, según su <a href="https://privacy.microsoft.com/" rel="noopener">declaración de privacidad</a>. Saetta solo pregunta a Windows si la licencia está activa. Es el único momento en que usa la red, y lo hace por completo a través de Windows.</p>
+
+    <h2>Cambios y contacto</h2>
+    <p>Si esta política cambia, la nueva versión se publicará aquí con la fecha actualizada. Para cualquier pregunta: <a href="mailto:wumingdev9472@gmail.com">wumingdev9472@gmail.com</a></p>
+  </article>
+
+  <article class="glass doc" id="zh" lang="zh">
+    <div class="eyebrow">隐私</div>
+    <h1>隐私政策</h1>
+    <p class="meta">最后更新：2026 年 10 月 8 日</p>
+
+    <p class="key">Saetta 不收集个人数据。它无需账户，不显示广告，没有使用统计，也不会向我们或任何其他人发送任何内容。</p>
+    <p>Saetta 是 WumingDev 开发的 Windows 程序，用于复制、移动和删除文件。它只处理你指定的文件和文件夹，其内容绝不会离开你的电脑。</p>
+
+    <h2>留在你电脑上的内容</h2>
+    <p>为了正常工作，Saetta 会在你电脑上它自己的文件夹中保存：</p>
+    <ul>
+      <li>设置；</li>
+      <li>操作历史记录：路径、文件数量、大小、用时和结果；</li>
+      <li>正在进行的任务，以便中断后继续；</li>
+      <li>错误日志，用于诊断可能出现的问题。</li>
+    </ul>
+    <p>如果你启用报告，Saetta 会把报告保存在你选择的文件夹中。可以在应用中通过“清除历史记录”清除历史；卸载 Saetta 会删除其余所有内容，报告除外。</p>
+
+    <h2>键盘快捷键</h2>
+    <p>如果你启用快捷键，Saetta 只会在文件资源管理器处于前台时响应 Ctrl+V 和 Delete。它会忽略所有其他按键，绝不记录或发送你输入的任何内容。</p>
+
+    <h2>购买</h2>
+    <p>Saetta Professional 通过 Microsoft Store 购买：付款和许可证由 Microsoft 按其<a href="https://privacy.microsoft.com/" rel="noopener">隐私声明</a>处理。Saetta 只会向 Windows 查询许可证是否有效。这是它唯一使用网络的时候，并且完全通过 Windows 进行。</p>
+
+    <h2>变更和联系方式</h2>
+    <p>如果本政策发生变更，新版本将在此发布并更新日期。如有任何问题： <a href="mailto:wumingdev9472@gmail.com">wumingdev9472@gmail.com</a></p>
+  </article>
+
   <footer>
     <span>© 2026 Saetta</span>
     <nav aria-label="Saetta"><a href="index.html">Saetta</a></nav>
   </footer>
 </main>
 <script>
-/* One language at a time: Italian for Italian browsers, English for everyone else. The
-   button switches, and the choice is shared with the rest of the site. Without
-   JavaScript both stay visible. */
+/* One language at a time, the same choice as the rest of the site: one picked before, else
+   the first of the browser's languages the page has, else English. A #it, #en, #de, #es or
+   #zh link opens that one. Without JavaScript every language stays visible. */
 (function () {
-  var button = document.getElementById("lang");
+  var langs = ["it", "en", "de", "es", "zh"];
+  var labels = { it: "Lingua", en: "Language", de: "Sprache", es: "Idioma", zh: "语言" };
+  var picker = document.getElementById("lang");
   function show(lang) {
     document.documentElement.lang = lang;
-    document.getElementById("it").hidden = lang !== "it";
-    document.getElementById("en").hidden = lang !== "en";
-    button.textContent = lang === "it" ? "EN" : "IT";
-    button.setAttribute("aria-label", lang === "it" ? "Switch to English" : "Passa all'italiano");
-    try { localStorage.setItem("saetta-lang", lang); } catch (e) {}
+    langs.forEach(function (l) { document.getElementById(l).hidden = l !== lang; });
+    picker.value = lang;
+    picker.setAttribute("aria-label", labels[lang]);
   }
   var saved = null;
-  try { saved = localStorage.getItem("saetta-lang"); } catch (e) {}
-  var browser = (navigator.language || "en").toLowerCase().indexOf("it") === 0 ? "it" : "en";
-  show(location.hash === "#en" ? "en" : location.hash === "#it" ? "it" : saved === "it" || saved === "en" ? saved : browser);
-  button.addEventListener("click", function () { show(document.documentElement.lang === "it" ? "en" : "it"); });
+  try { saved = localStorage.getItem("saetta-language"); } catch (e) {}
+  var browser = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en"])
+    .map(function (l) { return l.toLowerCase().slice(0, 2); })
+    .filter(function (l) { return langs.indexOf(l) >= 0; })[0] || "en";
+  var hash = location.hash.slice(1);
+  show(langs.indexOf(hash) >= 0 ? hash : langs.indexOf(saved) >= 0 ? saved : browser);
+  picker.addEventListener("change", function () {
+    show(picker.value);
+    try { localStorage.setItem("saetta-language", picker.value); } catch (e) {}
+  });
 })();
 </script>
 </body>

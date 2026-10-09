@@ -130,6 +130,12 @@ p { margin: 0; text-wrap: pretty; }
 .chip-btn:hover { color: var(--fg); border-color: var(--accent); }
 a.chip-btn { display: inline-flex; align-items: center; text-decoration: none; }
 .chip-btn svg { width: 16px; height: 16px; display: block; margin: auto; }
+/* The language picker: a chip with a small arrow; its list follows the page's color-scheme. */
+select.chip-btn {
+  appearance: none; -webkit-appearance: none; padding-right: 26px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 4.5 6 7.5 9 4.5' fill='none' stroke='%238a90a6' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 8px center / 12px;
+}
+select.chip-btn option { color: var(--fg); background: var(--bg); }
 
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 12px 22px;
