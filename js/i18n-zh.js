@@ -2,6 +2,9 @@
    with the app's own Chinese terms. Times keep "min" and "s", as the benchmark race writes
    them while it runs. A key missing here keeps the Italian text. */
 window.SAETTA_ZH = {
+  "meta.title": "Saetta – Windows 快速文件复制工具，robocopy 图形界面",
+  "meta.description": "在 Windows 上复制、移动和删除文件，速度最高可达文件资源管理器的 12 倍。快速删除和安全删除，校验副本。可在 Microsoft Store 免费获取。",
+
   "nav.label": "版块", "nav.theme": "浅色或深色主题", "nav.lang": "语言",
   "nav.speed": "速度", "nav.how": "使用方法", "nav.engine": "技术", "nav.features": "功能", "nav.prices": "价格", "nav.faq": "常见问题", "nav.get": "下载",
 

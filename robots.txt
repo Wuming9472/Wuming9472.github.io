@@ -1,0 +1,5 @@
+# Everything here may be read, by search engines and AI assistants alike.
+User-agent: *
+Allow: /
+
+Sitemap: https://saetta.net/sitemap.xml

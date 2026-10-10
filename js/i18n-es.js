@@ -1,6 +1,9 @@
 /* Spanish texts: a faithful translation of the Italian in index.html, key by key, with the
    app's own Spanish terms. A key missing here keeps the Italian text. */
 window.SAETTA_ES = {
+  "meta.title": "Saetta – Copia rápida de archivos para Windows y GUI de robocopy",
+  "meta.description": "Copia, mueve y elimina archivos en Windows hasta 12 veces más rápido que el Explorador de archivos. Borrado rápido y seguro, copias verificadas. Gratis en Microsoft Store.",
+
   "nav.label": "Secciones", "nav.theme": "Tema claro u oscuro", "nav.lang": "Idioma",
   "nav.speed": "Velocidad", "nav.how": "Cómo se usa", "nav.engine": "Tecnología", "nav.features": "Funciones", "nav.prices": "Precios", "nav.faq": "Preguntas", "nav.get": "Descargar",
 

@@ -9,31 +9,21 @@ const T = { it: {}, en: window.SAETTA_EN || {}, de: window.SAETTA_DE || {}, es: 
 const LOCALES = { it: "it-IT", en: "en-US", de: "de-DE", es: "es-ES", zh: "zh-CN" };
 const LIVE = window.SAETTA_LIVE;
 
-/* Italian is the page's own text: read once, before any switch. */
-document.querySelectorAll("[data-i18n]").forEach(el => { T.it[el.dataset.i18n] = el.textContent; });
-document.querySelectorAll("[data-i18n-html]").forEach(el => { T.it[el.dataset.i18nHtml] = el.innerHTML; });
-document.querySelectorAll("[data-i18n-aria]").forEach(el => { T.it[el.dataset.i18nAria] = el.getAttribute("aria-label"); });
-document.querySelectorAll("[data-final]").forEach(el => { T.it[el.dataset.final] = el.textContent; });
+/* Each language has its own page, written out by tools/build-site.py (English at the root,
+   the others in /it/, /de/, /es/, /zh/): search engines index each one. The page's texts are
+   the fallback for any key the drawings' dictionaries lack. */
+const lang = document.documentElement.dataset.lang || "it";
+const PAGES = { en: "/", it: "/it/", de: "/de/", es: "/es/", zh: "/zh/" };
+const PAGE = {};
+document.querySelectorAll("[data-i18n]").forEach(el => { PAGE[el.dataset.i18n] = el.textContent; });
+document.querySelectorAll("[data-final]").forEach(el => { PAGE[el.dataset.final] = el.textContent; });
 
-let lang = "it";
-function setLang(next) {
-  lang = next;
-  const t = T[lang];
-  document.documentElement.lang = lang;
-  document.querySelectorAll("[data-i18n]").forEach(el => { const v = t[el.dataset.i18n] || T.it[el.dataset.i18n]; if (v) el.textContent = v; });
-  document.querySelectorAll("[data-i18n-html]").forEach(el => { const v = t[el.dataset.i18nHtml] || T.it[el.dataset.i18nHtml]; if (v) el.innerHTML = v; });
-  document.querySelectorAll("[data-i18n-aria]").forEach(el => { const v = t[el.dataset.i18nAria] || T.it[el.dataset.i18nAria]; if (v) el.setAttribute("aria-label", v); });
-  document.querySelectorAll("[data-final]").forEach(el => { const v = t[el.dataset.final]; if (v) el.textContent = v; });
-  document.querySelectorAll(".price-value").forEach(el => { el.textContent = PRO_PRICE[lang]; });
-  document.getElementById("lang").value = lang;
-  renderWindow();
-  renderRates();
-  if (window.SaettaCharts) window.SaettaCharts.render(lang, Object.assign({}, T.it, T[lang], (window.SAETTA_CHART || {})[lang]));
-}
-/* A language picked here is remembered; otherwise the browser's own decides. */
+/* A language picked here is remembered: the English page at the root sends a visitor to it
+   (or else to the browser's own language) before anything is drawn. */
+document.getElementById("lang").value = lang;
 document.getElementById("lang").addEventListener("change", e => {
-  setLang(e.target.value);
-  try { localStorage.setItem("saetta-language", lang); } catch (e) {}
+  try { localStorage.setItem("saetta-language", e.target.value); } catch (err) {}
+  location.href = PAGES[e.target.value];
 });
 
 /* Theme: the device's own (the stylesheet follows prefers-color-scheme). The button swaps
@@ -203,7 +193,7 @@ function race() {
       const f = Math.min(1, elapsed / r.ms);
       r.fill.style.width = "calc(" + r.w + " * " + f.toFixed(4) + ")";
       if (f < 1) { r.t.textContent = clock(r.secs * f); running = true; }
-      else r.t.textContent = T[lang][r.t.dataset.final] || T.it[r.t.dataset.final];
+      else r.t.textContent = PAGE[r.t.dataset.final];
     });
     if (running) requestAnimationFrame(frame);
     else { rows.forEach(r => { r.fill.style.width = ""; }); racing = false; }
@@ -226,10 +216,7 @@ if ("IntersectionObserver" in window && !reduced) {
   seen.observe(document.querySelector(".bench"));
 }
 
-/* The visitor's language: one picked here before, else the first of the browser's languages
-   the page has, else English. */
-let savedLang = null;
-try { savedLang = localStorage.getItem("saetta-language"); } catch (e) {}
-const browserLang = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en"])
-  .map(l => l.toLowerCase().slice(0, 2)).find(l => l in T) || "en";
-setLang(savedLang in T ? savedLang : browserLang);
+/* What the scripts draw, in the page's language. */
+renderWindow();
+renderRates();
+if (window.SaettaCharts) window.SaettaCharts.render(lang, Object.assign({}, PAGE, T[lang], (window.SAETTA_CHART || {})[lang]));

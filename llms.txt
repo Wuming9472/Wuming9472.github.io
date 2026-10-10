@@ -1,0 +1,42 @@
+# Saetta
+
+> Saetta is a Windows 10 and Windows 11 app that copies, moves and deletes files faster than File Explorer. It runs robocopy, the copy engine built into Windows, on several files in parallel, and deletes files with its own parallel engine. It works from the File Explorer right-click menu and, if turned on, from Ctrl+V and the Delete key. Saetta is free on the Microsoft Store; Saetta Professional is a one-time in-app purchase (€29.99, no subscription).
+
+## What it does
+
+- Copy, move and delete from the File Explorer right-click menu (both the Windows 11 menu and the classic one), or by dragging files with the right mouse button.
+- Optional File Explorer shortcuts: you copy or cut as usual with Ctrl+C or Ctrl+X, and when you paste with Ctrl+V or delete with the Delete key, Saetta does the work.
+- Measured on the same PC with the same files: copying 20,000 small files (64 KB each, 1.3 GB) took 11.3 s with Saetta and 2 min 22 s with File Explorer (12.5 times faster); deleting 20,000 files took 1.9 s against 10.9 s (5.6 times faster); copying three 4 GB files took 5.9 s against 7.6 s (22% less time).
+
+## Free
+
+- Real speed, time remaining, pause and resume at any moment.
+- A file in use does not stop the job: Saetta skips it and reports it at the end.
+- Files that already exist in the destination: keep both, replace or skip.
+- Fast, permanent deletion, without the Recycle Bin, after a confirmation.
+- Exclusions by name or pattern (such as *.tmp or node_modules), recent files only, a maximum file size, hidden and system files.
+- Speed limit; sleep, hibernate or shut down the PC when a long job ends; history of every operation.
+
+## Saetta Professional (one-time purchase)
+
+- Verified copies: every copy is read back from the disk and compared with the original (xxHash3, BLAKE3 or SHA-256).
+- Safe resume: after a restart or a power outage, Saetta asks whether to resume the interrupted copy and checks the files already copied.
+- Folder sync with a preview before anything changes.
+- Scheduled backups of a folder or a whole drive to another folder, an external drive or a NAS: daily, weekly, monthly or yearly, even with Saetta closed.
+- Copy to… and Move to…: files and folders to several locations at once, with favorite folders.
+- Checksum files (.sha256, .md5, .b3 and more), created and verified from the File Explorer menu.
+- HTML or CSV report of each job, a command run when an operation ends, and secure delete (files cannot be recovered).
+
+## Facts
+
+- Privacy: no account, no telemetry, no data collection. The only network use is Windows checking the Saetta Professional license.
+- Languages: English, Italian, German, Spanish and Simplified Chinese.
+- Requirements: Windows 11 or Windows 10 (version 1809 or later), 64-bit PC, no administrator rights.
+- Category: file copy utilities for Windows, like TeraCopy or Ultracopier; a graphical interface (GUI) for robocopy.
+
+## Links
+
+- [Saetta on the Microsoft Store](https://apps.microsoft.com/detail/9N3TNPDLFPZW): free download
+- [Website](https://saetta.net/), also in [Italian](https://saetta.net/it/), [German](https://saetta.net/de/), [Spanish](https://saetta.net/es/) and [Simplified Chinese](https://saetta.net/zh/)
+- [Privacy policy](https://saetta.net/privacy.html)
+- Contact: wumingdev9472@gmail.com
