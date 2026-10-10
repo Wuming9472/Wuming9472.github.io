@@ -94,6 +94,7 @@ window.SAETTA_EN = {
   "faq.q5": "Is Saetta Professional a subscription?", "faq.a5": "No. It is a one-time purchase, managed by the Microsoft Store and tied to your Microsoft account. There are no renewals or additional costs.",
   "faq.q6": "Which versions of Windows are supported?", "faq.a6": "Windows 11 and Windows 10 from version 1809, on 64-bit PCs. No administrator rights are needed.",
 
+  "final.logoAlt": "Saetta logo",
   "final.title": "Try Saetta on your next copy.", "final.text": "It is free on the Microsoft Store and installation takes a few seconds.",
   "req.os": "Windows 11 and Windows 10 (1809 or later)", "req.arch": "64-bit PC", "req.admin": "No administrator rights",
   "foot.label": "Legal notes", "foot.privacy": "Privacy", "foot.licenses": "Open-source licenses", "foot.contact": "Contact"

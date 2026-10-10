@@ -95,6 +95,7 @@ window.SAETTA_ZH = {
   "faq.q5": "Saetta Professional 是订阅吗？", "faq.a5": "不是。它是一次性购买，由 Microsoft Store 管理并与你的 Microsoft 账户绑定。没有续费，也没有额外费用。",
   "faq.q6": "支持哪些 Windows 版本？", "faq.a6": "Windows 11 和 Windows 10 1809 及更高版本，64 位电脑。无需管理员权限。",
 
+  "final.logoAlt": "Saetta 标志",
   "final.title": "下次复制时试试 Saetta。", "final.text": "在 Microsoft Store 免费获取，几秒钟即可安装。",
   "req.os": "Windows 11 和 Windows 10（1809 或更高版本）", "req.arch": "64 位电脑", "req.admin": "无需管理员权限",
   "foot.label": "法律声明", "foot.privacy": "隐私", "foot.licenses": "开源许可证", "foot.contact": "联系方式"
