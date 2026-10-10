@@ -12,7 +12,7 @@ window.SAETTA_ES = {
   "win.what": "Copiando 2.481 elementos", "win.data": "Datos", "win.files": "Archivos", "win.check": "Verificación",
   "menu.copy": "Copiar", "menu.copyto": "Copiar en…", "menu.moveto": "Mover a…", "menu.sync": "Sincronizar con…", "menu.delete": "Eliminar",
 
-  "speed.eyebrow": "Benchmarks", "speed.title": "Saetta frente a la copia predeterminada de Windows",
+  "speed.eyebrow": "Benchmarks", "speed.title": "Saetta frente a la copia de Windows",
   "speed.text": "Medimos tres operaciones habituales en el mismo PC y con los mismos archivos. Cada barra muestra el tiempo empleado: cuanto más corta, antes termina la operación.",
   "speed.explorer": "Explorador de archivos", "speed.replay": "Repetir la carrera", "speed.faster": "más rápido", "speed.lesstime": "tiempo",
   "speed.s1": "Copiar 20.000 archivos pequeños", "speed.s1sub": "Archivos de 64 KB, 1,3 GB en total", "speed.s1x": "12,5×",
@@ -70,7 +70,7 @@ window.SAETTA_ES = {
   "p.resume": "Reanudación tras una interrupción", "p.resumeT": "Si el PC se apaga durante una copia, al volver a encenderlo Saetta ofrece reanudarla y comprueba la integridad de los archivos ya copiados.",
   "p.sync": "Sincronización de carpetas", "p.syncT": "Mantiene dos carpetas alineadas. Con Espejo, el destino se convierte en una copia idéntica del origen; con Solo añadir, se copian los archivos nuevos y modificados, sin borrar nada. Antes de continuar, una vista previa muestra todos los cambios.",
   "p.backup": "Copias programadas", "p.backupT": "Copias de seguridad diarias, semanales, mensuales o anuales, que se ejecutan incluso con Saetta cerrado. Si la unidad de destino no está conectada, recibes un aviso.",
-  "p.copyto": "Copiar en… y Mover a…", "p.copytoT": "Desde el menú contextual envías los archivos seleccionados a otra carpeta sin abrirla: la eliges entre tus favoritas, las abiertas en el Explorador de archivos y las recientes, o la escribes o la buscas. Con Copiar en… eliges varias y cada una recibe su propia copia, en una sola operación: por ejemplo, el disco externo y el NAS a la vez.",
+  "p.copyto": "Copiar en… y Mover a…", "p.copytoT": "Copia archivos y carpetas en varias ubicaciones a la vez, o muévelos, eligiendo los destinos también entre tus carpetas favoritas.",
   "p.checksum": "Archivos de checksum", "p.checksumT": "Crea y verifica archivos .sha256, .md5, .b3, .sfv y otros formatos, compatibles con las herramientas más usadas.",
   "p.report": "Informe", "p.reportT": "Al final de cada trabajo, un informe HTML o CSV con el resultado de cada archivo.",
   "p.command": "Comando al terminar", "p.commandT": "Un comando o script que se ejecuta automáticamente al final de cada trabajo.",

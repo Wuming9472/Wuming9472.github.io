@@ -13,7 +13,7 @@ window.SAETTA_ZH = {
   "win.what": "正在复制 2,481 个项目", "win.data": "数据", "win.files": "文件", "win.check": "校验",
   "menu.copy": "复制", "menu.copyto": "复制到…", "menu.moveto": "移动到…", "menu.sync": "同步到…", "menu.delete": "删除",
 
-  "speed.eyebrow": "基准测试", "speed.title": "Saetta 对比 Windows 默认复制功能",
+  "speed.eyebrow": "基准测试", "speed.title": "Saetta 对比 Windows 复制",
   "speed.text": "我们在同一台电脑上、使用相同的文件测量了三种常见操作。每根条形表示所用时间：越短，操作完成得越早。",
   "speed.explorer": "文件资源管理器", "speed.replay": "重新比赛", "speed.faster": "更快", "speed.lesstime": "时间",
   "speed.s1": "复制 20,000 个小文件", "speed.s1sub": "64 KB 文件，共 1.3 GB", "speed.s1x": "12.5×",
@@ -71,7 +71,7 @@ window.SAETTA_ZH = {
   "p.resume": "中断后继续", "p.resumeT": "如果复制过程中电脑关机，重新开机后 Saetta 会提示继续，并检查已复制文件的完整性。",
   "p.sync": "文件夹同步", "p.syncT": "让两个文件夹保持一致。使用“镜像”时，目标会成为源的完全相同副本；使用“仅添加”时，只复制新文件和修改过的文件，不删除任何内容。开始前，预览会显示所有更改。",
   "p.backup": "计划备份", "p.backupT": "每天、每周、每月或每年备份，即使 Saetta 已关闭也会运行。如果目标磁盘未连接，你会收到提醒。",
-  "p.copyto": "复制到… 和 移动到…", "p.copytoT": "通过右键菜单，无需打开目标文件夹即可把选中的文件发送过去：可从收藏的文件夹、在文件资源管理器中打开的文件夹和最近使用的文件夹中选择，也可以输入路径或浏览。使用“复制到…”可以选择多个文件夹，一次操作即可让每个文件夹都得到一份副本：例如同时复制到外置硬盘和 NAS。",
+  "p.copyto": "复制到… 和 移动到…", "p.copytoT": "将文件和文件夹同时复制到多个位置，或移动它们，还可以从收藏的文件夹中选择目标。",
   "p.checksum": "校验和文件", "p.checksumT": "创建和验证 .sha256、.md5、.b3、.sfv 等格式的文件，与最常用的工具兼容。",
   "p.report": "报告", "p.reportT": "每个任务结束时，生成一份 HTML 或 CSV 报告，列出每个文件的结果。",
   "p.command": "结束时运行命令", "p.commandT": "在每个任务结束时自动运行的命令或脚本。",

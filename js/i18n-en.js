@@ -12,7 +12,7 @@ window.SAETTA_EN = {
   "win.what": "Copying 2,481 items", "win.data": "Data", "win.files": "Files", "win.check": "Verification",
   "menu.copy": "Copy", "menu.copyto": "Copy to…", "menu.moveto": "Move to…", "menu.sync": "Sync with…", "menu.delete": "Delete",
 
-  "speed.eyebrow": "Benchmarks", "speed.title": "Saetta versus Windows' default copy",
+  "speed.eyebrow": "Benchmarks", "speed.title": "Saetta versus Windows copy",
   "speed.text": "We measured three common operations on the same PC and with the same files. Each bar shows the time taken: the shorter it is, the sooner the operation finishes.",
   "speed.explorer": "File Explorer", "speed.replay": "Replay the race", "speed.faster": "faster", "speed.lesstime": "time",
   "speed.s1": "Copying 20,000 small files", "speed.s1sub": "64 KB files, 1.3 GB in total", "speed.s1x": "12.5×",
@@ -70,7 +70,7 @@ window.SAETTA_EN = {
   "p.resume": "Resume after an interruption", "p.resumeT": "If the PC shuts down during a copy, when it is turned back on Saetta offers to resume it and checks the integrity of the files already copied.",
   "p.sync": "Folder synchronization", "p.syncT": "Keeps two folders aligned. With Mirror the destination becomes an identical copy of the source; with Additions only, new and modified files are copied, without deleting anything. Before proceeding, a preview shows all the changes.",
   "p.backup": "Scheduled backups", "p.backupT": "Daily, weekly, monthly or yearly backups, run even when Saetta is closed. If the destination drive is not connected, you receive a warning.",
-  "p.copyto": "Copy to… and Move to…", "p.copytoT": "From the right-click menu you send the selected files to another folder without opening it: you pick it from your favorites, the folders open in File Explorer and the recent ones, or you type or browse to it. With Copy to… you pick more than one and each gets its own copy, in a single operation: for example the external drive and the NAS together.",
+  "p.copyto": "Copy to… and Move to…", "p.copytoT": "Copy files and folders to several locations at the same time, or move them, choosing the destinations from your favorite folders too.",
   "p.checksum": "Checksum files", "p.checksumT": "Create and verify .sha256, .md5, .b3, .sfv files and other formats, compatible with the most widely used tools.",
   "p.report": "Report", "p.reportT": "At the end of every job, an HTML or CSV report with the outcome of every file.",
   "p.command": "Final command", "p.commandT": "A command or script run automatically at the end of every job.",
