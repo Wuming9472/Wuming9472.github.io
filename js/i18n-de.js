@@ -12,7 +12,7 @@ window.SAETTA_DE = {
   "win.what": "2.481 Elemente werden kopiert", "win.data": "Daten", "win.files": "Dateien", "win.check": "Prüfung",
   "menu.copy": "Kopieren", "menu.copyto": "Kopieren nach…", "menu.moveto": "Verschieben nach…", "menu.sync": "Synchronisieren mit…", "menu.delete": "Löschen",
 
-  "speed.eyebrow": "Benchmarks", "speed.title": "Saetta im Vergleich zum Datei-Explorer",
+  "speed.eyebrow": "Benchmarks", "speed.title": "Saetta im Vergleich zum Standard-Kopieren von Windows",
   "speed.text": "Wir haben drei alltägliche Vorgänge auf demselben PC und mit denselben Dateien gemessen. Jeder Balken zeigt die benötigte Zeit: Je kürzer er ist, desto früher ist der Vorgang beendet.",
   "speed.explorer": "Datei-Explorer", "speed.replay": "Rennen wiederholen", "speed.faster": "schneller", "speed.lesstime": "Zeit",
   "speed.s1": "20.000 kleine Dateien kopieren", "speed.s1sub": "Dateien à 64 KB, insgesamt 1,3 GB", "speed.s1x": "12,5×",
@@ -70,7 +70,7 @@ window.SAETTA_DE = {
   "p.resume": "Fortsetzen nach einer Unterbrechung", "p.resumeT": "Schaltet sich der PC während einer Kopie aus, bietet Saetta nach dem Einschalten an, sie fortzusetzen, und prüft die Integrität der bereits kopierten Dateien.",
   "p.sync": "Ordnersynchronisierung", "p.syncT": "Hält zwei Ordner auf demselben Stand. Mit Spiegeln wird das Ziel zu einer identischen Kopie der Quelle; mit Nur Ergänzungen werden neue und geänderte Dateien kopiert, ohne etwas zu löschen. Vor dem Start zeigt eine Vorschau alle Änderungen.",
   "p.backup": "Geplante Sicherungen", "p.backupT": "Tägliche, wöchentliche, monatliche oder jährliche Sicherungen, auch wenn Saetta geschlossen ist. Ist das Ziellaufwerk nicht angeschlossen, erhalten Sie einen Hinweis.",
-  "p.copyto": "Kopieren nach… und Verschieben nach…", "p.copytoT": "Wählen Sie das Ziel aus Ihren Lieblingsordnern, den zuletzt verwendeten und den im Datei-Explorer geöffneten. Eine Kopie kann gleichzeitig in mehrere Ordner gehen.",
+  "p.copyto": "Kopieren nach… und Verschieben nach…", "p.copytoT": "Über das Kontextmenü senden Sie die ausgewählten Dateien in einen anderen Ordner, ohne ihn zu öffnen: Sie wählen ihn aus den Favoriten, den im Datei-Explorer geöffneten und den zuletzt verwendeten Ordnern, oder Sie geben ihn ein oder suchen ihn. Mit Kopieren nach… wählen Sie mehrere aus, und jeder erhält seine eigene Kopie, in einem einzigen Vorgang: zum Beispiel die externe Festplatte und das NAS gleichzeitig.",
   "p.checksum": "Prüfsummendateien", "p.checksumT": "Erstellen und prüfen Sie .sha256-, .md5-, .b3-, .sfv-Dateien und weitere Formate, kompatibel mit den gängigsten Werkzeugen.",
   "p.report": "Bericht", "p.reportT": "Am Ende jedes Auftrags ein HTML- oder CSV-Bericht mit dem Ergebnis jeder Datei.",
   "p.command": "Befehl am Ende", "p.commandT": "Ein Befehl oder Skript, das am Ende jedes Auftrags automatisch ausgeführt wird.",
