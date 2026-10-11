@@ -65,7 +65,7 @@ window.SAETTA_DE = {
   "f.keys": "Tastenkombinationen", "f.keysT": "Strg+C, Strg+X, Strg+V und Entf starten Saetta direkt. Auch das Ziehen mit der rechten Maustaste ist möglich.",
   "f.window": "Fortschritt in Echtzeit", "f.windowT": "Geschwindigkeitsdiagramm, verlässliche Schätzung der Restzeit, Pause und Fortsetzen.",
   "f.errors": "Fehlerbehandlung", "f.errorsT": "Eine gesperrte Datei unterbricht den Auftrag nicht. Sie wird mit dem Grund aufgelistet und kann einzeln erneut kopiert werden.",
-  "f.dupes": "Umgang mit Duplikaten", "f.dupesT": "Wenn eine Datei bereits existiert, werden Sie gefragt, ob Sie beide Versionen behalten, sie ersetzen oder überspringen möchten.",
+  "f.dupes": "Umgang mit Duplikaten", "f.dupesT": "Wenn eine Datei bereits existiert, werden Sie gefragt, ob Sie beide Versionen behalten, sie ersetzen oder überspringen möchten.", "f.delete": "Schnelles Löschen", "f.deleteT": "Löscht Tausende Dateien bis zu 5-mal schneller als der Datei-Explorer: endgültig, ohne Papierkorb, nach einer Bestätigung.",
   "f.filters": "Ausschlüsse und Filter", "f.filtersT": "Schließen Sie Dateien nach Name, Typ, Datum oder Größe aus.", "f.speed": "Geschwindigkeitslimit", "f.speedT": "Bremst Kopien, damit Laufwerk oder Netzwerk frei bleiben, während Sie arbeiten.",
   "f.after": "Aktionen nach Abschluss", "f.afterT": "Nach Abschluss der Kopie kann Saetta den PC in den Energiesparmodus oder Ruhezustand versetzen oder herunterfahren.",
   "f.history": "Verlauf und Statistiken", "f.historyT": "Vollständiges Protokoll der Vorgänge, mit übertragener Datenmenge, Dauer und durchschnittlicher Geschwindigkeit.",
