@@ -66,7 +66,7 @@ window.SAETTA_DE = {
   "f.window": "Fortschritt in Echtzeit", "f.windowT": "Geschwindigkeitsdiagramm, verlässliche Schätzung der Restzeit, Pause und Fortsetzen.",
   "f.errors": "Fehlerbehandlung", "f.errorsT": "Eine gesperrte Datei unterbricht den Auftrag nicht. Sie wird mit dem Grund aufgelistet und kann einzeln erneut kopiert werden.",
   "f.dupes": "Umgang mit Duplikaten", "f.dupesT": "Wenn eine Datei bereits existiert, werden Sie gefragt, ob Sie beide Versionen behalten, sie ersetzen oder überspringen möchten.",
-  "f.filters": "Ausschlüsse und Filter", "f.filtersT": "Schließen Sie Dateien nach Name, Typ, Datum oder Größe aus. Ein Geschwindigkeitslimit lässt dem Laufwerk und dem Netzwerk Bandbreite frei.",
+  "f.filters": "Ausschlüsse und Filter", "f.filtersT": "Schließen Sie Dateien nach Name, Typ, Datum oder Größe aus.", "f.speed": "Geschwindigkeitslimit", "f.speedT": "Bremst Kopien, damit Laufwerk oder Netzwerk frei bleiben, während Sie arbeiten.",
   "f.after": "Aktionen nach Abschluss", "f.afterT": "Nach Abschluss der Kopie kann Saetta den PC in den Energiesparmodus oder Ruhezustand versetzen oder herunterfahren.",
   "f.history": "Verlauf und Statistiken", "f.historyT": "Vollständiges Protokoll der Vorgänge, mit übertragener Datenmenge, Dauer und durchschnittlicher Geschwindigkeit.",
   "p.verify": "Geprüfte Kopien", "p.verifyT": "Jede kopierte Datei wird vom Laufwerk zurückgelesen und mit xxHash3, BLAKE3 oder SHA-256 mit dem Original verglichen.",

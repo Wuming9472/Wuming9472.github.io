@@ -66,7 +66,7 @@ window.SAETTA_ES = {
   "f.window": "Progreso en tiempo real", "f.windowT": "Gráfico de velocidad, estimación fiable del tiempo restante, pausa y reanudación.",
   "f.errors": "Gestión de errores", "f.errorsT": "Un archivo bloqueado no interrumpe el trabajo. Aparece en una lista con la causa y se puede volver a copiar por separado.",
   "f.dupes": "Gestión de duplicados", "f.dupesT": "Si un archivo ya existe, se te pregunta si quieres conservar las dos versiones, reemplazarlo u omitirlo.",
-  "f.filters": "Exclusiones y filtros", "f.filtersT": "Excluye archivos por nombre, tipo, fecha o tamaño. Un límite de velocidad deja ancho de banda libre para el disco y la red.",
+  "f.filters": "Exclusiones y filtros", "f.filtersT": "Excluye archivos por nombre, tipo, fecha o tamaño.", "f.speed": "Límite de velocidad", "f.speedT": "Ralentiza las copias para dejar libres el disco o la red mientras trabajas.",
   "f.after": "Acciones al terminar", "f.afterT": "Cuando termina la copia, Saetta puede suspender, hibernar o apagar el PC.",
   "f.history": "Historial y estadísticas", "f.historyT": "Registro completo de las operaciones, con datos transferidos, duración y velocidad media.",
   "p.verify": "Copias verificadas", "p.verifyT": "Cada archivo copiado se vuelve a leer del disco y se compara con el original mediante xxHash3, BLAKE3 o SHA-256.",

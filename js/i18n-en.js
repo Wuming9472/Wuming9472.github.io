@@ -66,7 +66,7 @@ window.SAETTA_EN = {
   "f.window": "Real-time progress", "f.windowT": "Speed graph, reliable estimate of the time remaining, pause and resume.",
   "f.errors": "Error handling", "f.errorsT": "A locked file does not interrupt the job. It is listed with its cause and can be copied again individually.",
   "f.dupes": "Duplicate handling", "f.dupesT": "If a file already exists, you will be asked whether to keep both versions, replace it or skip it.",
-  "f.filters": "Exclusions and filters", "f.filtersT": "Exclude files by name, type, date or size. A speed limit leaves bandwidth free for the disk and the network.",
+  "f.filters": "Exclusions and filters", "f.filtersT": "Exclude files by name, type, date or size.", "f.speed": "Speed limit", "f.speedT": "Slows copies down to keep the disk or the network free while you work.",
   "f.after": "Actions on completion", "f.afterT": "When the copy is finished, Saetta can put the PC to sleep, hibernate it or shut it down.",
   "f.history": "History and statistics", "f.historyT": "Complete log of operations, with data transferred, duration and average speed.",
   "p.verify": "Verified copies", "p.verifyT": "Every copied file is read back from the disk and compared with the original using xxHash3, BLAKE3 or SHA-256.",
