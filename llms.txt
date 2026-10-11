@@ -29,7 +29,7 @@
 
 ## Facts
 
-- Privacy: no account, no telemetry, no data collection. The only network use is Windows checking the Saetta Professional license.
+- Privacy: no account, no telemetry, no data collection. The network is used only through Windows and the Microsoft Store: to check the Saetta Professional license and, when Settings opens, whether a new version is available.
 - Languages: English, Italian, German, Spanish and Simplified Chinese.
 - Requirements: Windows 11 or Windows 10 (version 1809 or later), 64-bit PC, no administrator rights.
 - Category: file copy utilities for Windows, like TeraCopy or Ultracopier; a graphical interface (GUI) for robocopy.
