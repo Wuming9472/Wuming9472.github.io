@@ -1,7 +1,7 @@
 /* German texts: a faithful translation of the Italian in index.html, key by key, with the
    app's own German terms. A key missing here keeps the Italian text. */
 window.SAETTA_DE = {
-  "meta.title": "Saetta – Fast File Copy",
+  "meta.title": "Saetta – Fast File Copy: schnelles Kopieren für Windows",
   "meta.description": "Dateien unter Windows bis zu 12-mal schneller kopieren, verschieben und löschen als mit dem Datei-Explorer. Über das Kontextmenü oder mit Strg+V und Entf. Basiert auf robocopy, mit schnellem und sicherem Löschen und geprüften Kopien. Kostenlos im Microsoft Store.",
 
   "nav.label": "Bereiche", "nav.theme": "Helles oder dunkles Design", "nav.lang": "Sprache",
