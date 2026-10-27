@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-Hans" data-lang="zh" data-page="benchmark/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Saetta 基准测试：与文件资源管理器对比</title>
+<meta name="description" content="Saetta 与文件资源管理器（Windows 自带的复制）的全部测量结果：SSD、机械硬盘、U 盘和 SD 卡，复制与删除。同一台电脑、同样的文件，并说明测试方法。">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0d18">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f5fb">
+<!-- seo: written by tools/build-site.py -->
+<link rel="canonical" href="https://saetta.net/zh/benchmark/">
+<link rel="alternate" hreflang="en" href="https://saetta.net/benchmark/">
+<link rel="alternate" hreflang="it" href="https://saetta.net/it/benchmark/">
+<link rel="alternate" hreflang="de" href="https://saetta.net/de/benchmark/">
+<link rel="alternate" hreflang="es" href="https://saetta.net/es/benchmark/">
+<link rel="alternate" hreflang="zh-Hans" href="https://saetta.net/zh/benchmark/">
+<link rel="alternate" hreflang="x-default" href="https://saetta.net/benchmark/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Saetta">
+<meta property="og:url" content="https://saetta.net/zh/benchmark/">
+<meta property="og:title" content="Saetta 基准测试：与文件资源管理器对比">
+<meta property="og:description" content="Saetta 与文件资源管理器（Windows 自带的复制）的全部测量结果：SSD、机械硬盘、U 盘和 SD 卡，复制与删除。同一台电脑、同样的文件，并说明测试方法。">
+<meta property="og:image" content="https://saetta.net/assets/saetta-512.png">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Saetta",
+  "alternateName": "Saetta – Fast File Copy",
+  "url": "https://saetta.net/zh/benchmark/",
+  "description": "Saetta 与文件资源管理器（Windows 自带的复制）的全部测量结果：SSD、机械硬盘、U 盘和 SD 卡，复制与删除。同一台电脑、同样的文件，并说明测试方法。",
+  "inLanguage": "zh-Hans",
+  "operatingSystem": "Windows 10, Windows 11",
+  "applicationCategory": "UtilitiesApplication",
+  "image": "https://saetta.net/assets/saetta-512.png",
+  "downloadUrl": "https://apps.microsoft.com/detail/9N3TNPDLFPZW",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Saetta",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "url": "https://apps.microsoft.com/detail/9N3TNPDLFPZW"
+    },
+    {
+      "@type": "Offer",
+      "name": "Saetta Professional",
+      "price": "29.99",
+      "priceCurrency": "EUR",
+      "url": "https://apps.microsoft.com/detail/9N3TNPDLFPZW"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Saetta",
+  "alternateName": "Saetta – Fast File Copy",
+  "url": "https://saetta.net/"
+}
+</script>
+<!-- /seo -->
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/saetta-192.png">
+<link rel="apple-touch-icon" href="../../assets/saetta-256.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../../css/site.css?v=28">
+<link rel="stylesheet" href="../../css/bench.css?v=1">
+</head>
+<body>
+<div class="sky" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="bar">
+      <a class="brand" href="../" aria-label="Saetta">
+        <img src="../../assets/saetta-64.png" alt="" width="30" height="30">Saetta
+      </a>
+      <nav class="links" aria-label="版块" data-i18n-aria="nav.label">
+        <a href="#risultati" data-i18n="bm.navResults">结果</a>
+        <a href="#metodo" data-i18n="bm.navMethod">测试方法</a>
+        <a href="../" data-i18n="bm.navHome">返回 Saetta</a>
+      </nav>
+      <div class="tools">
+        <select class="chip-btn lang-select" id="lang" aria-label="语言" data-i18n-aria="nav.lang"><option value="it">IT</option><option value="en">EN</option><option value="de">DE</option><option value="es">ES</option><option value="zh">中文</option></select>
+        <button class="chip-btn" id="theme" type="button" aria-label="浅色或深色主题" data-i18n-aria="nav.theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <a class="btn btn-primary store-link" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span data-i18n="nav.get">下载</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap">
+    <div class="bm-hero">
+      <div class="eyebrow" data-i18n="bm.eyebrow">完整基准测试</div>
+      <h1 data-i18n="bm.title">Saetta 对比文件资源管理器</h1>
+      <p class="lead" data-i18n="bm.lead">同样的文件、同一台电脑、同样的磁盘。这里列出全部测量结果，包括 Saetta 没有获胜的情况。</p>
+      <div class="bm-summary" id="bm-summary"></div>
+    </div>
+
+    <section id="risultati" aria-labelledby="bm-results-title">
+      <div class="sec-head">
+        <h2 id="bm-results-title" data-i18n="bm.resultsTitle">结果</h2>
+        <p data-i18n="bm.resultsText">选择复制类型。每个条形表示直到数据写入磁盘所用的时间：越短，完成得越早。数值为三次测试的中位数；将鼠标悬停在条形上可查看全部三次。</p>
+      </div>
+      <div class="bm-tabs" id="bm-tabs" role="tablist" aria-labelledby="bm-results-title"></div>
+      <div class="legend bm-legend" id="bm-legend"></div>
+      <p class="bm-scenario" id="bm-scenario"></p>
+      <div class="bm-rows" id="bm-rows" role="tabpanel"></div>
+      <button class="chip-btn bm-toggle" id="bm-table-toggle" type="button" aria-expanded="false" aria-controls="bm-table" data-i18n="bm.showTable" hidden>以表格显示</button>
+      <div class="bm-table" id="bm-table" hidden></div>
+      <p class="glass bm-empty" id="bm-empty" data-i18n="bm.empty">完整测试的结果即将发布。</p>
+    </section>
+
+    <section id="metodo" aria-labelledby="bm-method-title">
+      <div class="sec-head">
+        <h2 id="bm-method-title" data-i18n="bm.methodTitle">测试方法</h2>
+        <p data-i18n="bm.methodText">Saetta 和文件资源管理器的测试条件完全相同。如需重复测试，可以向我们索取脚本。</p>
+      </div>
+      <ul class="bm-method">
+        <li data-i18n-html="bm.m1">两者使用<b>同一台电脑</b>、同样的文件和同样的磁盘。</li>
+        <li data-i18n-html="bm.m2">每次复制前都会清空目标位置并<b>释放 Windows 的内存</b>，确保每个程序都真正从磁盘读取。</li>
+        <li data-i18n-html="bm.m3">计时从开始一直到<b>数据写入目标磁盘</b>：停止计时前会清空 Windows 缓存。</li>
+        <li data-i18n-html="bm.m4"><b>Saetta 通过应用本身测量</b>，与你实际使用的方式相同：复制像从文件资源管理器菜单启动一样开始，任务出现在历史记录中时停止计时。包含应用的启动时间。</li>
+        <li data-i18n-html="bm.m5"><b>文件资源管理器</b>使用 Windows 自带的复制引擎测量，与你平时复制粘贴时相同。</li>
+        <li data-i18n-html="bm.m6">每个程序<b>测试三次</b>，每轮顺序不同，之前先进行一次不计入的预热复制。显示的数值为<b>中位数</b>。</li>
+        <li data-i18n-html="bm.m7">所有程序的<b>删除</b>都是永久删除，不经过回收站。Saetta 的计时从在确认窗口中点击“是”开始。</li>
+        <li data-i18n-html="bm.m8">测试期间杀毒软件始终开启，与日常使用的电脑相同。</li>
+        <li data-i18n-html="bm.m9">对于<b>大文件</b>，所有程序都能达到磁盘的速度：此时差异很小，结果中也如实体现。</li>
+      </ul>
+      <p class="bm-versions" id="bm-versions"></p>
+    </section>
+
+    <footer>
+      <span data-i18n="foot.copy">© 2026 WumingDev。保留所有权利。</span>
+      <nav aria-label="法律声明" data-i18n-aria="foot.label">
+        <a href="../../privacy.html" data-i18n="foot.privacy">隐私</a>
+        <a href="../../third-party-notices.txt" data-i18n="foot.licenses">第三方声明</a>
+        <a href="mailto:wumingdev9472@gmail.com" data-i18n="foot.contact">联系方式</a>
+      </nav>
+    </footer>
+  </div>
+</main>
+
+<script src="../../js/i18n-en.js?v=28"></script>
+<script src="../../js/i18n-zh.js?v=28"></script>
+<script src="../../js/bench-full.js?v=1"></script>
+<script src="../../js/bench-page.js?v=1"></script>
+</body>
+</html>

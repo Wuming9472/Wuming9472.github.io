@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Saetta – Fast File Copy：Windows 快速文件复制</title>
-<meta name="description" content="在 Windows 上复制、移动和删除文件，速度最高可达文件资源管理器的 12 倍。可通过右键菜单或 Ctrl+V 和 Delete 使用。基于 robocopy，提供快速删除、安全删除和校验副本。可在 Microsoft Store 免费获取。">
+<meta name="description" content="在 Windows 上复制、移动和删除文件，速度最高可达文件资源管理器的 25 倍。可通过右键菜单、拖放文件或 Ctrl+V 和 Delete 使用。自有复制引擎，提供快速删除、安全删除和校验副本。可在 Microsoft Store 免费获取。">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0d18">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f5fb">
 <!-- seo: written by tools/build-site.py -->
@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Saetta">
 <meta property="og:url" content="https://saetta.net/zh/">
 <meta property="og:title" content="Saetta – Fast File Copy：Windows 快速文件复制">
-<meta property="og:description" content="在 Windows 上复制、移动和删除文件，速度最高可达文件资源管理器的 12 倍。可通过右键菜单或 Ctrl+V 和 Delete 使用。基于 robocopy，提供快速删除、安全删除和校验副本。可在 Microsoft Store 免费获取。">
+<meta property="og:description" content="在 Windows 上复制、移动和删除文件，速度最高可达文件资源管理器的 25 倍。可通过右键菜单、拖放文件或 Ctrl+V 和 Delete 使用。自有复制引擎，提供快速删除、安全删除和校验副本。可在 Microsoft Store 免费获取。">
 <meta property="og:image" content="https://saetta.net/assets/saetta-512.png">
 <meta property="og:locale" content="zh_CN">
 <meta name="twitter:card" content="summary">
@@ -30,7 +30,7 @@
   "name": "Saetta",
   "alternateName": "Saetta – Fast File Copy",
   "url": "https://saetta.net/zh/",
-  "description": "在 Windows 上复制、移动和删除文件，速度最高可达文件资源管理器的 12 倍。可通过右键菜单或 Ctrl+V 和 Delete 使用。基于 robocopy，提供快速删除、安全删除和校验副本。可在 Microsoft Store 免费获取。",
+  "description": "在 Windows 上复制、移动和删除文件，速度最高可达文件资源管理器的 25 倍。可通过右键菜单、拖放文件或 Ctrl+V 和 Delete 使用。自有复制引擎，提供快速删除、安全删除和校验副本。可在 Microsoft Store 免费获取。",
   "inLanguage": "zh-Hans",
   "operatingSystem": "Windows 10, Windows 11",
   "applicationCategory": "UtilitiesApplication",
@@ -70,7 +70,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
-<link rel="stylesheet" href="../css/site.css?v=26">
+<link rel="stylesheet" href="../css/site.css?v=28">
 </head>
 <body>
 <div class="sky" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -110,11 +110,11 @@
       <div>
         <div class="eyebrow" data-i18n="hero.eyebrow">适用于 Windows 11 和 Windows 10</div>
         <h1><span data-i18n="hero.h1a">复制、移动、删除。</span><br><span class="grad" data-i18n="hero.h1b">以磁盘的速度。</span></h1>
-        <p class="lead" data-i18n-html="hero.lead">在文件资源管理器速度慢的操作中，Saetta 取而代之。处理成千上万个小文件时，速度快 <strong>12 倍</strong>；删除时快 <strong>5 倍</strong>。可通过文件资源管理器的右键菜单使用，或在启用后使用 Ctrl+C、Ctrl+V 和 Delete。</p>
+        <p class="lead" data-i18n-html="hero.lead">在文件资源管理器速度慢的操作中，Saetta 取而代之。处理成千上万个小文件时，速度快 <strong>20 倍以上</strong>；删除时快 <strong>4 倍以上</strong>。可通过文件资源管理器的右键菜单使用，或在启用后使用 Ctrl+C、Ctrl+V 和 Delete。</p>
         <div class="cta-row">
-          <a class="btn btn-primary store-link" href="#">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16l-1.4 11.2a2 2 0 0 1-2 1.8H7.4a2 2 0 0 1-2-1.8z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></svg>
-            <span data-i18n="cta.store">从 Microsoft Store 免费下载</span>
+          <a class="store-badge store-link" href="#" aria-label="从 Microsoft Store 免费下载" data-i18n-aria="cta.store">
+            <img class="on-dark" src="../assets/store-badge/zh-light.svg" width="161" height="44" alt="">
+            <img class="on-light" src="../assets/store-badge/zh-dark.svg" width="161" height="44" alt="">
           </a>
           <a class="btn btn-ghost" href="#velocita" data-i18n="hero.cta2">查看基准测试</a>
         </div>
@@ -186,43 +186,43 @@
       </div>
 
       <div class="bench">
-        <div class="glass case reveal rise" data-explorer="142.05" data-saetta="11.33" data-files="20000" data-bytes="1310720000">
+        <div class="glass case reveal rise" data-explorer="190.73" data-saetta="7.71" data-files="20000" data-bytes="1310720000">
           <div><h3 data-i18n="speed.s1">复制 20,000 个小文件</h3><p class="sub" data-i18n="speed.s1sub">64 KB 文件，共 1.3 GB</p></div>
-          <div class="result"><span class="big grad" data-i18n="speed.s1x">12.5×</span><span class="what" data-i18n="speed.faster">更快</span></div>
+          <div class="result"><span class="big grad" data-i18n="speed.s1x">24.7×</span><span class="what" data-i18n="speed.faster">更快</span></div>
           <div class="bars">
-            <div class="bar-row ex"><div class="top"><span class="who" data-i18n="speed.explorer">文件资源管理器</span><span class="t" data-final="speed.s1ex">2 min 22 s</span></div><div class="track"><div class="fill" style="--w:78.9%"></div></div></div>
-            <div class="bar-row sa"><div class="top"><span class="who">Saetta</span><span class="t" data-final="speed.s1sa">11.3 s</span></div><div class="track"><div class="fill" style="--w:6.3%"></div></div></div>
+            <div class="bar-row ex"><div class="top"><span class="who" data-i18n="speed.explorer">文件资源管理器</span><span class="t" data-final="speed.s1ex">3 min 11 s</span></div><div class="track"><div class="fill" style="--w:79.5%"></div></div></div>
+            <div class="bar-row sa"><div class="top"><span class="who">Saetta</span><span class="t" data-final="speed.s1sa">7.7 s</span></div><div class="track"><div class="fill" style="--w:3.2%"></div></div></div>
           </div>
-          <div class="axis" aria-hidden="true"><span>0</span><span>1 min</span><span>2 min</span><span>3 min</span></div>
+          <div class="axis" aria-hidden="true"><span>0</span><span>1 min</span><span>2 min</span><span>3 min</span><span>4 min</span></div>
           <dl class="rates">
-            <div><dt data-i18n="speed.perSec">每秒文件数</dt><dd><span class="ex" data-rate="ex">141</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg><b data-rate="sa">1.765</b></dd></div>
-            <div><dt data-i18n="speed.saved">节省的时间</dt><dd><b data-rate="saved">2 min 10 s</b></dd></div>
+            <div><dt data-i18n="speed.perSec">每秒文件数</dt><dd><span class="ex" data-rate="ex">105</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg><b data-rate="sa">2.594</b></dd></div>
+            <div><dt data-i18n="speed.saved">节省的时间</dt><dd><b data-rate="saved">3 min 3 s</b></dd></div>
           </dl>
         </div>
-        <div class="glass case reveal rise" data-explorer="10.85" data-saetta="1.94" data-files="20000">
+        <div class="glass case reveal rise" data-explorer="12.99" data-saetta="2.80" data-files="20000">
           <div><h3 data-i18n="speed.s2">删除 20,000 个文件</h3><p class="sub" data-i18n="speed.s2sub">使用 Saetta 的并行删除引擎</p></div>
-          <div class="result"><span class="big grad" data-i18n="speed.s2x">5.6×</span><span class="what" data-i18n="speed.faster">更快</span></div>
+          <div class="result"><span class="big grad" data-i18n="speed.s2x">4.6×</span><span class="what" data-i18n="speed.faster">更快</span></div>
           <div class="bars">
-            <div class="bar-row ex"><div class="top"><span class="who" data-i18n="speed.explorer">文件资源管理器</span><span class="t" data-final="speed.s2ex">10.9 s</span></div><div class="track"><div class="fill" style="--w:90.4%"></div></div></div>
-            <div class="bar-row sa"><div class="top"><span class="who">Saetta</span><span class="t" data-final="speed.s2sa">1.9 s</span></div><div class="track"><div class="fill" style="--w:16.2%"></div></div></div>
+            <div class="bar-row ex"><div class="top"><span class="who" data-i18n="speed.explorer">文件资源管理器</span><span class="t" data-final="speed.s2ex">13.0 s</span></div><div class="track"><div class="fill" style="--w:86.6%"></div></div></div>
+            <div class="bar-row sa"><div class="top"><span class="who">Saetta</span><span class="t" data-final="speed.s2sa">2.8 s</span></div><div class="track"><div class="fill" style="--w:18.7%"></div></div></div>
           </div>
-          <div class="axis" aria-hidden="true"><span>0</span><span>4 s</span><span>8 s</span><span>12 s</span></div>
+          <div class="axis" aria-hidden="true"><span>0</span><span>5 s</span><span>10 s</span><span>15 s</span></div>
           <dl class="rates">
-            <div><dt data-i18n="speed.perSec">每秒文件数</dt><dd><span class="ex" data-rate="ex">1.843</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg><b data-rate="sa">10.309</b></dd></div>
-            <div><dt data-i18n="speed.saved">节省的时间</dt><dd><b data-rate="saved">8,9 s</b></dd></div>
+            <div><dt data-i18n="speed.perSec">每秒文件数</dt><dd><span class="ex" data-rate="ex">1.540</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg><b data-rate="sa">7.143</b></dd></div>
+            <div><dt data-i18n="speed.saved">节省的时间</dt><dd><b data-rate="saved">10,2 s</b></dd></div>
           </dl>
         </div>
-        <div class="glass case reveal rise" data-explorer="7.6" data-saetta="5.9" data-bytes="12884901888">
+        <div class="glass case reveal rise" data-explorer="7.88" data-saetta="7.00" data-bytes="12884901888">
           <div><h3 data-i18n="speed.s3">复制 12 GB 大文件</h3><p class="sub" data-i18n="speed.s3sub">三个 4 GB 文件，例如电影或磁盘映像</p></div>
-          <div class="result"><span class="big grad" data-i18n="speed.s3x">−22%</span><span class="what" data-i18n="speed.lesstime">时间</span></div>
+          <div class="result"><span class="big grad" data-i18n="speed.s3x">−11%</span><span class="what" data-i18n="speed.lesstime">时间</span></div>
           <div class="bars">
-            <div class="bar-row ex"><div class="top"><span class="who" data-i18n="speed.explorer">文件资源管理器</span><span class="t" data-final="speed.s3ex">7.6 s</span></div><div class="track"><div class="fill" style="--w:95%"></div></div></div>
-            <div class="bar-row sa"><div class="top"><span class="who">Saetta</span><span class="t" data-final="speed.s3sa">5.9 s</span></div><div class="track"><div class="fill" style="--w:73.8%"></div></div></div>
+            <div class="bar-row ex"><div class="top"><span class="who" data-i18n="speed.explorer">文件资源管理器</span><span class="t" data-final="speed.s3ex">7.9 s</span></div><div class="track"><div class="fill" style="--w:98.5%"></div></div></div>
+            <div class="bar-row sa"><div class="top"><span class="who">Saetta</span><span class="t" data-final="speed.s3sa">7.0 s</span></div><div class="track"><div class="fill" style="--w:87.5%"></div></div></div>
           </div>
           <div class="axis" aria-hidden="true"><span>0</span><span>2 s</span><span>4 s</span><span>6 s</span><span>8 s</span></div>
           <dl class="rates">
-            <div><dt data-i18n="speed.avg">平均速度</dt><dd><span class="ex" data-rate="ex">1,70 GB/s</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg><b data-rate="sa">2,18 GB/s</b></dd></div>
-            <div><dt data-i18n="speed.saved">节省的时间</dt><dd><b data-rate="saved">1,7 s</b></dd></div>
+            <div><dt data-i18n="speed.avg">平均速度</dt><dd><span class="ex" data-rate="ex">1,64 GB/s</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg><b data-rate="sa">1,84 GB/s</b></dd></div>
+            <div><dt data-i18n="speed.saved">节省的时间</dt><dd><b data-rate="saved">0,9 s</b></dd></div>
           </dl>
         </div>
       </div>
@@ -238,7 +238,7 @@
         <figure class="glass chart reveal rise">
           <figcaption>
             <h3 data-i18n="chart.timeTitle">真实复制过程中的速度</h3>
-            <p class="sub" data-i18n="chart.timeSub">一个包含 8,000 个文档、1,000 张照片和 4 个视频的文件夹，共 10 GB。曲线显示每秒写入磁盘的数据量。</p>
+            <p class="sub" data-i18n="chart.timeSub">一个包含 8,000 个文档、1,000 张照片和 4 个视频的文件夹，共 10 GB，从一块外置硬盘复制到另一块。曲线显示每秒写入磁盘的数据量。</p>
             <div class="legend"><span><i class="ex"></i><span data-i18n="speed.explorer">文件资源管理器</span></span><span><i class="sa"></i>Saetta</span></div>
           </figcaption>
           <div class="plot" id="time-plot" role="img" aria-label="复制期间的磁盘写入速度：Saetta 和文件资源管理器" data-i18n-aria="chart.timeLabel"></div>
@@ -257,6 +257,7 @@
             <li data-i18n="speed.how6">删除时，两个程序都会永久删除文件，不经过回收站。</li>
             <li data-i18n="speed.how4">动画比赛经过加速，但保持了真实的时间比例。</li>
           </ul>
+          <a class="btn btn-ghost method-more" href="benchmark/" data-i18n="speed.more">全部基准测试：机械硬盘、U 盘、SD 卡</a>
         </div>
       </div>
     </section>
@@ -275,7 +276,7 @@
           </div>
           <div>
             <div class="title"><span class="n">1</span><h3 data-i18n="how.s1">安装 Saetta</h3></div>
-            <p data-i18n="how.s1t">从 Microsoft Store 免费下载。无需管理员权限，并会自动更新。</p>
+            <p data-i18n="how.s1t">从 Microsoft Store 免费下载。几秒钟即可安装，并会自动更新。</p>
           </div>
         </div>
         <div class="glass step reveal rise">
@@ -300,12 +301,12 @@
       </div>
     </section>
 
-    <!-- ======================= Robocopy ======================= -->
+    <!-- ======================= Engine ======================= -->
     <section id="tecnologia" aria-labelledby="engine-title">
       <div class="sec-head rise">
         <div class="eyebrow" data-i18n="engine.eyebrow">技术</div>
-        <h2 id="engine-title" data-i18n="engine.title">引擎是 robocopy</h2>
-        <p data-i18n="engine.text">Windows 一直自带一个比你日常使用的复制功能强大得多的复制程序：robocopy。IT 技术人员用它来移动大量数据，但它只能在文本窗口中输入命令来使用。Saetta 替你完成这些：你照常在文件资源管理器中操作，robocopy 在后台完成工作。</p>
+        <h2 id="engine-title" data-i18n="engine.title">自有复制引擎</h2>
+        <p data-i18n="engine.text">Saetta 使用专为 Windows 从零编写的复制引擎。开始之前，它会识别写入的目标是 SSD、机械硬盘、U 盘还是 SD 卡，并为每种设备选择最快的方式。你照常在文件资源管理器中操作。对于网络文件夹和文件夹同步，Saetta 使用 Windows 自带的复制程序 robocopy。</p>
       </div>
       <div class="ideas">
         <div class="glass idea reveal rise">
@@ -315,7 +316,7 @@
           </div>
           <div>
             <h3 data-i18n="engine.a1">同时处理多个文件</h3>
-            <p data-i18n="engine.a1t">文件资源管理器一个接一个地复制文件。Robocopy 同时复制许多文件，就像超市开放更多收银台。Saetta 会根据磁盘决定开放多少个。</p>
+            <p data-i18n="engine.a1t">文件资源管理器一个接一个地复制文件。Saetta 同时复制许多文件，就像超市开放更多收银台，并根据磁盘决定开放多少个：在 SSD 上开放许多个，在机械硬盘上排成一队有序写入，让磁头不必来回跳动。</p>
           </div>
         </div>
         <div class="glass idea reveal rise">
@@ -361,13 +362,14 @@
           <p class="intro" data-i18n="feat.freeIntro">永久免费，无广告，不限文件数量或大小。</p>
           <ul class="feat">
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 13h8M8 16h5"/></svg></span><div><b data-i18n="f.menu">集成到文件资源管理器</b><span data-i18n="f.menuT">在 Windows 11 右键菜单和经典菜单中提供复制、剪切、粘贴和删除。</span></div></li>
-            <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg></span><div><b data-i18n="f.keys">键盘快捷键</b><span data-i18n="f.keysT">Ctrl+C、Ctrl+X、Ctrl+V 和 Delete 可直接启动 Saetta。也支持用鼠标右键拖动。</span></div></li>
+            <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg></span><div><b data-i18n="f.keys">取代 Windows 自带的复制</b><span data-i18n="f.keysT">开启后，在文件资源管理器中粘贴、Ctrl+V、拖放文件和 Delete 都会启动 Saetta。</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg></span><div><b data-i18n="f.window">实时进度</b><span data-i18n="f.windowT">速度图表、可靠的剩余时间估计、暂停和继续。</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span><div><b data-i18n="f.errors">错误处理</b><span data-i18n="f.errorsT">被锁定的文件不会中断任务。它会与原因一起列出，并可单独重新复制。</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V6a2 2 0 0 1 2-2h10"/></svg></span><div><b data-i18n="f.dupes">重复文件处理</b><span data-i18n="f.dupesT">如果文件已存在，会询问你要保留两个版本、替换还是跳过。</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2"/><path d="M6 6l1 14h10l1-14"/><path d="M13 10l-2 3h3l-2 3"/></svg></span><div><b data-i18n="f.delete">快速删除</b><span data-i18n="f.deleteT">删除成千上万个文件，速度最高可达文件资源管理器的 5 倍：确认后永久删除，不经过回收站。</span></div></li>
+            <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h6l2 2h10v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M12 13h6m-3-3 3 3-3 3"/></svg></span><div><b data-i18n="p.copyto">复制到… 和 移动到…</b><span data-i18n="p.copytoT">将文件和文件夹同时复制到多个位置，或移动它们，还可以从收藏的文件夹中选择目标。</span></div></li>
+            <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h6l2 2h10v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M12 13h6m-3-3 3 3-3 3"/></svg></span><div><b data-i18n="f.admin">受保护的文件夹也可以</b><span data-i18n="f.adminT">如果某次复制需要管理员权限，只会出现 Windows 自身的提示，且仅针对这一次复制。</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 3H2l8 9.5V19l4 2v-8.5z"/></svg></span><div><b data-i18n="f.filters">排除和筛选</b><span data-i18n="f.filtersT">按名称、类型、日期或大小排除文件。</span></div></li>
-            <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 18a9 9 0 1 1 17 0"/><path d="m12 13 4-4"/><path d="M12 13h.01"/></svg></span><div><b data-i18n="f.speed">速度限制</b><span data-i18n="f.speedT">降低复制速度，在你工作时为磁盘或网络留出余量。</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v10"/><path d="M18.4 6.6a9 9 0 1 1-12.8 0"/></svg></span><div><b data-i18n="f.after">完成后的操作</b><span data-i18n="f.afterT">复制完成后，Saetta 可以让电脑睡眠、休眠或关机。</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l4 2"/></svg></span><div><b data-i18n="f.history">历史记录和统计</b><span data-i18n="f.historyT">完整的操作记录，包括传输的数据量、用时和平均速度。</span></div></li>
           </ul>
@@ -381,11 +383,11 @@
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5M12 7v5l3 3"/></svg></span><div><b data-i18n="p.resume">中断后继续</b><span data-i18n="p.resumeT">如果复制过程中电脑关机，重新开机后 Saetta 会提示继续，并检查已复制文件的完整性。</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2"/><path d="M3 12A9 9 0 0 1 18.5 5.8"/><path d="M18 2v4h-4M6 22v-4h4"/></svg></span><div><b data-i18n="p.sync">文件夹同步</b><span data-i18n="p.syncT">让两个文件夹保持一致。使用“镜像”时，目标会成为源的完全相同副本；使用“仅添加”时，只复制新文件和修改过的文件，不删除任何内容。开始前，预览会显示所有更改。</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01"/></svg></span><div><b data-i18n="p.backup">计划备份</b><span data-i18n="p.backupT">每天、每周、每月或每年备份，即使 Saetta 已关闭也会运行。如果目标磁盘未连接，你会收到提醒。</span></div></li>
-            <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h6l2 2h10v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M12 13h6m-3-3 3 3-3 3"/></svg></span><div><b data-i18n="p.copyto">复制到… 和 移动到…</b><span data-i18n="p.copytoT">将文件和文件夹同时复制到多个位置，或移动它们，还可以从收藏的文件夹中选择目标。</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span><div><b data-i18n="p.checksum">校验和文件</b><span data-i18n="p.checksumT">创建和验证 .sha256、.md5、.b3、.sfv 等格式的文件，与最常用的工具兼容。</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 18v-3M12 18v-6M16 18v-4"/></svg></span><div><b data-i18n="p.report">报告</b><span data-i18n="p.reportT">每个任务结束时，生成一份 HTML 或 CSV 报告，列出每个文件的结果。</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M12 15h5"/></svg></span><div><b data-i18n="p.command">结束时运行命令</b><span data-i18n="p.commandT">在每个任务结束时自动运行的命令或脚本。</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9.5 9.5l5 5M14.5 9.5l-5 5"/></svg></span><div><b data-i18n="p.secure">安全删除</b><span data-i18n="p.secureT">删除的文件不留痕迹：任何数据恢复程序都无法找回。</span></div></li>
+            <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 18a9 9 0 1 1 17 0"/><path d="m12 13 4-4"/><path d="M12 13h.01"/></svg></span><div><b data-i18n="f.speed">速度限制</b><span data-i18n="f.speedT">降低复制速度，在你工作时为磁盘或网络留出余量。</span></div></li>
           </ul>
         </div>
       </div>
@@ -425,11 +427,11 @@
       </div>
       <div class="faq">
         <details class="glass"><summary><span data-i18n="faq.q1">Saetta 会取代文件资源管理器吗？</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="a" data-i18n="faq.a1">不会。Saetta 集成在文件资源管理器中并与其协同工作：你可以通过右键菜单使用它，也可以选择使用 Ctrl+V 和 Delete。它无法做得更好的操作，例如 ZIP 压缩包、手机或虚拟文件夹上的操作，仍由文件资源管理器处理。</div></details>
-        <details class="glass"><summary><span data-i18n="faq.q2">我的文件安全吗？</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="a" data-i18n="faq.a2">安全。Saetta 使用 Windows 自带的专业复制引擎 robocopy 进行复制。如果你取消操作，未完成的文件会被删除。如果某个文件无法复制，它会与原因一起出现在列表中。使用 Saetta Professional，每次复制都可以校验。</div></details>
+        <details class="glass"><summary><span data-i18n="faq.q2">我的文件安全吗？</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="a" data-i18n="faq.a2">安全。如果你取消操作，未完成的文件会被删除，而要替换的文件在 Saetta 写到它们之前保持不变。如果某个文件无法复制，它会与原因一起出现在列表中。使用 Saetta Professional，每次复制都可以校验。</div></details>
         <details class="glass"><summary><span data-i18n="faq.q3">复制时停电会怎样？</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="a" data-i18n="faq.a3">使用 Saetta Professional，每个正在进行的复制都会被记录。重新开机后，Saetta 会询问是否继续：从中断处继续，并检查已复制文件的完整性。</div></details>
         <details class="glass"><summary><span data-i18n="faq.q4">支持外置硬盘、U 盘和网络文件夹吗？</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="a" data-i18n="faq.a4">支持。Saetta 会根据目标磁盘的类型调整设置。如果计划备份找不到已连接的磁盘，会跳过该次备份并提醒你。</div></details>
         <details class="glass"><summary><span data-i18n="faq.q5">Saetta Professional 是订阅吗？</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="a" data-i18n="faq.a5">不是。它是一次性购买，由 Microsoft Store 管理并与你的 Microsoft 账户绑定。没有续费，也没有额外费用。</div></details>
-        <details class="glass"><summary><span data-i18n="faq.q6">支持哪些 Windows 版本？</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="a" data-i18n="faq.a6">Windows 11 和 Windows 10 1809 及更高版本，64 位电脑。无需管理员权限。</div></details>
+        <details class="glass"><summary><span data-i18n="faq.q6">支持哪些 Windows 版本？</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="a" data-i18n="faq.a6">Windows 11 和 Windows 10 1809 及更高版本，64 位电脑。</div></details>
       </div>
     </section>
 
@@ -439,15 +441,14 @@
         <h2 data-i18n="final.title">下次复制时试试 Saetta。</h2>
         <p data-i18n="final.text">在 Microsoft Store 免费获取，几秒钟即可安装。</p>
         <div class="cta-row">
-          <a class="btn btn-primary store-link" href="#">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16l-1.4 11.2a2 2 0 0 1-2 1.8H7.4a2 2 0 0 1-2-1.8z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></svg>
-            <span data-i18n="cta.store">从 Microsoft Store 免费下载</span>
+          <a class="store-badge store-link" href="#" aria-label="从 Microsoft Store 免费下载" data-i18n-aria="cta.store">
+            <img class="on-dark" src="../assets/store-badge/zh-light.svg" width="161" height="44" alt="">
+            <img class="on-light" src="../assets/store-badge/zh-dark.svg" width="161" height="44" alt="">
           </a>
         </div>
         <div class="reqs">
           <span data-i18n="req.os">Windows 11 和 Windows 10（1809 或更高版本）</span>
           <span data-i18n="req.arch">64 位电脑</span>
-          <span data-i18n="req.admin">无需管理员权限</span>
           <span>Italiano · English · Deutsch · Español · 简体中文</span>
         </div>
       </div>
@@ -455,20 +456,20 @@
     </div>
 
     <footer>
-      <span>© 2026 Saetta</span>
+      <span data-i18n="foot.copy">© 2026 WumingDev。保留所有权利。</span>
       <nav aria-label="法律声明" data-i18n-aria="foot.label">
         <a href="../privacy.html" data-i18n="foot.privacy">隐私</a>
-        <a href="../third-party-notices.txt" data-i18n="foot.licenses">开源许可证</a>
+        <a href="../third-party-notices.txt" data-i18n="foot.licenses">第三方声明</a>
         <a href="mailto:wumingdev9472@gmail.com" data-i18n="foot.contact">联系方式</a>
       </nav>
     </footer>
   </div>
 </main>
 
-<script src="../js/i18n-en.js?v=26"></script>
-<script src="../js/i18n-zh.js?v=26"></script>
-<script src="../js/bench-data.js?v=26"></script>
-<script src="../js/charts.js?v=26"></script>
-<script src="../js/site.js?v=26"></script>
+<script src="../js/i18n-en.js?v=28"></script>
+<script src="../js/i18n-zh.js?v=28"></script>
+<script src="../js/bench-data.js?v=28"></script>
+<script src="../js/charts.js?v=28"></script>
+<script src="../js/site.js?v=28"></script>
 </body>
 </html>

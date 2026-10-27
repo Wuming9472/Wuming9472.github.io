@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Saetta – Fast File Copy: copia file veloce per Windows</title>
-<meta name="description" content="Copia, sposta ed elimina file su Windows fino a 12 volte più velocemente di Esplora file. Si usa dal menu del tasto destro o con Ctrl+V e Canc. Basato su robocopy, con eliminazione rapida e sicura e copie verificate. Gratis sul Microsoft Store.">
+<meta name="description" content="Copia, sposta ed elimina file su Windows fino a 25 volte più velocemente di Esplora file. Si usa dal menu del tasto destro, trascinando i file o con Ctrl+V e Canc. Un motore di copia tutto suo, eliminazione rapida e sicura, copie verificate. Gratis sul Microsoft Store.">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0d18">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f5fb">
 <!-- seo: written by tools/build-site.py -->
@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Saetta">
 <meta property="og:url" content="https://saetta.net/it/">
 <meta property="og:title" content="Saetta – Fast File Copy: copia file veloce per Windows">
-<meta property="og:description" content="Copia, sposta ed elimina file su Windows fino a 12 volte più velocemente di Esplora file. Si usa dal menu del tasto destro o con Ctrl+V e Canc. Basato su robocopy, con eliminazione rapida e sicura e copie verificate. Gratis sul Microsoft Store.">
+<meta property="og:description" content="Copia, sposta ed elimina file su Windows fino a 25 volte più velocemente di Esplora file. Si usa dal menu del tasto destro, trascinando i file o con Ctrl+V e Canc. Un motore di copia tutto suo, eliminazione rapida e sicura, copie verificate. Gratis sul Microsoft Store.">
 <meta property="og:image" content="https://saetta.net/assets/saetta-512.png">
 <meta property="og:locale" content="it_IT">
 <meta name="twitter:card" content="summary">
@@ -30,7 +30,7 @@
   "name": "Saetta",
   "alternateName": "Saetta – Fast File Copy",
   "url": "https://saetta.net/it/",
-  "description": "Copia, sposta ed elimina file su Windows fino a 12 volte più velocemente di Esplora file. Si usa dal menu del tasto destro o con Ctrl+V e Canc. Basato su robocopy, con eliminazione rapida e sicura e copie verificate. Gratis sul Microsoft Store.",
+  "description": "Copia, sposta ed elimina file su Windows fino a 25 volte più velocemente di Esplora file. Si usa dal menu del tasto destro, trascinando i file o con Ctrl+V e Canc. Un motore di copia tutto suo, eliminazione rapida e sicura, copie verificate. Gratis sul Microsoft Store.",
   "inLanguage": "it",
   "operatingSystem": "Windows 10, Windows 11",
   "applicationCategory": "UtilitiesApplication",
@@ -70,7 +70,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
-<link rel="stylesheet" href="../css/site.css?v=26">
+<link rel="stylesheet" href="../css/site.css?v=28">
 </head>
 <body>
 <div class="sky" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -110,11 +110,11 @@
       <div>
         <div class="eyebrow" data-i18n="hero.eyebrow">Per Windows 11 e Windows 10</div>
         <h1><span data-i18n="hero.h1a">Copia, sposta, elimina.</span><br><span class="grad" data-i18n="hero.h1b">Alla velocità del tuo disco.</span></h1>
-        <p class="lead" data-i18n-html="hero.lead">Saetta sostituisce la copia di Esplora file nelle operazioni in cui è lenta. Con migliaia di file piccoli è <strong>12 volte più veloce</strong>; nell'eliminazione, <strong>5 volte</strong>. Si usa dal menu del tasto destro di Esplora file oppure, se le attivi, con Ctrl+C, Ctrl+V e Canc.</p>
+        <p class="lead" data-i18n-html="hero.lead">Saetta sostituisce la copia di Esplora file nelle operazioni in cui è lenta. Con migliaia di file piccoli è <strong>oltre 20 volte più veloce</strong>; nell'eliminazione, <strong>oltre 4 volte</strong>. Si usa dal menu del tasto destro di Esplora file oppure, se le attivi, con Ctrl+C, Ctrl+V e Canc.</p>
         <div class="cta-row">
-          <a class="btn btn-primary store-link" href="#">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16l-1.4 11.2a2 2 0 0 1-2 1.8H7.4a2 2 0 0 1-2-1.8z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></svg>
-            <span data-i18n="cta.store">Scarica gratis dal Microsoft Store</span>
+          <a class="store-badge store-link" href="#" aria-label="Scarica gratis dal Microsoft Store" data-i18n-aria="cta.store">
+            <img class="on-dark" src="../assets/store-badge/it-light.svg" width="161" height="44" alt="">
+            <img class="on-light" src="../assets/store-badge/it-dark.svg" width="161" height="44" alt="">
           </a>
           <a class="btn btn-ghost" href="#velocita" data-i18n="hero.cta2">Vedi i benchmark</a>
         </div>
@@ -186,43 +186,43 @@
       </div>
 
       <div class="bench">
-        <div class="glass case reveal rise" data-explorer="142.05" data-saetta="11.33" data-files="20000" data-bytes="1310720000">
+        <div class="glass case reveal rise" data-explorer="190.73" data-saetta="7.71" data-files="20000" data-bytes="1310720000">
           <div><h3 data-i18n="speed.s1">Copia di 20.000 file piccoli</h3><p class="sub" data-i18n="speed.s1sub">File da 64 KB, 1,3 GB in totale</p></div>
-          <div class="result"><span class="big grad" data-i18n="speed.s1x">12,5×</span><span class="what" data-i18n="speed.faster">più veloce</span></div>
+          <div class="result"><span class="big grad" data-i18n="speed.s1x">24,7×</span><span class="what" data-i18n="speed.faster">più veloce</span></div>
           <div class="bars">
-            <div class="bar-row ex"><div class="top"><span class="who" data-i18n="speed.explorer">Esplora file</span><span class="t" data-final="speed.s1ex">2 min 22 s</span></div><div class="track"><div class="fill" style="--w:78.9%"></div></div></div>
-            <div class="bar-row sa"><div class="top"><span class="who">Saetta</span><span class="t" data-final="speed.s1sa">11,3 s</span></div><div class="track"><div class="fill" style="--w:6.3%"></div></div></div>
+            <div class="bar-row ex"><div class="top"><span class="who" data-i18n="speed.explorer">Esplora file</span><span class="t" data-final="speed.s1ex">3 min 11 s</span></div><div class="track"><div class="fill" style="--w:79.5%"></div></div></div>
+            <div class="bar-row sa"><div class="top"><span class="who">Saetta</span><span class="t" data-final="speed.s1sa">7,7 s</span></div><div class="track"><div class="fill" style="--w:3.2%"></div></div></div>
           </div>
-          <div class="axis" aria-hidden="true"><span>0</span><span>1 min</span><span>2 min</span><span>3 min</span></div>
+          <div class="axis" aria-hidden="true"><span>0</span><span>1 min</span><span>2 min</span><span>3 min</span><span>4 min</span></div>
           <dl class="rates">
-            <div><dt data-i18n="speed.perSec">File al secondo</dt><dd><span class="ex" data-rate="ex">141</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg><b data-rate="sa">1.765</b></dd></div>
-            <div><dt data-i18n="speed.saved">Tempo risparmiato</dt><dd><b data-rate="saved">2 min 10 s</b></dd></div>
+            <div><dt data-i18n="speed.perSec">File al secondo</dt><dd><span class="ex" data-rate="ex">105</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg><b data-rate="sa">2.594</b></dd></div>
+            <div><dt data-i18n="speed.saved">Tempo risparmiato</dt><dd><b data-rate="saved">3 min 3 s</b></dd></div>
           </dl>
         </div>
-        <div class="glass case reveal rise" data-explorer="10.85" data-saetta="1.94" data-files="20000">
+        <div class="glass case reveal rise" data-explorer="12.99" data-saetta="2.80" data-files="20000">
           <div><h3 data-i18n="speed.s2">Eliminazione di 20.000 file</h3><p class="sub" data-i18n="speed.s2sub">Con il motore di eliminazione parallelo di Saetta</p></div>
-          <div class="result"><span class="big grad" data-i18n="speed.s2x">5,6×</span><span class="what" data-i18n="speed.faster">più veloce</span></div>
+          <div class="result"><span class="big grad" data-i18n="speed.s2x">4,6×</span><span class="what" data-i18n="speed.faster">più veloce</span></div>
           <div class="bars">
-            <div class="bar-row ex"><div class="top"><span class="who" data-i18n="speed.explorer">Esplora file</span><span class="t" data-final="speed.s2ex">10,9 s</span></div><div class="track"><div class="fill" style="--w:90.4%"></div></div></div>
-            <div class="bar-row sa"><div class="top"><span class="who">Saetta</span><span class="t" data-final="speed.s2sa">1,9 s</span></div><div class="track"><div class="fill" style="--w:16.2%"></div></div></div>
+            <div class="bar-row ex"><div class="top"><span class="who" data-i18n="speed.explorer">Esplora file</span><span class="t" data-final="speed.s2ex">13,0 s</span></div><div class="track"><div class="fill" style="--w:86.6%"></div></div></div>
+            <div class="bar-row sa"><div class="top"><span class="who">Saetta</span><span class="t" data-final="speed.s2sa">2,8 s</span></div><div class="track"><div class="fill" style="--w:18.7%"></div></div></div>
           </div>
-          <div class="axis" aria-hidden="true"><span>0</span><span>4 s</span><span>8 s</span><span>12 s</span></div>
+          <div class="axis" aria-hidden="true"><span>0</span><span>5 s</span><span>10 s</span><span>15 s</span></div>
           <dl class="rates">
-            <div><dt data-i18n="speed.perSec">File al secondo</dt><dd><span class="ex" data-rate="ex">1.843</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg><b data-rate="sa">10.309</b></dd></div>
-            <div><dt data-i18n="speed.saved">Tempo risparmiato</dt><dd><b data-rate="saved">8,9 s</b></dd></div>
+            <div><dt data-i18n="speed.perSec">File al secondo</dt><dd><span class="ex" data-rate="ex">1.540</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg><b data-rate="sa">7.143</b></dd></div>
+            <div><dt data-i18n="speed.saved">Tempo risparmiato</dt><dd><b data-rate="saved">10,2 s</b></dd></div>
           </dl>
         </div>
-        <div class="glass case reveal rise" data-explorer="7.6" data-saetta="5.9" data-bytes="12884901888">
+        <div class="glass case reveal rise" data-explorer="7.88" data-saetta="7.00" data-bytes="12884901888">
           <div><h3 data-i18n="speed.s3">Copia di 12 GB in file grandi</h3><p class="sub" data-i18n="speed.s3sub">Tre file da 4 GB, come film o immagini disco</p></div>
-          <div class="result"><span class="big grad" data-i18n="speed.s3x">−22%</span><span class="what" data-i18n="speed.lesstime">di tempo</span></div>
+          <div class="result"><span class="big grad" data-i18n="speed.s3x">−11%</span><span class="what" data-i18n="speed.lesstime">di tempo</span></div>
           <div class="bars">
-            <div class="bar-row ex"><div class="top"><span class="who" data-i18n="speed.explorer">Esplora file</span><span class="t" data-final="speed.s3ex">7,6 s</span></div><div class="track"><div class="fill" style="--w:95%"></div></div></div>
-            <div class="bar-row sa"><div class="top"><span class="who">Saetta</span><span class="t" data-final="speed.s3sa">5,9 s</span></div><div class="track"><div class="fill" style="--w:73.8%"></div></div></div>
+            <div class="bar-row ex"><div class="top"><span class="who" data-i18n="speed.explorer">Esplora file</span><span class="t" data-final="speed.s3ex">7,9 s</span></div><div class="track"><div class="fill" style="--w:98.5%"></div></div></div>
+            <div class="bar-row sa"><div class="top"><span class="who">Saetta</span><span class="t" data-final="speed.s3sa">7,0 s</span></div><div class="track"><div class="fill" style="--w:87.5%"></div></div></div>
           </div>
           <div class="axis" aria-hidden="true"><span>0</span><span>2 s</span><span>4 s</span><span>6 s</span><span>8 s</span></div>
           <dl class="rates">
-            <div><dt data-i18n="speed.avg">Velocità media</dt><dd><span class="ex" data-rate="ex">1,70 GB/s</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg><b data-rate="sa">2,18 GB/s</b></dd></div>
-            <div><dt data-i18n="speed.saved">Tempo risparmiato</dt><dd><b data-rate="saved">1,7 s</b></dd></div>
+            <div><dt data-i18n="speed.avg">Velocità media</dt><dd><span class="ex" data-rate="ex">1,64 GB/s</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg><b data-rate="sa">1,84 GB/s</b></dd></div>
+            <div><dt data-i18n="speed.saved">Tempo risparmiato</dt><dd><b data-rate="saved">0,9 s</b></dd></div>
           </dl>
         </div>
       </div>
@@ -238,7 +238,7 @@
         <figure class="glass chart reveal rise">
           <figcaption>
             <h3 data-i18n="chart.timeTitle">La velocità durante una copia reale</h3>
-            <p class="sub" data-i18n="chart.timeSub">Una cartella con 8.000 documenti, 1.000 foto e 4 video, 10 GB in tutto. La linea mostra quanti dati vengono scritti sul disco, secondo per secondo.</p>
+            <p class="sub" data-i18n="chart.timeSub">Una cartella con 8.000 documenti, 1.000 foto e 4 video, 10 GB in tutto, copiata da un disco rigido esterno a un altro. La linea mostra quanti dati vengono scritti sul disco, secondo per secondo.</p>
             <div class="legend"><span><i class="ex"></i><span data-i18n="speed.explorer">Esplora file</span></span><span><i class="sa"></i>Saetta</span></div>
           </figcaption>
           <div class="plot" id="time-plot" role="img" aria-label="Velocità di scrittura sul disco durante la copia, Saetta ed Esplora file" data-i18n-aria="chart.timeLabel"></div>
@@ -257,6 +257,7 @@
             <li data-i18n="speed.how6">Nell'eliminazione, entrambi i programmi cancellano i file in modo definitivo, senza passare dal Cestino.</li>
             <li data-i18n="speed.how4">La gara animata è accelerata e mantiene le proporzioni reali dei tempi.</li>
           </ul>
+          <a class="btn btn-ghost method-more" href="benchmark/" data-i18n="speed.more">Tutti i benchmark: dischi rigidi, chiavette USB, schede SD</a>
         </div>
       </div>
     </section>
@@ -275,7 +276,7 @@
           </div>
           <div>
             <div class="title"><span class="n">1</span><h3 data-i18n="how.s1">Installa Saetta</h3></div>
-            <p data-i18n="how.s1t">Scaricalo gratuitamente dal Microsoft Store. Non servono permessi di amministratore e gli aggiornamenti sono automatici.</p>
+            <p data-i18n="how.s1t">Scaricalo gratuitamente dal Microsoft Store. Si installa in pochi secondi e gli aggiornamenti sono automatici.</p>
           </div>
         </div>
         <div class="glass step reveal rise">
@@ -300,12 +301,12 @@
       </div>
     </section>
 
-    <!-- ======================= Robocopy ======================= -->
+    <!-- ======================= Engine ======================= -->
     <section id="tecnologia" aria-labelledby="engine-title">
       <div class="sec-head rise">
         <div class="eyebrow" data-i18n="engine.eyebrow">Tecnologia</div>
-        <h2 id="engine-title" data-i18n="engine.title">Il motore è robocopy</h2>
-        <p data-i18n="engine.text">Windows contiene da sempre un programma di copia molto più potente di quello che usi ogni giorno: si chiama robocopy. I tecnici informatici lo usano per spostare grandi quantità di dati, ma funziona solo scrivendo comandi in una finestra di testo. Saetta lo fa al posto tuo: tu lavori in Esplora file come sempre, e sotto lavora robocopy.</p>
+        <h2 id="engine-title" data-i18n="engine.title">Un motore di copia tutto suo</h2>
+        <p data-i18n="engine.text">Saetta copia con un motore scritto da zero per Windows. Prima di cominciare riconosce dove scrive, SSD, disco rigido, chiavetta o scheda SD, e per ognuno sceglie il modo più veloce. Tu lavori in Esplora file come sempre. Per le cartelle di rete e la sincronizzazione Saetta usa robocopy, il programma di copia incluso in Windows.</p>
       </div>
       <div class="ideas">
         <div class="glass idea reveal rise">
@@ -315,7 +316,7 @@
           </div>
           <div>
             <h3 data-i18n="engine.a1">Più file alla volta</h3>
-            <p data-i18n="engine.a1t">Esplora file copia un file dopo l'altro. Robocopy ne copia molti insieme, come un supermercato che apre più casse. Saetta decide quante aprirne in base al disco.</p>
+            <p data-i18n="engine.a1t">Esplora file copia un file dopo l'altro. Saetta ne copia molti insieme, come un supermercato che apre più casse, e decide quante aprirne in base al disco: tante su un SSD, una fila ordinata su un disco rigido, così la testina non salta avanti e indietro.</p>
           </div>
         </div>
         <div class="glass idea reveal rise">
@@ -361,13 +362,14 @@
           <p class="intro" data-i18n="feat.freeIntro">Per sempre, senza pubblicità e senza limiti di file o di dimensione.</p>
           <ul class="feat">
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 13h8M8 16h5"/></svg></span><div><b data-i18n="f.menu">Integrazione in Esplora file</b><span data-i18n="f.menuT">Copia, Taglia, Incolla ed Elimina nel menu contestuale di Windows 11 e nel menu classico.</span></div></li>
-            <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg></span><div><b data-i18n="f.keys">Scorciatoie da tastiera</b><span data-i18n="f.keysT">Ctrl+C, Ctrl+X, Ctrl+V e Canc avviano Saetta direttamente. È disponibile anche il trascinamento con il tasto destro.</span></div></li>
+            <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg></span><div><b data-i18n="f.keys">Al posto della copia di Windows</b><span data-i18n="f.keysT">Se la attivi, in Esplora file Incolla, Ctrl+V, il trascinamento dei file e Canc avviano Saetta.</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg></span><div><b data-i18n="f.window">Avanzamento in tempo reale</b><span data-i18n="f.windowT">Grafico della velocità, stima affidabile del tempo rimanente, pausa e ripresa.</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span><div><b data-i18n="f.errors">Gestione degli errori</b><span data-i18n="f.errorsT">Un file bloccato non interrompe il lavoro. Viene elencato con la causa e può essere ricopiato singolarmente.</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V6a2 2 0 0 1 2-2h10"/></svg></span><div><b data-i18n="f.dupes">Gestione dei duplicati</b><span data-i18n="f.dupesT">Se un file esiste già, ti verrà chiesto se mantenere entrambe le versioni, sostituirlo o saltarlo.</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2"/><path d="M6 6l1 14h10l1-14"/><path d="M13 10l-2 3h3l-2 3"/></svg></span><div><b data-i18n="f.delete">Eliminazione rapida</b><span data-i18n="f.deleteT">Elimina migliaia di file fino a 5 volte più velocemente di Esplora file: definitivamente, senza Cestino, dopo una conferma.</span></div></li>
+            <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h6l2 2h10v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M12 13h6m-3-3 3 3-3 3"/></svg></span><div><b data-i18n="p.copyto">Copia in… e Sposta in…</b><span data-i18n="p.copytoT">Copia file e cartelle in più percorsi contemporaneamente, o spostali, scegliendo le destinazioni anche tra le tue cartelle preferite.</span></div></li>
+            <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h6l2 2h10v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M12 13h6m-3-3 3 3-3 3"/></svg></span><div><b data-i18n="f.admin">Anche nelle cartelle protette</b><span data-i18n="f.adminT">Se una copia ha bisogno del permesso di amministratore, compare solo la richiesta di Windows, e solo per quella copia.</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 3H2l8 9.5V19l4 2v-8.5z"/></svg></span><div><b data-i18n="f.filters">Esclusioni e filtri</b><span data-i18n="f.filtersT">Escludi file per nome, tipo, data o dimensione.</span></div></li>
-            <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 18a9 9 0 1 1 17 0"/><path d="m12 13 4-4"/><path d="M12 13h.01"/></svg></span><div><b data-i18n="f.speed">Limite di velocità</b><span data-i18n="f.speedT">Rallenta le copie per lasciare libero il disco o la rete mentre lavori.</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v10"/><path d="M18.4 6.6a9 9 0 1 1-12.8 0"/></svg></span><div><b data-i18n="f.after">Azioni al termine</b><span data-i18n="f.afterT">Al termine della copia, Saetta può sospendere, ibernare o spegnere il PC.</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l4 2"/></svg></span><div><b data-i18n="f.history">Cronologia e statistiche</b><span data-i18n="f.historyT">Registro completo delle operazioni, con dati trasferiti, durata e velocità media.</span></div></li>
           </ul>
@@ -381,11 +383,11 @@
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5M12 7v5l3 3"/></svg></span><div><b data-i18n="p.resume">Ripresa dopo un'interruzione</b><span data-i18n="p.resumeT">Se il PC si spegne durante una copia, alla riaccensione Saetta propone di riprenderla e controlla l'integrità dei file già copiati.</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-15.5 6.2"/><path d="M3 12A9 9 0 0 1 18.5 5.8"/><path d="M18 2v4h-4M6 22v-4h4"/></svg></span><div><b data-i18n="p.sync">Sincronizzazione di cartelle</b><span data-i18n="p.syncT">Mantiene due cartelle allineate. Con Specchio la destinazione diventa una copia identica dell'origine; con Solo aggiunte vengono copiati i file nuovi e modificati, senza eliminare nulla. Prima di procedere, un'anteprima mostra tutte le modifiche.</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01"/></svg></span><div><b data-i18n="p.backup">Backup pianificati</b><span data-i18n="p.backupT">Backup giornalieri, settimanali, mensili o annuali, eseguiti anche a Saetta chiusa. Se l'unità di destinazione non è collegata, ricevi un avviso.</span></div></li>
-            <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h6l2 2h10v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M12 13h6m-3-3 3 3-3 3"/></svg></span><div><b data-i18n="p.copyto">Copia in… e Sposta in…</b><span data-i18n="p.copytoT">Copia file e cartelle in più percorsi contemporaneamente, o spostali, scegliendo le destinazioni anche tra le tue cartelle preferite.</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg></span><div><b data-i18n="p.checksum">File di checksum</b><span data-i18n="p.checksumT">Crea e verifica file .sha256, .md5, .b3, .sfv e altri formati, compatibili con gli strumenti più diffusi.</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 18v-3M12 18v-6M16 18v-4"/></svg></span><div><b data-i18n="p.report">Report</b><span data-i18n="p.reportT">Al termine di ogni lavoro, un report HTML o CSV con l'esito di ogni file.</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M12 15h5"/></svg></span><div><b data-i18n="p.command">Comando finale</b><span data-i18n="p.commandT">Un comando o uno script eseguito automaticamente al termine di ogni lavoro.</span></div></li>
             <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9.5 9.5l5 5M14.5 9.5l-5 5"/></svg></span><div><b data-i18n="p.secure">Eliminazione sicura</b><span data-i18n="p.secureT">I file eliminati spariscono senza lasciare tracce: nessun programma di recupero dati sarà in grado di ritrovarli.</span></div></li>
+            <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 18a9 9 0 1 1 17 0"/><path d="m12 13 4-4"/><path d="M12 13h.01"/></svg></span><div><b data-i18n="f.speed">Limite di velocità</b><span data-i18n="f.speedT">Rallenta le copie per lasciare libero il disco o la rete mentre lavori.</span></div></li>
           </ul>
         </div>
       </div>
@@ -425,11 +427,11 @@
       </div>
       <div class="faq">
         <details class="glass"><summary><span data-i18n="faq.q1">Saetta sostituisce Esplora file?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="a" data-i18n="faq.a1">No. Saetta si integra in Esplora file e lo affianca: lo usi dal menu del tasto destro e, se vuoi, con Ctrl+V e Canc. Le operazioni che non può svolgere meglio, come quelle su archivi ZIP, telefoni o cartelle virtuali, restano a Esplora file.</div></details>
-        <details class="glass"><summary><span data-i18n="faq.q2">I miei file sono al sicuro?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="a" data-i18n="faq.a2">Sì. Saetta copia con robocopy, il motore di copia professionale incluso in Windows. Se annulli un'operazione, i file rimasti incompleti vengono rimossi. Se un file non può essere copiato, compare in un elenco con la causa. Con Saetta Professional ogni copia può essere verificata.</div></details>
+        <details class="glass"><summary><span data-i18n="faq.q2">I miei file sono al sicuro?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="a" data-i18n="faq.a2">Sì. Se annulli un'operazione, i file rimasti incompleti vengono rimossi, e i file da sostituire restano intatti finché Saetta non arriva a scriverli. Se un file non può essere copiato, compare in un elenco con la causa. Con Saetta Professional ogni copia può essere verificata.</div></details>
         <details class="glass"><summary><span data-i18n="faq.q3">Che cosa succede se va via la corrente durante una copia?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="a" data-i18n="faq.a3">Con Saetta Professional ogni copia in corso viene registrata. Alla riaccensione, Saetta ti chiede se riprenderla: riparte dal punto in cui si era fermata e controlla l'integrità dei file già copiati.</div></details>
         <details class="glass"><summary><span data-i18n="faq.q4">Funziona con dischi esterni, chiavette USB e cartelle di rete?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="a" data-i18n="faq.a4">Sì. Saetta adatta le impostazioni al tipo di unità di destinazione. Se un backup pianificato non trova il disco collegato, viene saltato e ricevi un avviso.</div></details>
         <details class="glass"><summary><span data-i18n="faq.q5">Saetta Professional è un abbonamento?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="a" data-i18n="faq.a5">No. È un acquisto unico, gestito dal Microsoft Store e legato al tuo account Microsoft. Non ci sono rinnovi né costi aggiuntivi.</div></details>
-        <details class="glass"><summary><span data-i18n="faq.q6">Quali versioni di Windows sono supportate?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="a" data-i18n="faq.a6">Windows 11 e Windows 10 dalla versione 1809, su PC a 64 bit. Non servono permessi di amministratore.</div></details>
+        <details class="glass"><summary><span data-i18n="faq.q6">Quali versioni di Windows sono supportate?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><div class="a" data-i18n="faq.a6">Windows 11 e Windows 10 dalla versione 1809, su PC a 64 bit.</div></details>
       </div>
     </section>
 
@@ -439,15 +441,14 @@
         <h2 data-i18n="final.title">Prova Saetta sulla tua prossima copia.</h2>
         <p data-i18n="final.text">È gratuito sul Microsoft Store e l'installazione richiede pochi secondi.</p>
         <div class="cta-row">
-          <a class="btn btn-primary store-link" href="#">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16l-1.4 11.2a2 2 0 0 1-2 1.8H7.4a2 2 0 0 1-2-1.8z"/><path d="M8.5 8V6.5a3.5 3.5 0 0 1 7 0V8"/></svg>
-            <span data-i18n="cta.store">Scarica gratis dal Microsoft Store</span>
+          <a class="store-badge store-link" href="#" aria-label="Scarica gratis dal Microsoft Store" data-i18n-aria="cta.store">
+            <img class="on-dark" src="../assets/store-badge/it-light.svg" width="161" height="44" alt="">
+            <img class="on-light" src="../assets/store-badge/it-dark.svg" width="161" height="44" alt="">
           </a>
         </div>
         <div class="reqs">
           <span data-i18n="req.os">Windows 11 e Windows 10 (1809 o successivo)</span>
           <span data-i18n="req.arch">PC a 64 bit</span>
-          <span data-i18n="req.admin">Nessun permesso di amministratore</span>
           <span>Italiano · English · Deutsch · Español · 简体中文</span>
         </div>
       </div>
@@ -455,19 +456,19 @@
     </div>
 
     <footer>
-      <span>© 2026 Saetta</span>
+      <span data-i18n="foot.copy">© 2026 WumingDev. Tutti i diritti riservati.</span>
       <nav aria-label="Note legali" data-i18n-aria="foot.label">
         <a href="../privacy.html" data-i18n="foot.privacy">Privacy</a>
-        <a href="../third-party-notices.txt" data-i18n="foot.licenses">Licenze open source</a>
+        <a href="../third-party-notices.txt" data-i18n="foot.licenses">Avvisi di terze parti</a>
         <a href="mailto:wumingdev9472@gmail.com" data-i18n="foot.contact">Contatti</a>
       </nav>
     </footer>
   </div>
 </main>
 
-<script src="../js/i18n-en.js?v=26"></script>
-<script src="../js/bench-data.js?v=26"></script>
-<script src="../js/charts.js?v=26"></script>
-<script src="../js/site.js?v=26"></script>
+<script src="../js/i18n-en.js?v=28"></script>
+<script src="../js/bench-data.js?v=28"></script>
+<script src="../js/charts.js?v=28"></script>
+<script src="../js/site.js?v=28"></script>
 </body>
 </html>

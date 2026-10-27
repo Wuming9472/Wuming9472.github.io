@@ -1,12 +1,12 @@
 # Saetta
 
-> Saetta is a Windows 10 and Windows 11 app that copies, moves and deletes files faster than File Explorer. It runs robocopy, the copy engine built into Windows, on several files in parallel, and deletes files with its own parallel engine. It works from the File Explorer right-click menu and, if turned on, from Ctrl+V and the Delete key. Saetta is free on the Microsoft Store; Saetta Professional is a one-time in-app purchase (€29.99, no subscription).
+> Saetta is a Windows 10 and Windows 11 app that copies, moves and deletes files faster than File Explorer. It copies with its own engine, written for Windows: it recognizes the destination (SSD, hard disk, USB stick or SD card) and writes to each the fastest way, many files at once. For network folders and folder sync it uses robocopy, the copy program built into Windows. It deletes files with its own parallel engine. It works from the File Explorer right-click menu and, if turned on, from Paste, Ctrl+V, dragging files and the Delete key. Saetta is free on the Microsoft Store; Saetta Professional is a one-time in-app purchase (€29.99, no subscription).
 
 ## What it does
 
 - Copy, move and delete from the File Explorer right-click menu (both the Windows 11 menu and the classic one), or by dragging files with the right mouse button.
-- Optional File Explorer shortcuts: you copy or cut as usual with Ctrl+C or Ctrl+X, and when you paste with Ctrl+V or delete with the Delete key, Saetta does the work.
-- Measured on the same PC with the same files: copying 20,000 small files (64 KB each, 1.3 GB) took 11.3 s with Saetta and 2 min 22 s with File Explorer (12.5 times faster); deleting 20,000 files took 1.9 s against 10.9 s (5.6 times faster); copying three 4 GB files took 5.9 s against 7.6 s (22% less time).
+- Optional File Explorer integration: you copy or cut as usual, and when you paste (Paste, Ctrl+V), drag files with the left mouse button or press Delete, Saetta does the work.
+- Measured on the same PC with the same files (2026-10-21/22, Saetta 1.4 from the app against File Explorer, median of three runs, SSD to SSD): copying 20,000 small files (64 KB each, 1.3 GB) took 7.7 s with Saetta and 3 min 11 s with File Explorer (24.7 times faster); deleting 20,000 files took 2.8 s against 13.0 s (4.6 times faster); copying three 4 GB files took 7.0 s against 7.9 s (11% less time). Every measurement, hard disks, USB sticks and SD cards included: https://saetta.net/benchmark/
 
 ## Free
 
@@ -15,7 +15,9 @@
 - Files that already exist in the destination: keep both, replace or skip.
 - Fast, permanent deletion, without the Recycle Bin, after a confirmation.
 - Exclusions by name or pattern (such as *.tmp or node_modules), recent files only, a maximum file size, hidden and system files.
-- Speed limit; sleep, hibernate or shut down the PC when a long job ends; history of every operation.
+- Sleep, hibernate or shut down the PC when a long job ends; history of every operation.
+- Copy to… and Move to…: files and folders to several locations at once, with favorite folders.
+- Protected folders: when a copy needs administrator permission, only Windows' own prompt appears, for that copy only.
 
 ## Saetta Professional (one-time purchase)
 
@@ -23,16 +25,16 @@
 - Safe resume: after a restart or a power outage, Saetta asks whether to resume the interrupted copy and checks the files already copied.
 - Folder sync with a preview before anything changes.
 - Scheduled backups of a folder or a whole drive to another folder, an external drive or a NAS: daily, weekly, monthly or yearly, even with Saetta closed.
-- Copy to… and Move to…: files and folders to several locations at once, with favorite folders.
 - Checksum files (.sha256, .md5, .b3 and more), created and verified from the File Explorer menu.
 - HTML or CSV report of each job, a command run when an operation ends, and secure delete (files cannot be recovered).
+- Speed limit: slows copies down to keep the disk or the network free while you work.
 
 ## Facts
 
-- Privacy: no account, no telemetry, no data collection. The network is used only through Windows and the Microsoft Store: to check the Saetta Professional license and, when Settings opens, whether a new version is available.
+- Privacy: no account, no telemetry, no data collection. The network is used only through Windows and the Microsoft Store: to check the Saetta Professional license and whether a new version is available (when Saetta starts, when Settings opens and, if the File Explorer integration is on, at sign-in and then every six hours).
 - Languages: English, Italian, German, Spanish and Simplified Chinese.
-- Requirements: Windows 11 or Windows 10 (version 1809 or later), 64-bit PC, no administrator rights.
-- Category: file copy utilities for Windows, like TeraCopy or Ultracopier; a graphical interface (GUI) for robocopy.
+- Requirements: Windows 11 or Windows 10 (version 1809 or later), 64-bit PC. Administrator permission is asked for only when a copy needs it.
+- Category: file copy utilities for Windows, like TeraCopy, FastCopy or Ultracopier.
 
 ## Links
 

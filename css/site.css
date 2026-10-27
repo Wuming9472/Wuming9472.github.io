@@ -159,6 +159,18 @@ select.chip-btn option { color: var(--fg); background: var(--bg); }
 .hero .lead { margin-top: 22px; font-size: 19px; color: var(--muted); max-width: 33em; }
 .hero .lead strong { color: var(--fg); font-weight: 600; }
 .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+/* The Microsoft Store's own badge, in the page's language: the white one on the dark theme,
+   the black one on the light theme. */
+.store-badge { display: inline-flex; border-radius: 9px; transition: transform .2s ease, box-shadow .2s ease; }
+.store-badge img { display: block; width: auto; height: 56px; }
+.store-badge .on-light { display: none; }
+.store-badge:hover { transform: translateY(-1px); box-shadow: 0 14px 32px -14px rgba(0, 0, 0, .55); }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .store-badge .on-light { display: block; }
+  :root:not([data-theme="dark"]) .store-badge .on-dark { display: none; }
+}
+:root[data-theme="light"] .store-badge .on-light { display: block; }
+:root[data-theme="light"] .store-badge .on-dark { display: none; }
 
 /* The copy window, as the app draws it. The Explorer menu hangs from its bottom-right
    corner, below the figures and beside the short file name, so no text is covered. */
@@ -288,6 +300,7 @@ section { padding-block: 104px 0; }
 .method svg { width: 20px; height: 20px; color: var(--cyan); margin-top: 3px; }
 .method h3 { font-size: 17px; font-weight: 600; }
 .method ul { margin: 8px 0 0; padding-left: 18px; color: var(--muted); font-size: 15.5px; display: grid; gap: 4px; }
+.method .method-more { margin-top: 16px; }
 
 /* ---------------- How to use: the three steps carry the section ---------------- */
 .steps { margin-top: 28px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }

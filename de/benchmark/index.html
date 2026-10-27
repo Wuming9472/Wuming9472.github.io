@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="de" data-lang="de" data-page="benchmark/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Saetta-Benchmarks: der Vergleich mit dem Datei-Explorer</title>
+<meta name="description" content="Alle Messungen von Saetta gegen den Datei-Explorer, das Kopieren von Windows: SSDs, Festplatten, USB-Sticks und SD-Karten, Kopieren und Löschen. Derselbe PC, dieselben Dateien, Methode erklärt.">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0d18">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f5fb">
+<!-- seo: written by tools/build-site.py -->
+<link rel="canonical" href="https://saetta.net/de/benchmark/">
+<link rel="alternate" hreflang="en" href="https://saetta.net/benchmark/">
+<link rel="alternate" hreflang="it" href="https://saetta.net/it/benchmark/">
+<link rel="alternate" hreflang="de" href="https://saetta.net/de/benchmark/">
+<link rel="alternate" hreflang="es" href="https://saetta.net/es/benchmark/">
+<link rel="alternate" hreflang="zh-Hans" href="https://saetta.net/zh/benchmark/">
+<link rel="alternate" hreflang="x-default" href="https://saetta.net/benchmark/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Saetta">
+<meta property="og:url" content="https://saetta.net/de/benchmark/">
+<meta property="og:title" content="Saetta-Benchmarks: der Vergleich mit dem Datei-Explorer">
+<meta property="og:description" content="Alle Messungen von Saetta gegen den Datei-Explorer, das Kopieren von Windows: SSDs, Festplatten, USB-Sticks und SD-Karten, Kopieren und Löschen. Derselbe PC, dieselben Dateien, Methode erklärt.">
+<meta property="og:image" content="https://saetta.net/assets/saetta-512.png">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Saetta",
+  "alternateName": "Saetta – Fast File Copy",
+  "url": "https://saetta.net/de/benchmark/",
+  "description": "Alle Messungen von Saetta gegen den Datei-Explorer, das Kopieren von Windows: SSDs, Festplatten, USB-Sticks und SD-Karten, Kopieren und Löschen. Derselbe PC, dieselben Dateien, Methode erklärt.",
+  "inLanguage": "de",
+  "operatingSystem": "Windows 10, Windows 11",
+  "applicationCategory": "UtilitiesApplication",
+  "image": "https://saetta.net/assets/saetta-512.png",
+  "downloadUrl": "https://apps.microsoft.com/detail/9N3TNPDLFPZW",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Saetta",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "url": "https://apps.microsoft.com/detail/9N3TNPDLFPZW"
+    },
+    {
+      "@type": "Offer",
+      "name": "Saetta Professional",
+      "price": "29.99",
+      "priceCurrency": "EUR",
+      "url": "https://apps.microsoft.com/detail/9N3TNPDLFPZW"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Saetta",
+  "alternateName": "Saetta – Fast File Copy",
+  "url": "https://saetta.net/"
+}
+</script>
+<!-- /seo -->
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/saetta-192.png">
+<link rel="apple-touch-icon" href="../../assets/saetta-256.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../../css/site.css?v=28">
+<link rel="stylesheet" href="../../css/bench.css?v=1">
+</head>
+<body>
+<div class="sky" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="bar">
+      <a class="brand" href="../" aria-label="Saetta">
+        <img src="../../assets/saetta-64.png" alt="" width="30" height="30">Saetta
+      </a>
+      <nav class="links" aria-label="Bereiche" data-i18n-aria="nav.label">
+        <a href="#risultati" data-i18n="bm.navResults">Ergebnisse</a>
+        <a href="#metodo" data-i18n="bm.navMethod">So haben wir gemessen</a>
+        <a href="../" data-i18n="bm.navHome">Zurück zu Saetta</a>
+      </nav>
+      <div class="tools">
+        <select class="chip-btn lang-select" id="lang" aria-label="Sprache" data-i18n-aria="nav.lang"><option value="it">IT</option><option value="en">EN</option><option value="de">DE</option><option value="es">ES</option><option value="zh">中文</option></select>
+        <button class="chip-btn" id="theme" type="button" aria-label="Helles oder dunkles Design" data-i18n-aria="nav.theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <a class="btn btn-primary store-link" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+          <span data-i18n="nav.get">Herunterladen</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap">
+    <div class="bm-hero">
+      <div class="eyebrow" data-i18n="bm.eyebrow">Vollständige Benchmarks</div>
+      <h1 data-i18n="bm.title">Saetta gegen den Datei-Explorer</h1>
+      <p class="lead" data-i18n="bm.lead">Dieselben Dateien, derselbe PC, dieselben Laufwerke. Hier finden Sie alle Messungen, auch die, bei denen Saetta nicht gewinnt.</p>
+      <div class="bm-summary" id="bm-summary"></div>
+    </div>
+
+    <section id="risultati" aria-labelledby="bm-results-title">
+      <div class="sec-head">
+        <h2 id="bm-results-title" data-i18n="bm.resultsTitle">Ergebnisse</h2>
+        <p data-i18n="bm.resultsText">Wählen Sie die Art der Kopie. Jeder Balken ist die Zeit, bis die Daten auf dem Laufwerk geschrieben sind: Je kürzer, desto früher ist der Vorgang fertig. Es ist der Median aus drei Durchläufen; fahren Sie über einen Balken, um alle drei zu sehen.</p>
+      </div>
+      <div class="bm-tabs" id="bm-tabs" role="tablist" aria-labelledby="bm-results-title"></div>
+      <div class="legend bm-legend" id="bm-legend"></div>
+      <p class="bm-scenario" id="bm-scenario"></p>
+      <div class="bm-rows" id="bm-rows" role="tabpanel"></div>
+      <button class="chip-btn bm-toggle" id="bm-table-toggle" type="button" aria-expanded="false" aria-controls="bm-table" data-i18n="bm.showTable" hidden>Als Tabelle anzeigen</button>
+      <div class="bm-table" id="bm-table" hidden></div>
+      <p class="glass bm-empty" id="bm-empty" data-i18n="bm.empty">Die Ergebnisse der vollständigen Messreihe folgen in Kürze.</p>
+    </section>
+
+    <section id="metodo" aria-labelledby="bm-method-title">
+      <div class="sec-head">
+        <h2 id="bm-method-title" data-i18n="bm.methodTitle">So haben wir gemessen</h2>
+        <p data-i18n="bm.methodText">Saetta und der Datei-Explorer hatten dieselben Bedingungen. Wenn Sie die Tests wiederholen möchten, fragen Sie uns nach den Skripten.</p>
+      </div>
+      <ul class="bm-method">
+        <li data-i18n-html="bm.m1"><b>Derselbe PC</b> für beide, mit denselben Dateien und denselben Laufwerken.</li>
+        <li data-i18n-html="bm.m2">Vor jeder Kopie wird das Ziel geleert und der <b>Windows-Speicher freigegeben</b>, damit jedes Programm wirklich vom Laufwerk liest.</li>
+        <li data-i18n-html="bm.m3">Die Zeit läuft vom Start, bis die <b>Daten auf dem Ziellaufwerk geschrieben</b> sind: Der Windows-Cache wird geleert, bevor die Uhr anhält.</li>
+        <li data-i18n-html="bm.m4"><b>Saetta wird über die App gemessen</b>, so wie Sie sie verwenden: Die Kopie startet wie über das Menü des Datei-Explorers, und die Zeit endet, wenn der Auftrag im Verlauf erscheint. Der Start der App ist eingeschlossen.</li>
+        <li data-i18n-html="bm.m5">Der <b>Datei-Explorer</b> wird mit der Kopier-Engine von Windows gemessen, die er beim Kopieren und Einfügen verwendet.</li>
+        <li data-i18n-html="bm.m6"><b>Drei Durchläufe</b> pro Programm, in jeder Runde in anderer Reihenfolge, nach einer Aufwärmkopie, die nicht zählt. Angezeigt wird der <b>Median</b>.</li>
+        <li data-i18n-html="bm.m7">Das <b>Löschen</b> ist für alle endgültig, ohne Papierkorb. Bei Saetta beginnt die Zeit mit dem Klick auf Ja im Bestätigungsfenster.</li>
+        <li data-i18n-html="bm.m8">Virenschutz während aller Tests aktiv, wie auf einem Alltags-PC.</li>
+        <li data-i18n-html="bm.m9">Bei <b>großen Dateien</b> erreichen alle Programme die Geschwindigkeit des Laufwerks: Dort sind die Unterschiede klein, und die Ergebnisse zeigen es.</li>
+      </ul>
+      <p class="bm-versions" id="bm-versions"></p>
+    </section>
+
+    <footer>
+      <span data-i18n="foot.copy">© 2026 WumingDev. Alle Rechte vorbehalten.</span>
+      <nav aria-label="Rechtliche Hinweise" data-i18n-aria="foot.label">
+        <a href="../../privacy.html" data-i18n="foot.privacy">Datenschutz</a>
+        <a href="../../third-party-notices.txt" data-i18n="foot.licenses">Hinweise zu Drittanbietern</a>
+        <a href="mailto:wumingdev9472@gmail.com" data-i18n="foot.contact">Kontakt</a>
+      </nav>
+    </footer>
+  </div>
+</main>
+
+<script src="../../js/i18n-en.js?v=28"></script>
+<script src="../../js/i18n-de.js?v=28"></script>
+<script src="../../js/bench-full.js?v=1"></script>
+<script src="../../js/bench-page.js?v=1"></script>
+</body>
+</html>

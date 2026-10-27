@@ -1,0 +1,95 @@
+/* The full benchmarks page (it/benchmark/ and the other languages), on top of site.css.
+   Two programs, one colour each: Saetta and File Explorer. The steps were checked for
+   colour-blind and normal vision against the page's
+   card surface in both themes (dataviz validate_palette.js: light #f9fafd, dark #12162a).
+   Every bar also carries its program's name and its time, so no reader depends on colour. */
+
+:root {
+  --bm-saetta: #9085e9; --bm-explorer: #d95926;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bm-saetta: #6250d6; --bm-explorer: #eb6834;
+  }
+}
+:root[data-theme="light"] {
+  --bm-saetta: #6250d6; --bm-explorer: #eb6834;
+}
+
+.bm-hero { padding-top: 72px; max-width: 860px; }
+.bm-hero h1 { font-size: clamp(34px, 5vw, 58px); line-height: 1.05; font-weight: 800; letter-spacing: -0.03em; margin-top: 14px; }
+.bm-hero .lead { margin-top: 18px; color: var(--muted); font-size: 19px; max-width: 40em; }
+
+.bm-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-top: 36px; }
+.bm-summary:empty { display: none; }
+.bm-stat { padding: 20px 22px; }
+.bm-stat b { display: block; font-size: 34px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+.bm-stat span { display: block; margin-top: 6px; color: var(--muted); font-size: 15px; }
+
+#risultati { padding-top: 72px; }
+.bm-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.bm-tabs button {
+  font: inherit; font-size: 14px; font-weight: 600; color: var(--muted); background: var(--surface);
+  border: 1px solid var(--line-strong); border-radius: 999px; padding: 8px 14px; cursor: pointer;
+}
+.bm-tabs button:hover { color: var(--fg); border-color: var(--accent); }
+.bm-tabs button[aria-selected="true"] { color: var(--accent-ink); background: var(--accent); border-color: var(--accent); }
+.bm-tabs button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+.bm-legend i.saetta { background: var(--bm-saetta); }
+.bm-legend i.explorer { background: var(--bm-explorer); }
+
+.bm-scenario { margin-top: 18px; color: var(--muted); font-size: 15px; max-width: 52em; }
+.bm-rows { display: grid; gap: 16px; margin-top: 22px; }
+.bm-row { padding: 20px 22px; }
+.bm-row header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 16px; }
+.bm-row h3 { font-size: 17px; font-weight: 700; }
+.bm-row h3 small { display: block; margin-top: 2px; font-size: 14px; font-weight: 500; color: var(--muted); }
+.bm-row .bm-gain { font-size: 14px; color: var(--muted); }
+.bm-row .bm-gain b { color: var(--fg); font-size: 18px; }
+.bm-bars { display: grid; gap: 8px; margin-top: 14px; }
+.bm-bar { display: grid; grid-template-columns: 116px 1fr 92px; align-items: center; gap: 12px; font-size: 14px; }
+.bm-bar .who { color: var(--muted); }
+.bm-bar.win .who { color: var(--fg); font-weight: 700; }
+.bm-bar .track { height: 12px; border-radius: 6px; background: var(--well); position: relative; }
+/* The mark: rounded at its end, anchored to the start of the track. */
+.bm-bar .fill { position: absolute; inset-block: 0; left: 0; border-radius: 6px; min-width: 4px; }
+.bm-bar.saetta .fill { background: var(--bm-saetta); }
+.bm-bar.explorer .fill { background: var(--bm-explorer); }
+.bm-bar .t { text-align: right; font-variant-numeric: tabular-nums; color: var(--fg); }
+.bm-bar.win .t { font-weight: 700; }
+.bm-bar .t small { display: block; font-size: 12px; color: var(--ok); font-weight: 600; }
+.bm-bar.missing .t { color: var(--faint); }
+
+.bm-tip {
+  position: fixed; z-index: 30; pointer-events: none; padding: 10px 12px; border-radius: 12px; font-size: 13px;
+  background: var(--surface-strong); border: 1px solid var(--line-strong); box-shadow: var(--shadow); color: var(--fg);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); max-width: 260px;
+}
+.bm-tip b { display: block; margin-bottom: 4px; }
+.bm-tip span { color: var(--muted); }
+
+.bm-toggle { margin-top: 22px; width: auto; padding: 8px 14px; font: inherit; font-size: 14px; font-weight: 600; }
+.bm-table { margin-top: 18px; overflow-x: auto; }
+.bm-table table { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums; }
+.bm-table th, .bm-table td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+.bm-table th:first-child, .bm-table td:first-child { text-align: left; white-space: normal; }
+.bm-table thead th { color: var(--muted); font-weight: 600; }
+.bm-table td.win { font-weight: 700; color: var(--fg); }
+
+.bm-empty { margin-top: 28px; padding: 22px; color: var(--muted); }
+
+#metodo { padding-top: 88px; padding-bottom: 72px; }
+.bm-method { margin-top: 24px; display: grid; gap: 12px; max-width: 52em; padding-left: 0; list-style: none; }
+.bm-method li { padding-left: 22px; position: relative; color: var(--muted); }
+.bm-method li::before { content: ""; position: absolute; left: 4px; top: 0.6em; width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); }
+.bm-method li b { color: var(--fg); }
+.bm-versions { margin-top: 20px; color: var(--faint); font-size: 14px; }
+
+@media (max-width: 560px) {
+  .bm-bar { grid-template-columns: 88px 1fr 74px; gap: 8px; font-size: 13px; }
+  .bm-row { padding: 16px; }
+}
+@media (forced-colors: active) {
+  .bm-bar .fill { background: CanvasText !important; }
+}

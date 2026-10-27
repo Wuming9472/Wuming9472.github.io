@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://saetta.net/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://saetta.net/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://saetta.net/it/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://saetta.net/de/"/>
@@ -12,7 +12,7 @@
   </url>
   <url>
     <loc>https://saetta.net/it/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://saetta.net/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://saetta.net/it/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://saetta.net/de/"/>
@@ -22,7 +22,7 @@
   </url>
   <url>
     <loc>https://saetta.net/de/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://saetta.net/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://saetta.net/it/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://saetta.net/de/"/>
@@ -32,7 +32,7 @@
   </url>
   <url>
     <loc>https://saetta.net/es/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://saetta.net/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://saetta.net/it/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://saetta.net/de/"/>
@@ -42,7 +42,7 @@
   </url>
   <url>
     <loc>https://saetta.net/zh/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://saetta.net/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://saetta.net/it/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://saetta.net/de/"/>
@@ -51,7 +51,57 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://saetta.net/"/>
   </url>
   <url>
+    <loc>https://saetta.net/benchmark/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://saetta.net/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://saetta.net/it/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://saetta.net/de/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://saetta.net/es/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://saetta.net/zh/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://saetta.net/benchmark/"/>
+  </url>
+  <url>
+    <loc>https://saetta.net/it/benchmark/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://saetta.net/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://saetta.net/it/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://saetta.net/de/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://saetta.net/es/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://saetta.net/zh/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://saetta.net/benchmark/"/>
+  </url>
+  <url>
+    <loc>https://saetta.net/de/benchmark/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://saetta.net/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://saetta.net/it/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://saetta.net/de/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://saetta.net/es/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://saetta.net/zh/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://saetta.net/benchmark/"/>
+  </url>
+  <url>
+    <loc>https://saetta.net/es/benchmark/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://saetta.net/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://saetta.net/it/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://saetta.net/de/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://saetta.net/es/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://saetta.net/zh/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://saetta.net/benchmark/"/>
+  </url>
+  <url>
+    <loc>https://saetta.net/zh/benchmark/</loc>
+    <lastmod>2026-10-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://saetta.net/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://saetta.net/it/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://saetta.net/de/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://saetta.net/es/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://saetta.net/zh/benchmark/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://saetta.net/benchmark/"/>
+  </url>
+  <url>
     <loc>https://saetta.net/privacy.html</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-27</lastmod>
   </url>
 </urlset>

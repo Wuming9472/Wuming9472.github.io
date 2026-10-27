@@ -1,9 +1,12 @@
 Saetta - Third-party notices
 ============================
 
+Saetta is proprietary software: Copyright (c) 2026 WumingDev. All rights reserved.
+
 Saetta includes software developed by third parties. Each component below is used
 under the terms of its license; the notices that those licenses require are
-reproduced here.
+reproduced here. These licenses apply to the components listed, not to the rest of
+Saetta.
 
 
 1. FastCopy
@@ -56,6 +59,12 @@ reproduced here.
    License: used under CC0 1.0 Universal (public domain dedication); also offered
    under Apache License 2.0
    Copyright (c) Jack O'Connor and Samuel Neves
+
+11. Windows App SDK project and item templates
+   Some of Saetta's source files started from Microsoft's WinUI 3 templates.
+   Source: https://github.com/microsoft/WindowsAppSDK
+   License: MIT (full text in section A)
+   Copyright (c) Microsoft Corporation and Contributors
 
 
 A. MIT License
