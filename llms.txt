@@ -7,6 +7,7 @@
 - Copy, move and delete from the File Explorer right-click menu (both the Windows 11 menu and the classic one), or by dragging files with the right mouse button.
 - Optional File Explorer integration: you copy or cut as usual, and when you paste (Paste, Ctrl+V), drag files with the left mouse button or press Delete, Saetta does the work.
 - Measured on the same PC with the same files (2026-10-21/22, Saetta 1.4 from the app against File Explorer, median of three runs, SSD to SSD): copying 20,000 small files (64 KB each, 1.3 GB) took 7.7 s with Saetta and 3 min 11 s with File Explorer (24.7 times faster); deleting 20,000 files took 2.8 s against 13.0 s (4.6 times faster); copying three 4 GB files took 7.0 s against 7.9 s (11% less time). Every measurement, hard disks, USB sticks and SD cards included: https://saetta.net/benchmark/
+- Against TeraCopy 4.0.5 and FastCopy 5.12 (same PC and battery, SSD to SSD and SSD to hard disk only): Saetta was the fastest in 15 of 15 comparisons with TeraCopy and in 12 of 15 with FastCopy. Copying 20,000 files of 64 KB from SSD to SSD took 7.7 s with Saetta, 16.1 s with TeraCopy and 19.4 s with FastCopy; with very large files FastCopy was slightly faster (three 4 GB files, SSD to SSD: 5.9 s against 7.0 s). All of them: https://saetta.net/benchmark/#teracopy-ssd and https://saetta.net/benchmark/#fastcopy-ssd
 
 ## Free
 

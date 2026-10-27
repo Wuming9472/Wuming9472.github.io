@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Saetta benchmarks: compared with File Explorer</title>
-<meta name="description" content="Every measurement of Saetta against File Explorer, Windows&#x27; own copy: SSDs, hard disks, USB sticks and SD cards, copying and deleting. Same PC, same files, method explained.">
+<title>Saetta benchmarks: compared with File Explorer, TeraCopy and FastCopy</title>
+<meta name="description" content="Every measurement of Saetta against File Explorer, TeraCopy and FastCopy: SSDs, hard disks, USB sticks and SD cards, copying and deleting. Same PC, same files, method explained.">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0d18">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f5fb">
 <!-- seo: written by tools/build-site.py -->
@@ -18,8 +18,8 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Saetta">
 <meta property="og:url" content="https://saetta.net/benchmark/">
-<meta property="og:title" content="Saetta benchmarks: compared with File Explorer">
-<meta property="og:description" content="Every measurement of Saetta against File Explorer, Windows&#x27; own copy: SSDs, hard disks, USB sticks and SD cards, copying and deleting. Same PC, same files, method explained.">
+<meta property="og:title" content="Saetta benchmarks: compared with File Explorer, TeraCopy and FastCopy">
+<meta property="og:description" content="Every measurement of Saetta against File Explorer, TeraCopy and FastCopy: SSDs, hard disks, USB sticks and SD cards, copying and deleting. Same PC, same files, method explained.">
 <meta property="og:image" content="https://saetta.net/assets/saetta-512.png">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
@@ -30,7 +30,7 @@
   "name": "Saetta",
   "alternateName": "Saetta – Fast File Copy",
   "url": "https://saetta.net/benchmark/",
-  "description": "Every measurement of Saetta against File Explorer, Windows' own copy: SSDs, hard disks, USB sticks and SD cards, copying and deleting. Same PC, same files, method explained.",
+  "description": "Every measurement of Saetta against File Explorer, TeraCopy and FastCopy: SSDs, hard disks, USB sticks and SD cards, copying and deleting. Same PC, same files, method explained.",
   "inLanguage": "en",
   "operatingSystem": "Windows 10, Windows 11",
   "applicationCategory": "UtilitiesApplication",
@@ -65,7 +65,8 @@
 </script>
 <script>
 /* The English page is the root: a visitor whose chosen language, or else whose browser
-   language, has its own page goes there before anything is drawn. */
+   language, has its own page goes there before anything is drawn, to the same part of it
+   (#fastcopy-ssd on the benchmarks page). */
 (function () {
   var pages = { en: "", it: "/it/", de: "/de/", es: "/es/", zh: "/zh/" }, pick = null;
   try { pick = localStorage.getItem("saetta-language"); } catch (e) {}
@@ -73,7 +74,7 @@
     var list = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en"];
     for (var i = 0; i < list.length && !(pick in pages); i++) pick = list[i].toLowerCase().slice(0, 2);
   }
-  if (pages[pick]) location.replace(pages[pick] + "benchmark/");
+  if (pages[pick]) location.replace(pages[pick] + "benchmark/" + location.hash);
 })();
 </script>
 <!-- /seo -->
@@ -83,8 +84,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
-<link rel="stylesheet" href="../css/site.css?v=29">
-<link rel="stylesheet" href="../css/bench.css?v=1">
+<link rel="stylesheet" href="../css/site.css?v=30">
+<link rel="stylesheet" href="../css/bench.css?v=2">
 </head>
 <body>
 <div class="sky" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -120,6 +121,10 @@
       <div class="eyebrow" data-i18n="bm.eyebrow">Full benchmarks</div>
       <h1 data-i18n="bm.title">Saetta against File Explorer</h1>
       <p class="lead" data-i18n="bm.lead">The same files, the same PC, the same disks. Here you find every measurement, including those Saetta does not win.</p>
+      <div class="bm-vs" id="bm-vs" hidden>
+        <span class="bm-vs-label" id="bm-vs-label" data-i18n="bm.vsLabel">Compare with</span>
+        <div class="bm-vs-options" id="bm-vs-options" role="radiogroup" aria-labelledby="bm-vs-label"></div>
+      </div>
       <div class="bm-summary" id="bm-summary"></div>
     </div>
 
@@ -128,6 +133,7 @@
         <h2 id="bm-results-title" data-i18n="bm.resultsTitle">Results</h2>
         <p data-i18n="bm.resultsText">Pick the kind of copy. Each bar is the time taken until the data is written to the disk: the shorter, the sooner it finishes. It is the median of three runs; hover over a bar to see all three.</p>
       </div>
+      <p class="glass bm-vs-note" id="bm-vs-note" hidden></p>
       <div class="bm-tabs" id="bm-tabs" role="tablist" aria-labelledby="bm-results-title"></div>
       <div class="legend bm-legend" id="bm-legend"></div>
       <p class="bm-scenario" id="bm-scenario"></p>
@@ -140,18 +146,21 @@
     <section id="metodo" aria-labelledby="bm-method-title">
       <div class="sec-head">
         <h2 id="bm-method-title" data-i18n="bm.methodTitle">How we measured</h2>
-        <p data-i18n="bm.methodText">Saetta and File Explorer had the same conditions. If you want to repeat the tests, ask us for the scripts.</p>
+        <p data-i18n="bm.methodText">Every program had the same conditions. If you want to repeat the tests, ask us for the scripts.</p>
       </div>
       <ul class="bm-method">
-        <li data-i18n-html="bm.m1">The <b>same PC</b> for both, with the same files and the same disks.</li>
+        <li data-i18n-html="bm.m1">The <b>same PC</b> for all, with the same files and the same disks.</li>
         <li data-i18n-html="bm.m2">Before each copy the destination is emptied and <b>Windows' memory freed</b>, so every program really reads from the disk.</li>
         <li data-i18n-html="bm.m3">The time runs from the start until the <b>data is written to the destination disk</b>: Windows' cache is flushed before the clock stops.</li>
         <li data-i18n-html="bm.m4"><b>Saetta is measured from the app</b>, the way you use it: the copy starts as from File Explorer's menu and the time stops when the job shows in its history. Starting the app is included.</li>
         <li data-i18n-html="bm.m5"><b>File Explorer</b> is measured with Windows' own copy engine, the one it uses when you copy and paste.</li>
+        <li data-i18n-html="bm.m10"><b>TeraCopy and FastCopy</b> start as from their File Explorer menu and close by themselves at the end: starting them is included, as for Saetta. No program checks the files after copying.</li>
         <li data-i18n-html="bm.m6"><b>Three runs</b> per program, in a different order each round, after a warm-up copy that does not count. The value shown is the <b>median</b>.</li>
         <li data-i18n-html="bm.m7"><b>Deleting</b> is permanent for everyone, without the Recycle Bin. For Saetta the time starts at the click on Yes in its confirmation window.</li>
         <li data-i18n-html="bm.m8">Antivirus on throughout the tests, as on an everyday PC.</li>
         <li data-i18n-html="bm.m9">With <b>large files</b> every program reaches the disk's speed: there the differences are small, and the results show it.</li>
+        <li data-i18n-html="bm.m11">In the copies from SSD to SSD and from SSD to hard disk, Saetta's time also includes a <b>300 ms pause</b> of the measuring script, which the other programs did not have.</li>
+        <li data-i18n-html="bm.m12">TeraCopy and FastCopy are trademarks of their respective owners.</li>
       </ul>
       <p class="bm-versions" id="bm-versions"></p>
     </section>
@@ -167,8 +176,8 @@
   </div>
 </main>
 
-<script src="../js/i18n-en.js?v=29"></script>
-<script src="../js/bench-full.js?v=1"></script>
-<script src="../js/bench-page.js?v=1"></script>
+<script src="../js/i18n-en.js?v=30"></script>
+<script src="../js/bench-full.js?v=2"></script>
+<script src="../js/bench-page.js?v=2"></script>
 </body>
 </html>

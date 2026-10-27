@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Benchmarks de Saetta: comparación con el Explorador de archivos</title>
-<meta name="description" content="Todas las mediciones de Saetta frente al Explorador de archivos, la copia de Windows: SSD, discos duros, memorias USB y tarjetas SD, copia y eliminación. Mismo PC, mismos archivos, método explicado.">
+<title>Benchmarks de Saetta: comparación con el Explorador de archivos, TeraCopy y FastCopy</title>
+<meta name="description" content="Todas las mediciones de Saetta frente al Explorador de archivos, TeraCopy y FastCopy: SSD, discos duros, memorias USB y tarjetas SD, copia y eliminación. Mismo PC, mismos archivos, método explicado.">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0d18">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f5fb">
 <!-- seo: written by tools/build-site.py -->
@@ -18,8 +18,8 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Saetta">
 <meta property="og:url" content="https://saetta.net/es/benchmark/">
-<meta property="og:title" content="Benchmarks de Saetta: comparación con el Explorador de archivos">
-<meta property="og:description" content="Todas las mediciones de Saetta frente al Explorador de archivos, la copia de Windows: SSD, discos duros, memorias USB y tarjetas SD, copia y eliminación. Mismo PC, mismos archivos, método explicado.">
+<meta property="og:title" content="Benchmarks de Saetta: comparación con el Explorador de archivos, TeraCopy y FastCopy">
+<meta property="og:description" content="Todas las mediciones de Saetta frente al Explorador de archivos, TeraCopy y FastCopy: SSD, discos duros, memorias USB y tarjetas SD, copia y eliminación. Mismo PC, mismos archivos, método explicado.">
 <meta property="og:image" content="https://saetta.net/assets/saetta-512.png">
 <meta property="og:locale" content="es_ES">
 <meta name="twitter:card" content="summary">
@@ -30,7 +30,7 @@
   "name": "Saetta",
   "alternateName": "Saetta – Fast File Copy",
   "url": "https://saetta.net/es/benchmark/",
-  "description": "Todas las mediciones de Saetta frente al Explorador de archivos, la copia de Windows: SSD, discos duros, memorias USB y tarjetas SD, copia y eliminación. Mismo PC, mismos archivos, método explicado.",
+  "description": "Todas las mediciones de Saetta frente al Explorador de archivos, TeraCopy y FastCopy: SSD, discos duros, memorias USB y tarjetas SD, copia y eliminación. Mismo PC, mismos archivos, método explicado.",
   "inLanguage": "es",
   "operatingSystem": "Windows 10, Windows 11",
   "applicationCategory": "UtilitiesApplication",
@@ -70,8 +70,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
-<link rel="stylesheet" href="../../css/site.css?v=29">
-<link rel="stylesheet" href="../../css/bench.css?v=1">
+<link rel="stylesheet" href="../../css/site.css?v=30">
+<link rel="stylesheet" href="../../css/bench.css?v=2">
 </head>
 <body>
 <div class="sky" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -107,6 +107,10 @@
       <div class="eyebrow" data-i18n="bm.eyebrow">Benchmarks completos</div>
       <h1 data-i18n="bm.title">Saetta frente al Explorador de archivos</h1>
       <p class="lead" data-i18n="bm.lead">Los mismos archivos, el mismo PC, los mismos discos. Aquí están todas las mediciones, también las que Saetta no gana.</p>
+      <div class="bm-vs" id="bm-vs" hidden>
+        <span class="bm-vs-label" id="bm-vs-label" data-i18n="bm.vsLabel">Comparar con</span>
+        <div class="bm-vs-options" id="bm-vs-options" role="radiogroup" aria-labelledby="bm-vs-label"></div>
+      </div>
       <div class="bm-summary" id="bm-summary"></div>
     </div>
 
@@ -115,6 +119,7 @@
         <h2 id="bm-results-title" data-i18n="bm.resultsTitle">Resultados</h2>
         <p data-i18n="bm.resultsText">Elige el tipo de copia. Cada barra es el tiempo hasta que los datos quedan escritos en el disco: cuanto más corta, antes termina. Es la mediana de tres pruebas; pasa el cursor sobre una barra para ver las tres.</p>
       </div>
+      <p class="glass bm-vs-note" id="bm-vs-note" hidden></p>
       <div class="bm-tabs" id="bm-tabs" role="tablist" aria-labelledby="bm-results-title"></div>
       <div class="legend bm-legend" id="bm-legend"></div>
       <p class="bm-scenario" id="bm-scenario"></p>
@@ -127,18 +132,21 @@
     <section id="metodo" aria-labelledby="bm-method-title">
       <div class="sec-head">
         <h2 id="bm-method-title" data-i18n="bm.methodTitle">Cómo medimos</h2>
-        <p data-i18n="bm.methodText">Saetta y el Explorador de archivos tuvieron las mismas condiciones. Si quieres repetir las pruebas, pídenos los scripts.</p>
+        <p data-i18n="bm.methodText">Todos los programas tuvieron las mismas condiciones. Si quieres repetir las pruebas, pídenos los scripts.</p>
       </div>
       <ul class="bm-method">
-        <li data-i18n-html="bm.m1">El <b>mismo PC</b> para ambos, con los mismos archivos y los mismos discos.</li>
+        <li data-i18n-html="bm.m1">El <b>mismo PC</b> para todos, con los mismos archivos y los mismos discos.</li>
         <li data-i18n-html="bm.m2">Antes de cada copia se vacía el destino y se <b>libera la memoria de Windows</b>, para que cada programa lea realmente del disco.</li>
         <li data-i18n-html="bm.m3">El tiempo va desde el inicio hasta que los <b>datos quedan escritos en el disco</b> de destino: la caché de Windows se vacía antes de parar el cronómetro.</li>
         <li data-i18n-html="bm.m4"><b>Saetta se mide desde la aplicación</b>, como la usas tú: la copia empieza como desde el menú del Explorador de archivos y el tiempo se detiene cuando el trabajo aparece en el historial. El inicio de la aplicación está incluido.</li>
         <li data-i18n-html="bm.m5">El <b>Explorador de archivos</b> se mide con el motor de copia de Windows, el mismo que usa cuando copias y pegas.</li>
+        <li data-i18n-html="bm.m10"><b>TeraCopy y FastCopy</b> se inician como desde su menú en el Explorador de archivos y se cierran solos al final: su inicio está incluido, como en Saetta. Ningún programa verifica los archivos después de copiarlos.</li>
         <li data-i18n-html="bm.m6"><b>Tres pruebas</b> por programa, en un orden distinto en cada ronda, tras una copia de calentamiento que no cuenta. El valor mostrado es la <b>mediana</b>.</li>
         <li data-i18n-html="bm.m7">La <b>eliminación</b> es definitiva para todos, sin Papelera de reciclaje. Para Saetta el tiempo empieza con el clic en Sí en su ventana de confirmación.</li>
         <li data-i18n-html="bm.m8">Antivirus activo durante todas las pruebas, como en un PC de uso diario.</li>
         <li data-i18n-html="bm.m9">Con <b>archivos grandes</b> todos los programas llegan a la velocidad del disco: ahí las diferencias son pequeñas, y los resultados lo muestran.</li>
+        <li data-i18n-html="bm.m11">En las copias de SSD a SSD y de SSD a disco duro, el tiempo de Saetta incluye también una <b>pausa de 300 ms</b> del script de medición, que los demás programas no tenían.</li>
+        <li data-i18n-html="bm.m12">TeraCopy y FastCopy son marcas de sus respectivos propietarios.</li>
       </ul>
       <p class="bm-versions" id="bm-versions"></p>
     </section>
@@ -154,9 +162,9 @@
   </div>
 </main>
 
-<script src="../../js/i18n-en.js?v=29"></script>
-<script src="../../js/i18n-es.js?v=29"></script>
-<script src="../../js/bench-full.js?v=1"></script>
-<script src="../../js/bench-page.js?v=1"></script>
+<script src="../../js/i18n-en.js?v=30"></script>
+<script src="../../js/i18n-es.js?v=30"></script>
+<script src="../../js/bench-full.js?v=2"></script>
+<script src="../../js/bench-page.js?v=2"></script>
 </body>
 </html>

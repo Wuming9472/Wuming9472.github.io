@@ -65,7 +65,8 @@
 </script>
 <script>
 /* The English page is the root: a visitor whose chosen language, or else whose browser
-   language, has its own page goes there before anything is drawn. */
+   language, has its own page goes there before anything is drawn, to the same part of it
+   (#fastcopy-ssd on the benchmarks page). */
 (function () {
   var pages = { en: "", it: "/it/", de: "/de/", es: "/es/", zh: "/zh/" }, pick = null;
   try { pick = localStorage.getItem("saetta-language"); } catch (e) {}
@@ -73,7 +74,7 @@
     var list = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en"];
     for (var i = 0; i < list.length && !(pick in pages); i++) pick = list[i].toLowerCase().slice(0, 2);
   }
-  if (pages[pick]) location.replace(pages[pick] + "");
+  if (pages[pick]) location.replace(pages[pick] + "" + location.hash);
 })();
 </script>
 <!-- /seo -->
@@ -83,7 +84,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
-<link rel="stylesheet" href="css/site.css?v=29">
+<link rel="stylesheet" href="css/site.css?v=30">
 </head>
 <body>
 <div class="sky" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -479,9 +480,9 @@
   </div>
 </main>
 
-<script src="js/i18n-en.js?v=29"></script>
-<script src="js/bench-data.js?v=29"></script>
-<script src="js/charts.js?v=29"></script>
-<script src="js/site.js?v=29"></script>
+<script src="js/i18n-en.js?v=30"></script>
+<script src="js/bench-data.js?v=30"></script>
+<script src="js/charts.js?v=30"></script>
+<script src="js/site.js?v=30"></script>
 </body>
 </html>

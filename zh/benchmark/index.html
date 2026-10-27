@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Saetta 基准测试：与文件资源管理器对比</title>
-<meta name="description" content="Saetta 与文件资源管理器（Windows 自带的复制）的全部测量结果：SSD、机械硬盘、U 盘和 SD 卡，复制与删除。同一台电脑、同样的文件，并说明测试方法。">
+<title>Saetta 基准测试：与文件资源管理器、TeraCopy 和 FastCopy 对比</title>
+<meta name="description" content="Saetta 与文件资源管理器、TeraCopy 和 FastCopy 的全部测量结果：SSD、机械硬盘、U 盘和 SD 卡，复制与删除。同一台电脑、同样的文件，并说明测试方法。">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0d18">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f5fb">
 <!-- seo: written by tools/build-site.py -->
@@ -18,8 +18,8 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Saetta">
 <meta property="og:url" content="https://saetta.net/zh/benchmark/">
-<meta property="og:title" content="Saetta 基准测试：与文件资源管理器对比">
-<meta property="og:description" content="Saetta 与文件资源管理器（Windows 自带的复制）的全部测量结果：SSD、机械硬盘、U 盘和 SD 卡，复制与删除。同一台电脑、同样的文件，并说明测试方法。">
+<meta property="og:title" content="Saetta 基准测试：与文件资源管理器、TeraCopy 和 FastCopy 对比">
+<meta property="og:description" content="Saetta 与文件资源管理器、TeraCopy 和 FastCopy 的全部测量结果：SSD、机械硬盘、U 盘和 SD 卡，复制与删除。同一台电脑、同样的文件，并说明测试方法。">
 <meta property="og:image" content="https://saetta.net/assets/saetta-512.png">
 <meta property="og:locale" content="zh_CN">
 <meta name="twitter:card" content="summary">
@@ -30,7 +30,7 @@
   "name": "Saetta",
   "alternateName": "Saetta – Fast File Copy",
   "url": "https://saetta.net/zh/benchmark/",
-  "description": "Saetta 与文件资源管理器（Windows 自带的复制）的全部测量结果：SSD、机械硬盘、U 盘和 SD 卡，复制与删除。同一台电脑、同样的文件，并说明测试方法。",
+  "description": "Saetta 与文件资源管理器、TeraCopy 和 FastCopy 的全部测量结果：SSD、机械硬盘、U 盘和 SD 卡，复制与删除。同一台电脑、同样的文件，并说明测试方法。",
   "inLanguage": "zh-Hans",
   "operatingSystem": "Windows 10, Windows 11",
   "applicationCategory": "UtilitiesApplication",
@@ -70,8 +70,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
-<link rel="stylesheet" href="../../css/site.css?v=29">
-<link rel="stylesheet" href="../../css/bench.css?v=1">
+<link rel="stylesheet" href="../../css/site.css?v=30">
+<link rel="stylesheet" href="../../css/bench.css?v=2">
 </head>
 <body>
 <div class="sky" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -107,6 +107,10 @@
       <div class="eyebrow" data-i18n="bm.eyebrow">完整基准测试</div>
       <h1 data-i18n="bm.title">Saetta 对比文件资源管理器</h1>
       <p class="lead" data-i18n="bm.lead">同样的文件、同一台电脑、同样的磁盘。这里列出全部测量结果，包括 Saetta 没有获胜的情况。</p>
+      <div class="bm-vs" id="bm-vs" hidden>
+        <span class="bm-vs-label" id="bm-vs-label" data-i18n="bm.vsLabel">对比对象</span>
+        <div class="bm-vs-options" id="bm-vs-options" role="radiogroup" aria-labelledby="bm-vs-label"></div>
+      </div>
       <div class="bm-summary" id="bm-summary"></div>
     </div>
 
@@ -115,6 +119,7 @@
         <h2 id="bm-results-title" data-i18n="bm.resultsTitle">结果</h2>
         <p data-i18n="bm.resultsText">选择复制类型。每个条形表示直到数据写入磁盘所用的时间：越短，完成得越早。数值为三次测试的中位数；将鼠标悬停在条形上可查看全部三次。</p>
       </div>
+      <p class="glass bm-vs-note" id="bm-vs-note" hidden></p>
       <div class="bm-tabs" id="bm-tabs" role="tablist" aria-labelledby="bm-results-title"></div>
       <div class="legend bm-legend" id="bm-legend"></div>
       <p class="bm-scenario" id="bm-scenario"></p>
@@ -127,18 +132,21 @@
     <section id="metodo" aria-labelledby="bm-method-title">
       <div class="sec-head">
         <h2 id="bm-method-title" data-i18n="bm.methodTitle">测试方法</h2>
-        <p data-i18n="bm.methodText">Saetta 和文件资源管理器的测试条件完全相同。如需重复测试，可以向我们索取脚本。</p>
+        <p data-i18n="bm.methodText">所有程序的测试条件完全相同。如需重复测试，可以向我们索取脚本。</p>
       </div>
       <ul class="bm-method">
-        <li data-i18n-html="bm.m1">两者使用<b>同一台电脑</b>、同样的文件和同样的磁盘。</li>
+        <li data-i18n-html="bm.m1">所有程序使用<b>同一台电脑</b>、同样的文件和同样的磁盘。</li>
         <li data-i18n-html="bm.m2">每次复制前都会清空目标位置并<b>释放 Windows 的内存</b>，确保每个程序都真正从磁盘读取。</li>
         <li data-i18n-html="bm.m3">计时从开始一直到<b>数据写入目标磁盘</b>：停止计时前会清空 Windows 缓存。</li>
         <li data-i18n-html="bm.m4"><b>Saetta 通过应用本身测量</b>，与你实际使用的方式相同：复制像从文件资源管理器菜单启动一样开始，任务出现在历史记录中时停止计时。包含应用的启动时间。</li>
         <li data-i18n-html="bm.m5"><b>文件资源管理器</b>使用 Windows 自带的复制引擎测量，与你平时复制粘贴时相同。</li>
+        <li data-i18n-html="bm.m10"><b>TeraCopy 和 FastCopy</b> 以从文件资源管理器菜单启动的方式运行，结束后自动关闭：与 Saetta 一样，计时包含程序启动。所有程序在复制后都不校验文件。</li>
         <li data-i18n-html="bm.m6">每个程序<b>测试三次</b>，每轮顺序不同，之前先进行一次不计入的预热复制。显示的数值为<b>中位数</b>。</li>
         <li data-i18n-html="bm.m7">所有程序的<b>删除</b>都是永久删除，不经过回收站。Saetta 的计时从在确认窗口中点击“是”开始。</li>
         <li data-i18n-html="bm.m8">测试期间杀毒软件始终开启，与日常使用的电脑相同。</li>
         <li data-i18n-html="bm.m9">对于<b>大文件</b>，所有程序都能达到磁盘的速度：此时差异很小，结果中也如实体现。</li>
+        <li data-i18n-html="bm.m11">在 SSD 到 SSD、SSD 到机械硬盘的复制中，Saetta 的时间还包含测量脚本 <b>300 毫秒的暂停</b>，其他程序没有这一暂停。</li>
+        <li data-i18n-html="bm.m12">TeraCopy 和 FastCopy 是其各自所有者的商标。</li>
       </ul>
       <p class="bm-versions" id="bm-versions"></p>
     </section>
@@ -154,9 +162,9 @@
   </div>
 </main>
 
-<script src="../../js/i18n-en.js?v=29"></script>
-<script src="../../js/i18n-zh.js?v=29"></script>
-<script src="../../js/bench-full.js?v=1"></script>
-<script src="../../js/bench-page.js?v=1"></script>
+<script src="../../js/i18n-en.js?v=30"></script>
+<script src="../../js/i18n-zh.js?v=30"></script>
+<script src="../../js/bench-full.js?v=2"></script>
+<script src="../../js/bench-page.js?v=2"></script>
 </body>
 </html>

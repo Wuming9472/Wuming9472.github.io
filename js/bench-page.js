@@ -1,6 +1,8 @@
 /* The full benchmarks page: language and theme as on the home page, then the results from
    js/bench-full.js (window.SAETTA_BENCH_FULL, written by tools/bench-site-data.py from the
    measuring scripts' results). Until that file holds results, the page says they are coming.
+   Saetta is compared with one program at a time, picked at the top: File Explorer in every
+   scenario, TeraCopy and FastCopy where they were measured too.
    The texts drawn here are Italian below; the other languages' come from their dictionaries
    (bm.* keys in js/i18n-<lang>.js). */
 (function () {
@@ -11,6 +13,8 @@
   const LOCALES = { it: "it-IT", en: "en-US", de: "de-DE", es: "es-ES", zh: "zh-CN" };
 
   const IT = {
+    "bm.title": "Saetta contro Esplora file", "bm.titleVs": "Saetta contro {name}",
+    "bm.vsNote": "{name} è stato misurato nelle copie da SSD a SSD e da SSD a disco rigido; le altre prove confrontano Saetta solo con Esplora file.",
     "bm.explorer": "Esplora file",
     "bm.sc.ssd": "SSD → SSD", "bm.sc.ssd.text": "Copia da un SSD allo stesso SSD.",
     "bm.sc.ce": "SSD → disco rigido", "bm.sc.ce.text": "Copia dall'SSD a un disco rigido esterno USB.",
@@ -27,9 +31,9 @@
     "bm.setSys": "Programmi di Windows (.exe e .dll)",
     "bm.setSub": "{files} file · {total}",
     "bm.setSubFolders": "{files} file in {folders} cartelle · {total}",
-    "bm.faster": "<b>{x}×</b> più veloce di Esplora file",
-    "bm.slower": "Esplora file <b>{x}×</b> più veloce",
-    "bm.even": "Alla pari con Esplora file",
+    "bm.faster": "<b>{x}×</b> più veloce di Esplora file", "bm.fasterVs": "<b>{x}×</b> più veloce di {name}",
+    "bm.slower": "Esplora file <b>{x}×</b> più veloce", "bm.slowerVs": "{name} <b>{x}×</b> più veloce",
+    "bm.even": "Alla pari con Esplora file", "bm.evenVs": "Alla pari con {name}",
     "bm.fastest": "più veloce",
     "bm.notMeasured": "non misurato",
     "bm.tip": "Mediana {m} · prove: {runs}",
@@ -37,8 +41,8 @@
     "bm.showTable": "Mostra come tabella", "bm.hideTable": "Nascondi la tabella",
     "bm.sumCases": "confronti misurati",
     "bm.sumWins": "volte Saetta è la più veloce, su {n}",
-    "bm.sumBest": "più veloce di Esplora file, al massimo",
-    "bm.versions": "Misurato il {date}. PC: {pc}. Versioni: Saetta {saetta}, {os}.",
+    "bm.sumBest": "più veloce di Esplora file, al massimo", "bm.sumBestVs": "più veloce di {name}, al massimo",
+    "bm.versions": "Misurato il {date}. PC: {pc}. Versioni: {versions}.",
   };
   const dict = window["SAETTA_" + lang.toUpperCase()] || {};
   const t = key => (lang !== "it" && dict[key]) || IT[key] || key;
@@ -51,7 +55,7 @@
   select.value = lang;
   select.addEventListener("change", e => {
     try { localStorage.setItem("saetta-language", e.target.value); } catch (err) {}
-    location.href = PAGES[e.target.value] + page;
+    location.href = PAGES[e.target.value] + page + location.hash;   /* the same comparison and scenario */
   });
   document.getElementById("theme").addEventListener("click", () => {
     const root = document.documentElement;
@@ -66,8 +70,16 @@
   if (!scenarios.length) return;   /* the "coming soon" note stays */
   document.getElementById("bm-empty").hidden = true;
 
-  const PROGRAMS = ["saetta", "explorer"];
-  const NAME = p => (p === "saetta" ? "Saetta" : t("bm.explorer"));
+  const RIVALS = ["explorer", "teracopy", "fastcopy"];
+  const NAMES = { saetta: "Saetta", teracopy: "TeraCopy", fastcopy: "FastCopy" };
+  const NAME = p => NAMES[p] || t("bm.explorer");
+  const has = (row, p) => !!(row.runs[p] && row.runs[p].length);
+  /* The scenarios, and in each the rows, where Saetta and that program both ran. */
+  const against = p => scenarios.map(s => ({ id: s.id, rows: s.rows.filter(r => has(r, "saetta") && has(r, p)) })).filter(s => s.rows.length);
+  const rivals = RIVALS.filter(p => against(p).length);
+  let rival = "explorer", view = against(rival), current = null;
+  /* File Explorer's own texts (some languages give it an article); the others take the name. */
+  const tv = (key, values) => fill(t(rival === "explorer" ? key : key + "Vs"), Object.assign({ name: NAME(rival) }, values));
   const SIZES = { "4K": "4 KB", "64K": "64 KB", "1M": "1 MB", "16M": "16 MB", "256M": "256 MB", "4G": "4 GB" };
   const median = runs => { const s = runs.slice().sort((a, b) => a - b); const m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
   const clock = s => {
@@ -89,24 +101,27 @@
     const values = { files: fmt(row.files, 0), total: bytes(row.bytes), folders: fmt(row.folders || 0, 0) };
     return fill(t(row.folders > 1 ? "bm.setSubFolders" : "bm.setSub"), values);
   }
-  const medians = row => Object.fromEntries(PROGRAMS.filter(p => row.runs[p] && row.runs[p].length).map(p => [p, median(row.runs[p])]));
+  const medians = row => Object.fromEntries(["saetta", rival].filter(p => has(row, p)).map(p => [p, median(row.runs[p])]));
   const fastest = m => Object.keys(m).reduce((best, p) => (best === null || m[p] < m[best] ? p : best), null);
 
-  /* Summary: what the reader takes away first. */
-  (function summary() {
+  /* Summary: what the reader takes away first, against the program picked. */
+  function summary() {
     let cases = 0, wins = 0, best = 0;
-    scenarios.forEach(s => s.rows.forEach(r => {
+    view.forEach(s => s.rows.forEach(r => {
       const m = medians(r);
-      if (Object.keys(m).length < 2) return;
       cases++;
       if (fastest(m) === "saetta") wins++;
-      if (m.explorer && m.saetta) best = Math.max(best, m.explorer / m.saetta);
+      best = Math.max(best, m[rival] / m.saetta);
     }));
     const tiles = [[fmt(cases, 0), t("bm.sumCases")], [fmt(wins, 0), fill(t("bm.sumWins"), { n: fmt(cases, 0) })]];
-    if (best > 1) tiles.push([fmt(best, 1) + "×", t("bm.sumBest")]);
+    if (best > 1) tiles.push([fmt(best, 1) + "×", tv("bm.sumBest")]);
     document.getElementById("bm-summary").innerHTML = tiles.map(([b, s]) => '<div class="glass bm-stat"><b>' + esc(b) + '</b><span>' + esc(s) + '</span></div>').join("");
-  })();
+  }
 
+  const heading = document.querySelector(".bm-hero h1");
+  const vsBox = document.getElementById("bm-vs");
+  const vs = document.getElementById("bm-vs-options");
+  const vsNote = document.getElementById("bm-vs-note");
   const legend = document.getElementById("bm-legend");
   const rowsBox = document.getElementById("bm-rows");
   const tabs = document.getElementById("bm-tabs");
@@ -118,19 +133,17 @@
   document.body.appendChild(tip);
 
   function render(id) {
-    const s = scenarios.find(x => x.id === id) || scenarios[0];
+    const s = view.find(x => x.id === id) || view.find(x => x.id === current) || view[0];
+    current = s.id;
     [...tabs.children].forEach(b => b.setAttribute("aria-selected", String(b.dataset.id === s.id)));
     [...tabs.children].forEach(b => (b.tabIndex = b.dataset.id === s.id ? 0 : -1));
     scenarioText.textContent = t("bm.sc." + s.id + ".text");
-    const shown = PROGRAMS.filter(p => s.rows.some(r => r.runs[p] && r.runs[p].length));
+    const shown = ["saetta", rival];
     legend.innerHTML = shown.map(p => '<span><i class="' + p + '"></i>' + esc(NAME(p)) + '</span>').join("");
     rowsBox.innerHTML = s.rows.map((r, i) => {
       const m = medians(r), win = fastest(m), top = Math.max(...Object.values(m));
-      let gain = "";
-      if (m.saetta && m.explorer) {
-        const x = m.explorer / m.saetta;
-        gain = x >= 1.05 ? fill(t("bm.faster"), { x: fmt(x, 1) }) : x <= 0.95 ? fill(t("bm.slower"), { x: fmt(1 / x, 1) }) : esc(t("bm.even"));
-      }
+      const x = m[rival] / m.saetta;
+      const gain = x >= 1.05 ? tv("bm.faster", { x: fmt(x, 1) }) : x <= 0.95 ? tv("bm.slower", { x: fmt(1 / x, 1) }) : esc(tv("bm.even"));
       const bars = shown.map(p => {
         if (!(p in m)) return '<div class="bm-bar missing ' + p + '"><span class="who">' + esc(NAME(p)) + '</span><div class="track"></div><span class="t">' + esc(t("bm.notMeasured")) + '</span></div>';
         const width = Math.max(0.6, m[p] / top * 100);
@@ -142,17 +155,40 @@
           '<span class="t">' + esc(clock(m[p])) + (p === win ? '<small>' + esc(t("bm.fastest")) + '</small>' : "") + '</span></div>';
       }).join("");
       return '<article class="glass bm-row"><header><h3>' + esc(label(r)) + '<small>' + esc(sub(r)) + '</small></h3>' +
-        (gain ? '<span class="bm-gain">' + gain + '</span>' : "") + '</header><div class="bm-bars">' + bars + '</div></article>';
+        '<span class="bm-gain">' + gain + '</span></header><div class="bm-bars">' + bars + '</div></article>';
     }).join("");
     tableBox.innerHTML = '<table><thead><tr><th>' + esc(t("bm.kind")) + '</th>' + shown.map(p => '<th>' + esc(NAME(p)) + '</th>').join("") + '</tr></thead><tbody>' +
       s.rows.map(r => {
         const m = medians(r), win = fastest(m);
         return '<tr><td>' + esc(label(r)) + '</td>' + shown.map(p => '<td' + (p === win ? ' class="win"' : "") + '>' + (p in m ? esc(clock(m[p])) : "—") + '</td>').join("") + '</tr>';
       }).join("") + '</tbody></table>';
-    try { history.replaceState(null, "", "#" + s.id); } catch (e) {}
+    try { history.replaceState(null, "", "#" + (rival === "explorer" ? "" : rival + "-") + s.id); } catch (e) {}
   }
 
-  tabs.innerHTML = scenarios.map(s => '<button type="button" role="tab" data-id="' + esc(s.id) + '">' + esc(t("bm.sc." + s.id)) + '</button>').join("");
+  /* The program Saetta is compared with: the title, the summary, the scenarios it ran in. */
+  function choose(p, scenario) {
+    rival = rivals.includes(p) ? p : "explorer";
+    view = against(rival);
+    [...vs.children].forEach(b => { const on = b.dataset.id === rival; b.setAttribute("aria-checked", String(on)); b.tabIndex = on ? 0 : -1; });
+    heading.textContent = tv("bm.title");
+    vsNote.hidden = rival === "explorer";
+    vsNote.textContent = rival === "explorer" ? "" : fill(t("bm.vsNote"), { name: NAME(rival) });
+    tabs.innerHTML = view.map(s => '<button type="button" role="tab" data-id="' + esc(s.id) + '">' + esc(t("bm.sc." + s.id)) + '</button>').join("");
+    summary();
+    versions();
+    render(scenario);
+  }
+
+  vs.innerHTML = rivals.map(p => '<button type="button" role="radio" data-id="' + p + '">' + esc(NAME(p)) + '</button>').join("");
+  vsBox.hidden = rivals.length < 2;
+  vs.addEventListener("click", e => { const b = e.target.closest("button"); if (b && b.dataset.id !== rival) choose(b.dataset.id); });
+  vs.addEventListener("keydown", e => {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    const all = [...vs.children], at = all.findIndex(b => b.dataset.id === rival);
+    const next = all[(at + (e.key === "ArrowRight" ? 1 : all.length - 1)) % all.length];
+    choose(next.dataset.id); next.focus();
+  });
+
   tabs.addEventListener("click", e => { const b = e.target.closest("button"); if (b) render(b.dataset.id); });
   tabs.addEventListener("keydown", e => {
     if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
@@ -183,10 +219,17 @@
   rowsBox.addEventListener("focusin", e => { const bar = e.target.closest(".bm-bar[data-tip]"); if (bar) { const r = bar.getBoundingClientRect(); showTip(bar, r.left + r.width / 2, r.top); } });
   rowsBox.addEventListener("focusout", () => { tip.hidden = true; });
 
-  if (data.meta) {
+  function versions() {
+    if (!data.meta) return;
     const m = data.meta, v = m.versions || {};
+    const list = ["Saetta " + (v.saetta || "")];
+    if (v[rival]) list.push(NAME(rival) + " " + v[rival]);
+    if (v.os) list.push(v.os);
     document.getElementById("bm-versions").textContent = fill(t("bm.versions"),
-      { date: m.date || "", pc: m.pc || "", saetta: v.saetta || "", os: v.os || "" });
+      { date: m.date || "", pc: m.pc || "", versions: list.join(lang === "zh" ? "、" : ", ") });
   }
-  render((location.hash || "").slice(1));
+
+  /* #ssd is File Explorer's SSD → SSD, #teracopy-ssd TeraCopy's. */
+  const hash = (location.hash || "").slice(1), picked = /^(teracopy|fastcopy)(?:-(.+))?$/.exec(hash);
+  choose(picked ? picked[1] : "explorer", picked ? picked[2] : hash);
 })();
