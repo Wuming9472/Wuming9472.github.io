@@ -128,7 +128,6 @@ window.SAETTA_DE = {
   "bm.m7": "Das <b>Löschen</b> ist für alle endgültig, ohne Papierkorb. Bei Saetta beginnt die Zeit mit dem Klick auf Ja im Bestätigungsfenster.",
   "bm.m8": "Virenschutz während aller Tests aktiv, wie auf einem Alltags-PC.",
   "bm.m9": "Bei <b>großen Dateien</b> erreichen alle Programme die Geschwindigkeit des Laufwerks: Dort sind die Unterschiede klein, und die Ergebnisse zeigen es.",
-  "bm.m11": "Bei den Kopien von SSD zu SSD und von SSD auf Festplatte enthält die Zeit von Saetta auch eine <b>Pause von 300 ms</b> des Messskripts, die die anderen Programme nicht hatten.",
   "bm.m12": "TeraCopy und FastCopy sind Marken ihrer jeweiligen Inhaber.",
   "bm.explorer": "Datei-Explorer",
   "bm.sc.ssd": "SSD → SSD",

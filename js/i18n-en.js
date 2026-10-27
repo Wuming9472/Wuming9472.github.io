@@ -128,7 +128,6 @@ window.SAETTA_EN = {
   "bm.m7": "<b>Deleting</b> is permanent for everyone, without the Recycle Bin. For Saetta the time starts at the click on Yes in its confirmation window.",
   "bm.m8": "Antivirus on throughout the tests, as on an everyday PC.",
   "bm.m9": "With <b>large files</b> every program reaches the disk's speed: there the differences are small, and the results show it.",
-  "bm.m11": "In the copies from SSD to SSD and from SSD to hard disk, Saetta's time also includes a <b>300 ms pause</b> of the measuring script, which the other programs did not have.",
   "bm.m12": "TeraCopy and FastCopy are trademarks of their respective owners.",
   "bm.explorer": "File Explorer",
   "bm.sc.ssd": "SSD → SSD",
