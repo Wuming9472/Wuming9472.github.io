@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Saetta 基准测试：与文件资源管理器、TeraCopy 和 FastCopy 对比</title>
-<meta name="description" content="Saetta 与文件资源管理器、TeraCopy 和 FastCopy 的全部测量结果：SSD、机械硬盘、U 盘和 SD 卡，复制与删除。同一台电脑、同样的文件，并说明测试方法。">
+<title>Saetta 基准测试：与文件资源管理器、TeraCopy、FastCopy 和 robocopy 对比</title>
+<meta name="description" content="Saetta 与文件资源管理器、TeraCopy、FastCopy 和 robocopy 的全部测量结果：SSD、机械硬盘、U 盘和 SD 卡，复制与删除。同一台电脑、同样的文件，并说明测试方法。">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0d18">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f5fb">
 <!-- seo: written by tools/build-site.py -->
@@ -18,8 +18,8 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Saetta">
 <meta property="og:url" content="https://saetta.net/zh/benchmark/">
-<meta property="og:title" content="Saetta 基准测试：与文件资源管理器、TeraCopy 和 FastCopy 对比">
-<meta property="og:description" content="Saetta 与文件资源管理器、TeraCopy 和 FastCopy 的全部测量结果：SSD、机械硬盘、U 盘和 SD 卡，复制与删除。同一台电脑、同样的文件，并说明测试方法。">
+<meta property="og:title" content="Saetta 基准测试：与文件资源管理器、TeraCopy、FastCopy 和 robocopy 对比">
+<meta property="og:description" content="Saetta 与文件资源管理器、TeraCopy、FastCopy 和 robocopy 的全部测量结果：SSD、机械硬盘、U 盘和 SD 卡，复制与删除。同一台电脑、同样的文件，并说明测试方法。">
 <meta property="og:image" content="https://saetta.net/assets/saetta-512.png">
 <meta property="og:locale" content="zh_CN">
 <meta name="twitter:card" content="summary">
@@ -30,7 +30,7 @@
   "name": "Saetta",
   "alternateName": "Saetta – Fast File Copy",
   "url": "https://saetta.net/zh/benchmark/",
-  "description": "Saetta 与文件资源管理器、TeraCopy 和 FastCopy 的全部测量结果：SSD、机械硬盘、U 盘和 SD 卡，复制与删除。同一台电脑、同样的文件，并说明测试方法。",
+  "description": "Saetta 与文件资源管理器、TeraCopy、FastCopy 和 robocopy 的全部测量结果：SSD、机械硬盘、U 盘和 SD 卡，复制与删除。同一台电脑、同样的文件，并说明测试方法。",
   "inLanguage": "zh-Hans",
   "operatingSystem": "Windows 10, Windows 11",
   "applicationCategory": "UtilitiesApplication",
@@ -71,7 +71,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
 <link rel="stylesheet" href="../../css/site.css?v=30">
-<link rel="stylesheet" href="../../css/bench.css?v=2">
+<link rel="stylesheet" href="../../css/bench.css?v=3">
 </head>
 <body>
 <div class="sky" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -141,6 +141,7 @@
         <li data-i18n-html="bm.m4"><b>Saetta 通过应用本身测量</b>，与你实际使用的方式相同：复制像从文件资源管理器菜单启动一样开始，任务出现在历史记录中时停止计时。包含应用的启动时间。</li>
         <li data-i18n-html="bm.m5"><b>文件资源管理器</b>使用 Windows 自带的复制引擎测量，与你平时复制粘贴时相同。</li>
         <li data-i18n-html="bm.m10"><b>TeraCopy 和 FastCopy</b> 以从文件资源管理器菜单启动的方式运行，结束后自动关闭：与 Saetta 一样，计时包含程序启动。所有程序在复制后都不校验文件。</li>
+<li data-i18n-html="bm.m11"><b>robocopy</b> 是 Windows 自带的命令行复制工具，从终端启动，同时使用 8 个线程复制。</li>
         <li data-i18n-html="bm.m6">每个程序<b>测试三次</b>，每轮顺序不同，之前先进行一次不计入的预热复制。显示的数值为<b>中位数</b>。</li>
         <li data-i18n-html="bm.m7">所有程序的<b>删除</b>都是永久删除，不经过回收站。Saetta 的计时从在确认窗口中点击“是”开始。</li>
         <li data-i18n-html="bm.m8">测试期间杀毒软件始终开启，与日常使用的电脑相同。</li>
@@ -161,9 +162,9 @@
   </div>
 </main>
 
-<script src="../../js/i18n-en.js?v=30"></script>
-<script src="../../js/i18n-zh.js?v=30"></script>
-<script src="../../js/bench-full.js?v=2"></script>
-<script src="../../js/bench-page.js?v=2"></script>
+<script src="../../js/i18n-en.js?v=31"></script>
+<script src="../../js/i18n-zh.js?v=31"></script>
+<script src="../../js/bench-full.js?v=3"></script>
+<script src="../../js/bench-page.js?v=3"></script>
 </body>
 </html>

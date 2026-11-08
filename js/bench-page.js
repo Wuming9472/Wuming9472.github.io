@@ -1,8 +1,8 @@
 /* The full benchmarks page: language and theme as on the home page, then the results from
    js/bench-full.js (window.SAETTA_BENCH_FULL, written by tools/bench-site-data.py from the
    measuring scripts' results). Until that file holds results, the page says they are coming.
-   Saetta is compared with one program at a time, picked at the top: File Explorer in every
-   scenario, TeraCopy and FastCopy where they were measured too.
+   Saetta is compared with one program at a time, picked at the top: File Explorer, TeraCopy,
+   FastCopy or robocopy, each from the battery that measured it beside Saetta.
    The texts drawn here are Italian below; the other languages' come from their dictionaries
    (bm.* keys in js/i18n-<lang>.js). */
 (function () {
@@ -14,7 +14,7 @@
 
   const IT = {
     "bm.title": "Saetta contro Esplora file", "bm.titleVs": "Saetta contro {name}",
-    "bm.vsNote": "{name} è stato misurato nelle copie da SSD a SSD e da SSD a disco rigido; le altre prove confrontano Saetta solo con Esplora file.",
+    "bm.vsNote": "Le prove con {name} su chiavetta USB e scheda SD sono in corso: le aggiungiamo appena finite.",
     "bm.explorer": "Esplora file",
     "bm.sc.ssd": "SSD → SSD", "bm.sc.ssd.text": "Copia da un SSD allo stesso SSD.",
     "bm.sc.ce": "SSD → disco rigido", "bm.sc.ce.text": "Copia dall'SSD a un disco rigido esterno USB.",
@@ -66,18 +66,25 @@
 
   /* ---------- the results ---------- */
   const data = window.SAETTA_BENCH_FULL;
-  const scenarios = (data && data.scenarios || []).filter(s => s.rows && s.rows.length);
-  if (!scenarios.length) return;   /* the "coming soon" note stays */
+  /* One or more batteries, each measured on its own days: a comparison always comes from the one
+     where Saetta and that program ran side by side (an older data file is a single battery). */
+  const batteries = (data ? data.batteries || [{ date: data.meta && data.meta.date, versions: data.meta && data.meta.versions, scenarios: data.scenarios }] : [])
+    .map(b => Object.assign({}, b, { scenarios: (b.scenarios || []).filter(s => s.rows && s.rows.length) }))
+    .filter(b => b.scenarios.length);
+  if (!batteries.length) return;   /* the "coming soon" note stays */
   document.getElementById("bm-empty").hidden = true;
 
-  const RIVALS = ["explorer", "teracopy", "fastcopy"];
-  const NAMES = { saetta: "Saetta", teracopy: "TeraCopy", fastcopy: "FastCopy" };
+  const RIVALS = ["explorer", "teracopy", "fastcopy", "robocopy"];
+  const NAMES = { saetta: "Saetta", teracopy: "TeraCopy", fastcopy: "FastCopy", robocopy: "robocopy" };
   const NAME = p => NAMES[p] || t("bm.explorer");
   const has = (row, p) => !!(row.runs[p] && row.runs[p].length);
-  /* The scenarios, and in each the rows, where Saetta and that program both ran. */
-  const against = p => scenarios.map(s => ({ id: s.id, rows: s.rows.filter(r => has(r, "saetta") && has(r, p)) })).filter(s => s.rows.length);
+  /* In a battery, the scenarios, and in each the rows, where Saetta and that program both ran. */
+  const pairs = (b, p) => b.scenarios.map(s => ({ id: s.id, rows: s.rows.filter(r => has(r, "saetta") && has(r, p)) })).filter(s => s.rows.length);
+  /* The most recent battery that measured that program. */
+  const sourceOf = p => batteries.slice().reverse().find(b => pairs(b, p).length) || null;
+  const against = p => { const b = sourceOf(p); return b ? pairs(b, p) : []; };
   const rivals = RIVALS.filter(p => against(p).length);
-  let rival = "explorer", view = against(rival), current = null;
+  let rival = rivals[0], source = sourceOf(rival), view = against(rival), current = null;
   /* File Explorer's own texts (some languages give it an article); the others take the name. */
   const tv = (key, values) => fill(t(rival === "explorer" ? key : key + "Vs"), Object.assign({ name: NAME(rival) }, values));
   const SIZES = { "4K": "4 KB", "64K": "64 KB", "1M": "1 MB", "16M": "16 MB", "256M": "256 MB", "4G": "4 GB" };
@@ -167,7 +174,8 @@
 
   /* The program Saetta is compared with: the title, the summary, the scenarios it ran in. */
   function choose(p, scenario) {
-    rival = rivals.includes(p) ? p : "explorer";
+    rival = rivals.includes(p) ? p : rivals[0];
+    source = sourceOf(rival);
     view = against(rival);
     [...vs.children].forEach(b => { const on = b.dataset.id === rival; b.setAttribute("aria-checked", String(on)); b.tabIndex = on ? 0 : -1; });
     heading.textContent = tv("bm.title");
@@ -219,17 +227,21 @@
   rowsBox.addEventListener("focusin", e => { const bar = e.target.closest(".bm-bar[data-tip]"); if (bar) { const r = bar.getBoundingClientRect(); showTip(bar, r.left + r.width / 2, r.top); } });
   rowsBox.addEventListener("focusout", () => { tip.hidden = true; });
 
+  /* When, on what and with which versions the comparison on screen was measured. */
   function versions() {
-    if (!data.meta) return;
-    const m = data.meta, v = m.versions || {};
+    if (!source) return;
+    const v = source.versions || {};
     const list = ["Saetta " + (v.saetta || "")];
     if (v[rival]) list.push(NAME(rival) + " " + v[rival]);
     if (v.os) list.push(v.os);
+    const day = /^\d{4}-\d{2}-\d{2}$/.test(source.date || "")
+      ? new Date(source.date + "T12:00:00").toLocaleDateString(LOCALES[lang] || "en-US", { day: "numeric", month: "long", year: "numeric" })
+      : source.date || "";
     document.getElementById("bm-versions").textContent = fill(t("bm.versions"),
-      { date: m.date || "", pc: m.pc || "", versions: list.join(lang === "zh" ? "、" : ", ") });
+      { date: day, pc: data.pc || (data.meta && data.meta.pc) || "", versions: list.join(lang === "zh" ? "、" : ", ") });
   }
 
-  /* #ssd is File Explorer's SSD → SSD, #teracopy-ssd TeraCopy's. */
-  const hash = (location.hash || "").slice(1), picked = /^(teracopy|fastcopy)(?:-(.+))?$/.exec(hash);
+  /* #ssd is File Explorer's SSD → SSD, #teracopy-ssd TeraCopy's, #robocopy-ssd robocopy's. */
+  const hash = (location.hash || "").slice(1), picked = /^(teracopy|fastcopy|robocopy)(?:-(.+))?$/.exec(hash);
   choose(picked ? picked[1] : "explorer", picked ? picked[2] : hash);
 })();

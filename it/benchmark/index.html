@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Benchmark di Saetta: il confronto con Esplora file, TeraCopy e FastCopy</title>
-<meta name="description" content="Tutte le misure di Saetta contro Esplora file, TeraCopy e FastCopy: SSD, dischi rigidi, chiavette USB e schede SD, copia ed eliminazione. Stesso PC, stessi file, metodo spiegato.">
+<title>Benchmark di Saetta: il confronto con Esplora file, TeraCopy, FastCopy e robocopy</title>
+<meta name="description" content="Tutte le misure di Saetta contro Esplora file, TeraCopy, FastCopy e robocopy: SSD, dischi rigidi, chiavette USB e schede SD, copia ed eliminazione. Stesso PC, stessi file, metodo spiegato.">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0d18">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f5fb">
 <!-- seo: written by tools/build-site.py -->
@@ -18,8 +18,8 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Saetta">
 <meta property="og:url" content="https://saetta.net/it/benchmark/">
-<meta property="og:title" content="Benchmark di Saetta: il confronto con Esplora file, TeraCopy e FastCopy">
-<meta property="og:description" content="Tutte le misure di Saetta contro Esplora file, TeraCopy e FastCopy: SSD, dischi rigidi, chiavette USB e schede SD, copia ed eliminazione. Stesso PC, stessi file, metodo spiegato.">
+<meta property="og:title" content="Benchmark di Saetta: il confronto con Esplora file, TeraCopy, FastCopy e robocopy">
+<meta property="og:description" content="Tutte le misure di Saetta contro Esplora file, TeraCopy, FastCopy e robocopy: SSD, dischi rigidi, chiavette USB e schede SD, copia ed eliminazione. Stesso PC, stessi file, metodo spiegato.">
 <meta property="og:image" content="https://saetta.net/assets/saetta-512.png">
 <meta property="og:locale" content="it_IT">
 <meta name="twitter:card" content="summary">
@@ -30,7 +30,7 @@
   "name": "Saetta",
   "alternateName": "Saetta – Fast File Copy",
   "url": "https://saetta.net/it/benchmark/",
-  "description": "Tutte le misure di Saetta contro Esplora file, TeraCopy e FastCopy: SSD, dischi rigidi, chiavette USB e schede SD, copia ed eliminazione. Stesso PC, stessi file, metodo spiegato.",
+  "description": "Tutte le misure di Saetta contro Esplora file, TeraCopy, FastCopy e robocopy: SSD, dischi rigidi, chiavette USB e schede SD, copia ed eliminazione. Stesso PC, stessi file, metodo spiegato.",
   "inLanguage": "it",
   "operatingSystem": "Windows 10, Windows 11",
   "applicationCategory": "UtilitiesApplication",
@@ -71,7 +71,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
 <link rel="stylesheet" href="../../css/site.css?v=30">
-<link rel="stylesheet" href="../../css/bench.css?v=2">
+<link rel="stylesheet" href="../../css/bench.css?v=3">
 </head>
 <body>
 <div class="sky" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -141,6 +141,7 @@
         <li data-i18n-html="bm.m4"><b>Saetta è misurata dall'app</b>, come la usi tu: la copia parte come dal menu di Esplora file e il tempo si ferma quando il lavoro compare nella cronologia. L'avvio dell'app è compreso.</li>
         <li data-i18n-html="bm.m5"><b>Esplora file</b> è misurato con il motore di copia di Windows, lo stesso che usa quando copi e incolli.</li>
         <li data-i18n-html="bm.m10"><b>TeraCopy e FastCopy</b> partono come dal loro menu in Esplora file e si chiudono da soli alla fine: il loro avvio è compreso, come per Saetta. Nessun programma verifica i file dopo la copia.</li>
+<li data-i18n-html="bm.m11"><b>robocopy</b>, lo strumento di copia a riga di comando di Windows, è avviato dal terminale e copia su 8 thread alla volta.</li>
         <li data-i18n-html="bm.m6"><b>Tre prove</b> per programma, in un ordine diverso a ogni giro, dopo una copia di riscaldamento che non conta. Il valore mostrato è la <b>mediana</b>.</li>
         <li data-i18n-html="bm.m7">L'<b>eliminazione</b> è definitiva per tutti, senza Cestino. Per Saetta il tempo parte dal clic su Sì nella finestra di conferma.</li>
         <li data-i18n-html="bm.m8">Antivirus attivo durante tutte le prove, come su un PC di tutti i giorni.</li>
@@ -161,8 +162,8 @@
   </div>
 </main>
 
-<script src="../../js/i18n-en.js?v=30"></script>
-<script src="../../js/bench-full.js?v=2"></script>
-<script src="../../js/bench-page.js?v=2"></script>
+<script src="../../js/i18n-en.js?v=31"></script>
+<script src="../../js/bench-full.js?v=3"></script>
+<script src="../../js/bench-page.js?v=3"></script>
 </body>
 </html>

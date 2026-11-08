@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Benchmarks de Saetta: comparación con el Explorador de archivos, TeraCopy y FastCopy</title>
-<meta name="description" content="Todas las mediciones de Saetta frente al Explorador de archivos, TeraCopy y FastCopy: SSD, discos duros, memorias USB y tarjetas SD, copia y eliminación. Mismo PC, mismos archivos, método explicado.">
+<title>Benchmarks de Saetta: comparación con el Explorador de archivos, TeraCopy, FastCopy y robocopy</title>
+<meta name="description" content="Todas las mediciones de Saetta frente al Explorador de archivos, TeraCopy, FastCopy y robocopy: SSD, discos duros, memorias USB y tarjetas SD, copia y eliminación. Mismo PC, mismos archivos, método explicado.">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0d18">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f5fb">
 <!-- seo: written by tools/build-site.py -->
@@ -18,8 +18,8 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Saetta">
 <meta property="og:url" content="https://saetta.net/es/benchmark/">
-<meta property="og:title" content="Benchmarks de Saetta: comparación con el Explorador de archivos, TeraCopy y FastCopy">
-<meta property="og:description" content="Todas las mediciones de Saetta frente al Explorador de archivos, TeraCopy y FastCopy: SSD, discos duros, memorias USB y tarjetas SD, copia y eliminación. Mismo PC, mismos archivos, método explicado.">
+<meta property="og:title" content="Benchmarks de Saetta: comparación con el Explorador de archivos, TeraCopy, FastCopy y robocopy">
+<meta property="og:description" content="Todas las mediciones de Saetta frente al Explorador de archivos, TeraCopy, FastCopy y robocopy: SSD, discos duros, memorias USB y tarjetas SD, copia y eliminación. Mismo PC, mismos archivos, método explicado.">
 <meta property="og:image" content="https://saetta.net/assets/saetta-512.png">
 <meta property="og:locale" content="es_ES">
 <meta name="twitter:card" content="summary">
@@ -30,7 +30,7 @@
   "name": "Saetta",
   "alternateName": "Saetta – Fast File Copy",
   "url": "https://saetta.net/es/benchmark/",
-  "description": "Todas las mediciones de Saetta frente al Explorador de archivos, TeraCopy y FastCopy: SSD, discos duros, memorias USB y tarjetas SD, copia y eliminación. Mismo PC, mismos archivos, método explicado.",
+  "description": "Todas las mediciones de Saetta frente al Explorador de archivos, TeraCopy, FastCopy y robocopy: SSD, discos duros, memorias USB y tarjetas SD, copia y eliminación. Mismo PC, mismos archivos, método explicado.",
   "inLanguage": "es",
   "operatingSystem": "Windows 10, Windows 11",
   "applicationCategory": "UtilitiesApplication",
@@ -71,7 +71,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
 <link rel="stylesheet" href="../../css/site.css?v=30">
-<link rel="stylesheet" href="../../css/bench.css?v=2">
+<link rel="stylesheet" href="../../css/bench.css?v=3">
 </head>
 <body>
 <div class="sky" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -141,6 +141,7 @@
         <li data-i18n-html="bm.m4"><b>Saetta se mide desde la aplicación</b>, como la usas tú: la copia empieza como desde el menú del Explorador de archivos y el tiempo se detiene cuando el trabajo aparece en el historial. El inicio de la aplicación está incluido.</li>
         <li data-i18n-html="bm.m5">El <b>Explorador de archivos</b> se mide con el motor de copia de Windows, el mismo que usa cuando copias y pegas.</li>
         <li data-i18n-html="bm.m10"><b>TeraCopy y FastCopy</b> se inician como desde su menú en el Explorador de archivos y se cierran solos al final: su inicio está incluido, como en Saetta. Ningún programa verifica los archivos después de copiarlos.</li>
+<li data-i18n-html="bm.m11"><b>robocopy</b>, la herramienta de copia por línea de comandos de Windows, se inicia desde el terminal y copia con 8 hilos a la vez.</li>
         <li data-i18n-html="bm.m6"><b>Tres pruebas</b> por programa, en un orden distinto en cada ronda, tras una copia de calentamiento que no cuenta. El valor mostrado es la <b>mediana</b>.</li>
         <li data-i18n-html="bm.m7">La <b>eliminación</b> es definitiva para todos, sin Papelera de reciclaje. Para Saetta el tiempo empieza con el clic en Sí en su ventana de confirmación.</li>
         <li data-i18n-html="bm.m8">Antivirus activo durante todas las pruebas, como en un PC de uso diario.</li>
@@ -161,9 +162,9 @@
   </div>
 </main>
 
-<script src="../../js/i18n-en.js?v=30"></script>
-<script src="../../js/i18n-es.js?v=30"></script>
-<script src="../../js/bench-full.js?v=2"></script>
-<script src="../../js/bench-page.js?v=2"></script>
+<script src="../../js/i18n-en.js?v=31"></script>
+<script src="../../js/i18n-es.js?v=31"></script>
+<script src="../../js/bench-full.js?v=3"></script>
+<script src="../../js/bench-page.js?v=3"></script>
 </body>
 </html>
