@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="es" data-lang="es" data-page="changelog/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Novedades de Saetta: todas las versiones</title>
+<meta name="description" content="Qué ha cambiado en cada versión de Saetta, la copia rápida de archivos para Windows: novedades y correcciones, de la más reciente a la más antigua.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#211D52">
+<!-- seo: written by tools/build-site.py -->
+<link rel="canonical" href="https://saetta.net/es/changelog/">
+<link rel="alternate" hreflang="en" href="https://saetta.net/changelog/">
+<link rel="alternate" hreflang="it" href="https://saetta.net/it/changelog/">
+<link rel="alternate" hreflang="de" href="https://saetta.net/de/changelog/">
+<link rel="alternate" hreflang="es" href="https://saetta.net/es/changelog/">
+<link rel="alternate" hreflang="zh-Hans" href="https://saetta.net/zh/changelog/">
+<link rel="alternate" hreflang="x-default" href="https://saetta.net/changelog/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Saetta">
+<meta property="og:url" content="https://saetta.net/es/changelog/">
+<meta property="og:title" content="Novedades de Saetta: todas las versiones">
+<meta property="og:description" content="Qué ha cambiado en cada versión de Saetta, la copia rápida de archivos para Windows: novedades y correcciones, de la más reciente a la más antigua.">
+<meta property="og:image" content="https://saetta.net/assets/saetta-512.png">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Saetta",
+  "alternateName": "Saetta – Fast File Copy",
+  "url": "https://saetta.net/es/changelog/",
+  "description": "Qué ha cambiado en cada versión de Saetta, la copia rápida de archivos para Windows: novedades y correcciones, de la más reciente a la más antigua.",
+  "inLanguage": "es",
+  "operatingSystem": "Windows 10, Windows 11",
+  "applicationCategory": "UtilitiesApplication",
+  "image": "https://saetta.net/assets/saetta-512.png",
+  "downloadUrl": "https://apps.microsoft.com/detail/9N3TNPDLFPZW",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Saetta",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "url": "https://apps.microsoft.com/detail/9N3TNPDLFPZW"
+    },
+    {
+      "@type": "Offer",
+      "name": "Saetta Professional",
+      "price": "29.99",
+      "priceCurrency": "EUR",
+      "url": "https://apps.microsoft.com/detail/9N3TNPDLFPZW"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Saetta",
+  "alternateName": "Saetta – Fast File Copy",
+  "url": "https://saetta.net/"
+}
+</script>
+<!-- /seo -->
+<script>/* html.js: scripts run. html.sa-js: the entrances wait, hidden from the first paint, until they come into view (js/site.js plays them); if that script never arrives, after 4 s everything shows. */(function (d) { d.classList.add("js"); try { if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) { d.classList.add("sa-js"); setTimeout(function () { if (!window.SAETTA_UI) d.classList.remove("sa-js"); }, 4000); } } catch (e) {} })(document.documentElement);</script>
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/saetta-192.png">
+<link rel="apple-touch-icon" href="../../assets/saetta-256.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../css/site.css?v=42">
+<link rel="stylesheet" href="../../css/changelog.css?v=42">
+</head>
+<body>
+
+<header class="site-header" id="top">
+  <div class="container site-bar">
+    <a class="brand" href="../"><img src="../../assets/saetta-64.png" alt="" width="30" height="30"><span>Saetta</span></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menú" data-i18n-aria="nav.menu"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path class="ic-open" d="M3 6h16M3 11h16M3 16h16"></path><path class="ic-close" d="M5 5l12 12M17 5 5 17"></path></svg></button>
+    <nav class="site-nav" id="site-nav" aria-label="Principal" data-i18n-aria="nav.label">
+      <a class="nav-link" href="../#cosa-fa" data-i18n="nav.features">Funciones</a>
+      <a class="nav-link" href="../benchmark/" data-i18n="nav.bench">Benchmarks</a>
+      <a class="nav-link" href="../#prezzi" data-i18n="nav.prices">Precios</a>
+      <a class="nav-link" href="../#domande" data-i18n="nav.faq">Preguntas</a>
+      <a class="nav-link" href="../changelog/" aria-current="page" data-i18n="foot.changelog">Novedades</a>
+      <span class="nav-tools">
+        <select class="chip lang-select" id="lang" aria-label="Idioma" data-i18n-aria="nav.lang"><option value="it" lang="it">IT</option><option value="en" lang="en">EN</option><option value="de" lang="de">DE</option><option value="es" lang="es">ES</option><option value="zh" lang="zh-Hans">中文</option></select>
+        <button class="chip theme-btn" id="theme" type="button" aria-label="Tema claro u oscuro" data-i18n-aria="nav.theme"><svg class="ic-moon" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg><svg class="ic-sun" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></button>
+      </span>
+      <a class="btn btn-light btn-sm store-link" href="https://apps.microsoft.com/detail/9N3TNPDLFPZW" data-i18n="nav.get">Descargar gratis</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="page-hero" aria-labelledby="cl-title">
+  <div class="container">
+    <div class="stack-head">
+      <p class="eyebrow sa-in" data-i18n="cl.eyebrow">Novedades</p>
+      <h1 class="sa-in" id="cl-title" data-i18n="cl.title">Versiones de Saetta</h1>
+    </div>
+  </div>
+</section>
+
+<div class="section cl-section">
+  <div class="container">
+    <div class="cl-list">
+<!-- versions: written by tools/build-site.py from store/whats-new.md -->
+      <section class="glass cl-version" id="v1-4-6">
+        <h2>Saetta 1.4.6</h2>
+        <ul>
+          <li>Nueva verificación rápida de integridad, gratuita.</li>
+          <li>Más de 70 algoritmos de integridad a elegir (BLAKE3, SHA-256, SHA-3, Whirlpool…) para las copias verificadas y los archivos de checksum, con Saetta Professional.</li>
+          <li>Copias aún más rápidas en memorias USB.</li>
+          <li>Sección Comentarios renovada: el mensaje sale directamente de la aplicación, con adjuntos y registros anonimizados.</li>
+          <li>Corregido: Saetta aparecía dos veces en el menú clásico (Mostrar más opciones), con un icono sobre fondo negro.</li>
+          <li>Corregido: después de mover archivos, a veces el Explorador de archivos los seguía mostrando en la carpeta de origen hasta actualizarla.</li>
+          <li>Corregido: maximizadas, las ventanas Checksum y Sincronizar podían parpadear.</li>
+          <li>Corregido: en algunos PC, los interruptores de integración con el Explorador de archivos se desactivaban solos cuando la ventana perdía el foco.</li>
+          <li>Correcciones varias de usabilidad, fiabilidad y seguridad.</li>
+        </ul>
+      </section>
+      <section class="glass cl-version" id="v1-4-5">
+        <h2>Saetta 1.4.5</h2>
+        <ul>
+          <li>Las preguntas sobre archivos que ya existen funcionan ahora como en Windows: reemplazar, omitir o comparar los dos archivos y elegir cuál conservar.</li>
+          <li>Historial: ahora puedes pausarlo y eliminar una o varias entradas, y cada fila muestra qué se copió y de dónde a dónde.</li>
+          <li>«Copiar a…» y «Mover a…»: el destino se recuerda en cuanto empieza la copia, y una carpeta reciente se quita con la X.</li>
+          <li>Los archivos arrastrados desde 7-Zip y WinRAR al Explorador de archivos ahora los copia Saetta.</li>
+          <li>La ventana de copia ahora aparece en primer plano al abrirse.</li>
+          <li>Eliminación: primero aparece solo la confirmación, la ventana de eliminación se abre después de «Sí».</li>
+          <li>Gráfico de velocidad más fluido, visible también al copiar pocos archivos pequeños.</li>
+          <li>Corregido un error por el que, desde la 1.4.2, las copias de carpetas no usaban el motor de Saetta y eran más lentas.</li>
+          <li>Corregido un error por el que al copiar una carpeta sobre otra idéntica no se preguntaba nada y los archivos se contaban como copiados.</li>
+          <li>Corregido un error por el que «Reemplazar» podía dar «Acceso denegado» en archivos de solo lectura u ocultos.</li>
+          <li>Corregido un error por el que Saetta podía cerrarse inesperadamente al cerrar una ventana con texto seleccionado, también durante las actualizaciones.</li>
+          <li>Corrección de errores y mejoras de estabilidad.</li>
+        </ul>
+      </section>
+      <section class="glass cl-version" id="v1-4-4">
+        <h2>Saetta 1.4.4</h2>
+        <ul>
+          <li>Añadida la compatibilidad con el protocolo MTP para intercambiar archivos con teléfonos y cámaras.</li>
+          <li>Corregido un error por el que Saetta podía cerrarse inesperadamente justo después de empezar la copia y dejar archivos vacíos.</li>
+          <li>Corregido un error por el que al arrastrar archivos fuera de 7-Zip, WinRAR y programas similares no se copiaba nada.</li>
+          <li>Corregido un error por el que las carpetas en la nube (como OneDrive o Dropbox) no se contaban ni se copiaban por completo.</li>
+          <li>Corregido un error por el que Saetta se cerraba con un error al iniciarse una actualización.</li>
+          <li>Las carpetas vinculadas (uniones y vínculos simbólicos) ahora se omiten en lugar de copiarse varias veces.</li>
+          <li>Corregido un error por el que el porcentaje de progreso podía marcar el 100 % con archivos aún por copiar.</li>
+        </ul>
+      </section>
+      <section class="glass cl-version" id="v1-4-2">
+        <h2>Saetta 1.4.2</h2>
+        <ul>
+          <li>Prueba de Saetta Professional: con un código de prueba, Professional está activo durante 5 días, y la Configuración muestra hasta cuándo.</li>
+          <li>Las carpetas copiadas conservan sus fechas originales de creación y modificación, como ya hacían los archivos.</li>
+          <li>Actualizar desde la app: una barra muestra la descarga y la instalación, y si Windows no completa la actualización la primera vez, Saetta la retoma sola.</li>
+          <li>Corregido: Saetta aparecía dos veces en el menú contextual clásico (Mostrar más opciones).</li>
+          <li>La ventana de copia muestra también la unidad de origen y de destino (por ejemplo C:\…\Fotos → E:\Copias).</li>
+        </ul>
+      </section>
+      <section class="glass cl-version" id="v1-4-1">
+        <h2>Saetta 1.4.1</h2>
+        <ul>
+          <li>Saetta aparece ahora también en el menú clásico de Windows 11 (Mostrar más opciones), con las mismas opciones que el menú principal.</li>
+          <li>Corregido: en Windows instalado en algunos idiomas, al iniciarse por primera vez Saetta decía que robocopy estaba dañado y no se iniciaba.</li>
+        </ul>
+      </section>
+      <section class="glass cl-version" id="v1-4">
+        <h2>Saetta 1.4</h2>
+        <ul>
+          <li>Nuevo motor de copia propietario, desarrollado desde cero: reconoce SSD, discos duros, memorias USB y tarjetas SD y elige la forma más rápida para cada uno. Con muchos archivos pequeños es hasta 25 veces más rápido que el Explorador de archivos.</li>
+          <li>Las copias empiezan antes: el motor arranca mientras se abre la ventana.</li>
+          <li>Pegar y arrastrar con Saetta: con la opción activada, Pegar y arrastrar archivos en el Explorador de archivos también pasan a Saetta, no solo Ctrl+V.</li>
+          <li>Carpetas protegidas: si una copia necesita permiso de administrador, solo aparece el aviso de Windows, y solo para esa copia. La copia la sigue haciendo Saetta.</li>
+          <li>Copiar en… y Mover a… ahora son gratuitos.</li>
+          <li>El límite de velocidad ahora forma parte de Saetta Professional.</li>
+          <li>Al abrir un archivo de suma de comprobación (.sha256, .md5, .b3 y otros), Saetta muestra la verificación al instante.</li>
+          <li>Actualizaciones: al iniciarse, Saetta ofrece la nueva versión, con Actualizar ahora, Más tarde y No volver a mostrar. Con la integración en el Explorador de archivos activada, avisa incluso cuando está cerrado.</li>
+          <li>Resumen renovado.</li>
+          <li>Reemplazar archivos existentes es más rápido y, si cancelas, los que aún no se han alcanzado quedan intactos.</li>
+          <li>Corregido el cierre inesperado de Saetta cuando Windows cambiaba el tema o los colores durante una copia.</li>
+          <li>Muchas correcciones de fiabilidad y seguridad.</li>
+        </ul>
+      </section>
+      <section class="glass cl-version" id="v1-3-6">
+        <h2>Saetta 1.3.6</h2>
+        <ul>
+          <li>Corregido: después de abrir la Configuración, el límite de velocidad podía activarse solo a 10 MB/s. Quien se vio afectado vuelve automáticamente a la velocidad máxima.</li>
+          <li>Nuevo: cuando hay una actualización disponible, Saetta la muestra en el Resumen y la instala con un clic.</li>
+          <li>Un Resumen más ordenado y fácil de leer.</li>
+          <li>Página Copia reorganizada: Ventana de progreso, Velocidad, Eliminar, Integridad de los datos y Al terminar. La opción "Copias interrumpidas al iniciar" ahora está en Integridad de los datos.</li>
+        </ul>
+      </section>
+<!-- /versions -->
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-bar">
+    <span data-i18n="foot.copy">© 2026 WumingDev. Todos los derechos reservados.</span>
+    <nav class="footer-nav" aria-label="Avisos legales" data-i18n-aria="foot.label">
+      <a href="../changelog/" aria-current="page" data-i18n="foot.changelog">Novedades</a>
+      <a href="../../terms.html" data-i18n="foot.terms">Términos</a>
+      <a href="../../privacy.html" data-i18n="foot.privacy">Privacidad</a>
+      <a href="../../third-party-notices.txt" data-i18n="foot.licenses">Avisos de terceros</a>
+      <a href="mailto:wumingdev9472@gmail.com" data-i18n="foot.contact">Contacto</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="../../js/i18n-es.js?v=42"></script>
+<script src="../../js/site.js?v=42"></script>
+</body>
+</html>

@@ -1,222 +1,294 @@
-/* Saetta website: language, theme, the live copy window and the benchmark race. */
+/* Saetta website: the header (language, theme, the phone menu), the Store links, the entrances
+   as things come into view, the benchmark race and the hero's bolt. Any page may load it:
+   every part looks for its own elements and does nothing where they are missing. */
 
 /* Set these before publishing. */
 const STORE_URL = "https://apps.microsoft.com/detail/9N3TNPDLFPZW";
 const PRO_PRICE = { it: "29,99 €", en: "€29.99", de: "29,99 €", es: "29,99 €", zh: "€29.99" };
 
-/* The app's five languages; LOCALES formats the numbers the page draws. */
-const T = { it: {}, en: window.SAETTA_EN || {}, de: window.SAETTA_DE || {}, es: window.SAETTA_ES || {}, zh: window.SAETTA_ZH || {} };
-const LOCALES = { it: "it-IT", en: "en-US", de: "de-DE", es: "es-ES", zh: "zh-CN" };
-const LIVE = window.SAETTA_LIVE;
-
-/* Each language has its own page, written out by tools/build-site.py (English at the root,
-   the others in /it/, /de/, /es/, /zh/): search engines index each one. The page's texts are
-   the fallback for any key the drawings' dictionaries lack. */
-const lang = document.documentElement.dataset.lang || "it";
-const PAGES = { en: "/", it: "/it/", de: "/de/", es: "/es/", zh: "/zh/" };
-const PAGE = {};
-document.querySelectorAll("[data-i18n]").forEach(el => { PAGE[el.dataset.i18n] = el.textContent; });
-document.querySelectorAll("[data-final]").forEach(el => { PAGE[el.dataset.final] = el.textContent; });
-
-/* A language picked here is remembered: the English page at the root sends a visitor to it
-   (or else to the browser's own language) before anything is drawn. */
-document.getElementById("lang").value = lang;
-document.getElementById("lang").addEventListener("change", e => {
-  try { localStorage.setItem("saetta-language", e.target.value); } catch (err) {}
-  location.href = PAGES[e.target.value];
-});
-
-/* Theme: the device's own (the stylesheet follows prefers-color-scheme). The button swaps
-   it for this visit only, so the next one follows the device again. */
-document.getElementById("theme").addEventListener("click", () => {
+(function () {
+  "use strict";
   const root = document.documentElement;
-  const current = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
-  root.dataset.theme = current === "light" ? "dark" : "light";
-});
-try { localStorage.removeItem("saetta-theme"); } catch (e) {}
+  const lang = root.dataset.lang || "it";
+  //The head's script stops waiting for this one (and shows everything) if it never arrives.
+  window.SAETTA_UI = true;
+  const reduce = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+  const hasIo = "IntersectionObserver" in window;
 
-document.querySelectorAll(".store-link").forEach(a => { a.href = STORE_URL; a.target = "_blank"; a.rel = "noopener"; });
-
-/* Fluent reveal: the border follows the pointer. */
-document.querySelectorAll(".reveal").forEach(el => {
-  el.addEventListener("pointermove", e => {
-    const r = el.getBoundingClientRect();
-    el.style.setProperty("--mx", (e.clientX - r.left) + "px");
-    el.style.setProperty("--my", (e.clientY - r.top) + "px");
-  });
-});
-
-const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const fmt = (n, digits) => n.toLocaleString(LOCALES[lang], { minimumFractionDigits: digits, maximumFractionDigits: digits, useGrouping: "always" });
-
-/* Sections below the first screen settle into place when reached. Visible throughout. */
-if ("IntersectionObserver" in window && !reduced) {
-  const rising = [...document.querySelectorAll(".rise")].filter(el => el.getBoundingClientRect().top > innerHeight);
-  rising.forEach(el => el.classList.add("below"));
-  const io = new IntersectionObserver(entries => entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.remove("below"); io.unobserve(e.target); }
-  }), { rootMargin: "0px 0px -8% 0px" });
-  rising.forEach(el => io.observe(el));
-}
-
-/* The small drawings rest while they are off screen. */
-if ("IntersectionObserver" in window && !reduced) {
-  const drawings = [...document.querySelectorAll(".anim")];
-  const watch = new IntersectionObserver(entries => entries.forEach(e => e.target.classList.toggle("paused", !e.isIntersecting)));
-  drawings.forEach(el => watch.observe(el));
-}
-
-/* ---------------- The copy window: copying, then verifying ---------------- */
-const W = {
-  pct: document.getElementById("w-pct"), bar: document.getElementById("w-bar"), meter: document.getElementById("w-meter"),
-  speed: document.getElementById("w-speed"), left: document.getElementById("w-left"), bytes: document.getElementById("w-bytes"),
-  files: document.getElementById("w-files"), file: document.getElementById("w-file"), state: document.getElementById("w-state"),
-  line: document.getElementById("w-line"), area: document.getElementById("w-area")
-};
-const TOTAL_GB = 26.2, TOTAL_FILES = 2481, COPY_SECONDS = 21, CHECK_SECONDS = 3.5;
-const names = ["IMG_4821.HEIC", "IMG_4822.HEIC", "DSC_0193.NEF", "VID_20250714_1903.mp4", "Matrimonio/IMG_0042.jpg", "Panorama Dolomiti.tif", "IMG_5120.HEIC", "Scansioni/Passaporto.pdf", "VID_20250802_2110.mp4", "IMG_5371.HEIC"];
-let samples = [];
-let phase = "copy", progress = 0.64, check = 0, lastSpeed = 1.24;
-
-function speedAt(t) {
-  /* Small files at the start pull the curve down; large videos lift it. */
-  return 1.05 + 0.22 * Math.sin(t * 0.9) + 0.12 * Math.sin(t * 2.7 + 1) + (t > 0.5 ? 0.08 : -0.15) * Math.exp(-t);
-}
-function drawGraph() {
-  const n = samples.length;
-  if (n < 2) { W.line.setAttribute("d", ""); W.area.setAttribute("d", ""); return; }
-  const w = 300, h = 92, max = 1.7;
-  const pts = samples.map((v, i) => [(i / 119) * w, h - 6 - (v / max) * (h - 14)]);
-  const d = pts.map((p, i) => (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" ");
-  W.line.setAttribute("d", d);
-  W.area.setAttribute("d", d + " L" + pts[n - 1][0].toFixed(1) + " " + h + " L0 " + h + " Z");
-}
-function renderWindow() {
-  const t = LIVE[lang];
-  if (phase === "copy") {
-    W.pct.textContent = Math.floor(progress * 100);
-    W.bar.style.width = (progress * 100).toFixed(2) + "%";
-    W.speed.textContent = fmt(lastSpeed, 2) + " GB/s";
-    W.left.textContent = t.left.replace("{s}", Math.max(1, Math.ceil((1 - progress) * COPY_SECONDS)));
-    W.bytes.textContent = fmt(progress * TOTAL_GB, 1) + t.of + fmt(TOTAL_GB, 1) + " GB";
-    W.files.textContent = fmt(Math.round(progress * TOTAL_FILES), 0) + t.of + fmt(TOTAL_FILES, 0);
-    W.file.textContent = names[Math.floor(progress * 97) % names.length];
-    W.state.textContent = t.running;
-  } else if (phase === "check") {
-    W.pct.textContent = Math.floor(check * 100);
-    W.bar.style.width = (check * 100).toFixed(2) + "%";
-    W.speed.textContent = fmt(lastSpeed * 1.6, 2) + " GB/s";
-    W.left.textContent = t.checkLeft;
-    W.file.textContent = names[Math.floor(check * 53) % names.length];
-    W.state.textContent = t.checking;
-  } else {
-    W.pct.textContent = "100";
-    W.bar.style.width = "100%";
-    W.speed.textContent = "—";
-    W.left.textContent = t.leftDone;
-    W.bytes.textContent = fmt(TOTAL_GB, 1) + t.of + fmt(TOTAL_GB, 1) + " GB";
-    W.files.textContent = fmt(TOTAL_FILES, 0) + t.of + fmt(TOTAL_FILES, 0);
-    W.file.textContent = "✓ " + t.verified;
-    W.state.textContent = t.done;
+  /* ---------------- Header ---------------- */
+  /* Each language has its own pages, written by tools/build-site.py (English at the root, the
+     others in /it/, /de/, /es/, /zh/). A language picked here is remembered: the English page
+     at the root sends a visitor to it before anything is drawn. The same page in the other
+     language (html[data-page], e.g. "benchmark/"), at the same place (the hash).
+     A page whose own script runs the language picker says so with <html data-own-lang> (the
+     text pages, which switch language in place), one that runs the theme button with
+     data-own-theme: then this script leaves that control alone. */
+  const PAGES = { en: "/", it: "/it/", de: "/de/", es: "/es/", zh: "/zh/" };
+  const picker = document.getElementById("lang");
+  if (picker && !root.hasAttribute("data-own-lang")) {
+    picker.value = lang;
+    const go = () => {
+      const pick = picker.value;
+      if (pick === lang || !PAGES[pick]) return;
+      try { localStorage.setItem("saetta-language", pick); } catch (e) {}
+      location.href = PAGES[pick] + (root.dataset.page || "") + location.hash;
+    };
+    /* A language picked from the open list (mouse, touch, Enter) opens its page at once. On the
+       closed list the arrow keys and typing only move the choice, although Edge and Chrome
+       report a "change" for each key: Enter opens it, Escape or leaving the list puts the
+       current language back (WCAG 3.2.2, no change of page on input alone). */
+    let keyedAt = -1;
+    picker.addEventListener("keydown", e => {
+      if (e.key === "Enter") { go(); return; }
+      if (e.key === "Escape") { picker.value = lang; return; }
+      if (!e.altKey && !e.ctrlKey && !e.metaKey && (/^(Arrow|Page|Home$|End$)/.test(e.key) || (e.key.length === 1 && e.key !== " "))) keyedAt = e.timeStamp;
+    });
+    picker.addEventListener("change", e => { if (keyedAt >= 0 && e.timeStamp - keyedAt < 500) return; go(); });
+    //A choice left pending by the keys must not hide the list's own: the list opens on the current language.
+    picker.addEventListener("pointerdown", () => { if (picker.value !== lang) picker.value = lang; });
+    picker.addEventListener("blur", () => { picker.value = lang; });
   }
-  W.file.classList.toggle("ok", phase === "done");
-  W.state.classList.toggle("done", phase === "done");
-  W.state.classList.toggle("check", phase === "check");
-  W.meter.classList.toggle("check", phase === "check");
-}
+  /* Theme: the device's own (the stylesheet follows prefers-color-scheme). The button swaps it
+     for this visit only, so the next visit follows the device again. */
+  const theme = document.getElementById("theme");
+  if (theme && !root.hasAttribute("data-own-theme")) {
+    theme.addEventListener("click", () => {
+      const dark = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches;
+      const current = root.dataset.theme || (dark ? "dark" : "light");
+      root.dataset.theme = current === "light" ? "dark" : "light";
+    });
+  }
+  try { localStorage.removeItem("saetta-theme"); } catch (e) {}
 
-/* A still frame at 64% first: complete at rest, and what reduced motion keeps. */
-for (let i = 0; i < 77; i++) samples.push(speedAt(i / 20));
-drawGraph();
+  /* Phones: the links fold under a menu button (the stylesheet hides them once html.has-menu
+     is set, so without this script they simply wrap). */
+  const header = document.querySelector(".site-header");
+  const menuButton = document.querySelector(".menu-btn");
+  const nav = document.getElementById("site-nav");
+  if (header && menuButton && nav) {
+    root.classList.add("has-menu");
+    const setOpen = open => {
+      header.classList.toggle("nav-open", open);
+      menuButton.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+    menuButton.addEventListener("click", () => setOpen(menuButton.getAttribute("aria-expanded") !== "true"));
+    nav.addEventListener("click", e => { if (e.target.closest && e.target.closest("a")) setOpen(false); });
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && header.classList.contains("nav-open")) { setOpen(false); menuButton.focus(); }
+    });
+    const wide = window.matchMedia && matchMedia("(min-width: 1081px)");
+    if (wide && wide.addEventListener) wide.addEventListener("change", e => { if (e.matches) setOpen(false); });
+  }
 
-if (!reduced) {
-  let last = performance.now(), hold = 0;
-  function tick(now) {
-    const dt = Math.min(0.1, (now - last) / 1000);
-    last = now;
-    if (phase === "copy") {
-      progress = Math.min(1, progress + dt / COPY_SECONDS);
-      lastSpeed = speedAt(progress * 6) + (Math.random() - 0.5) * 0.08;
-      samples.push(lastSpeed);
-      if (samples.length > 120) samples.shift();
-      drawGraph();
-      if (progress >= 1) { phase = "check"; check = 0; }
-    } else if (phase === "check") {
-      check = Math.min(1, check + dt / CHECK_SECONDS);
-      if (check >= 1) { phase = "done"; hold = 0; }
-    } else {
-      hold += dt;
-      if (hold > 3.4) { phase = "copy"; progress = 0; samples = []; drawGraph(); }
+  /* The Store links carry the address in the page (they work without scripts); here they open
+     in a new tab. */
+  document.querySelectorAll(".store-link").forEach(a => { a.href = STORE_URL; a.target = "_blank"; a.rel = "noopener"; });
+
+  /* ---------------- Entrances ---------------- */
+  /* Each element waits, hidden, until it comes into view; then it gets .sa-on and its CSS
+     animation plays to the end by itself, whatever the scroll does next. A race starts once
+     its bars are wholly in view. Without IntersectionObserver, or with reduced motion, nothing
+     is hidden. */
+  /* The head's script hides them from the first paint (html.sa-js), on the same test; if this
+     script came too late, it showed them all again, and they stay shown. A page without that
+     script: decided here. */
+  let io = null;
+  if (hasIo && !reduce && !root.classList.contains("js")) root.classList.add("sa-js");
+  if (hasIo && !reduce && root.classList.contains("sa-js")) {
+    io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        if (e.target.classList.contains("sa-race-bars")) {
+          if (e.intersectionRatio < 0.99) return;
+          const card = e.target.closest(".sa-race-card");
+          if (card) card.classList.add("sa-go");
+        } else e.target.classList.add("sa-on");
+        io.unobserve(e.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: [0.12, 1] });
+    document.querySelectorAll(".sa-h, .sa-rv, .sa-from-r, .sa-from-l, .sa-sub, .sa-pop, .sa-rule, .sa-grow, .sa-race-bars").forEach(el => io.observe(el));
+    /* Keyboard focus on something still hidden (at the screen's lower edge): it shows now. */
+    document.addEventListener("focusin", e => {
+      const hidden = e.target.closest && e.target.closest(".sa-h, .sa-rv, .sa-from-r, .sa-from-l, .sa-sub, .sa-pop");
+      if (hidden) hidden.classList.add("sa-on");
+    });
+  }
+
+  /* "Riproduci la gara": the races already run start again, those in view at once; the others
+     when they next come wholly into view, so that they are seen. */
+  document.querySelectorAll(".race-replay").forEach(button => {
+    button.addEventListener("click", () => {
+      document.querySelectorAll(".sa-race-card.sa-go").forEach(card => {
+        card.classList.remove("sa-go");
+        const bars = card.querySelector(".sa-race-bars");
+        const r = bars && bars.getBoundingClientRect();
+        if (!io || !r || (r.top >= 0 && r.bottom <= innerHeight)) {
+          void card.offsetWidth;
+          card.classList.add("sa-go");
+        } else io.observe(bars);
+      });
+    });
+  });
+
+  /* ---------------- The bolt ---------------- */
+  /* The intro plays once, then the loop, seamlessly: the intro ends on the clip's frame 139, the
+     loop starts on 140. The bolt moves for more than 5 seconds and loops, so it can be stopped
+     and replayed (WCAG 2.2.2). Off screen it pauses. Any failure shows the still; with reduced
+     motion the still, and no video is downloaded (preload none). */
+  (function () {
+    const wrap = document.querySelector(".sa-vid-wrap");
+    if (!wrap) return;
+    const intro = wrap.querySelector("video.sa-v-intro"), loop = wrap.querySelector("video.sa-v-loop");
+    const still = wrap.querySelector(".sa-still"), mid = wrap.querySelector(".sa-mid");
+    const button = document.querySelector(".sa-replay");
+    const labelStop = button && button.querySelector('[data-label="stop"]');
+    const labelReplay = button && button.querySelector('[data-label="replay"]');
+    const st = { phase: "intro", still: false, stopped: false, reduce: false, broken: false };
+    let handoff = 0, started = false, armed = false, midIn = null, pendingStart = false, loopFailed = false, readyTimer = 0;
+    let startIo = null;
+
+    function render() {
+      wrap.classList.toggle("sa-fallback", st.still);
+      if (intro) intro.classList.toggle("sa-hide", st.phase !== "intro");
+      //The still is fetched only when it is shown.
+      if (st.still && still && still.loading === "lazy") still.loading = "eager";
+      if (button) {
+        button.hidden = st.reduce || st.broken;
+        //"Ferma l'animazione" only once the bolt moves: before, it holds its place unseen.
+        button.classList.toggle("sa-wait", !started && !st.still);
+        const replay = st.still || st.stopped;
+        if (labelStop) labelStop.hidden = replay;
+        if (labelReplay) labelReplay.hidden = !replay;
+      }
     }
-    renderWindow();
-    requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
+    function set(patch) { Object.assign(st, patch); render(); }
+    //Only what the error listener saw: networkState is 3 at load too, before a source is picked.
+    function failed(v) { return !!v.error || !!v.saFailed; }
 
-/* ---------------- The race ---------------- */
-const cases = [...document.querySelectorAll(".case")];
-let racing = false;
-function clock(s) {
-  return s >= 60 ? Math.floor(s / 60) + " min " + Math.floor(s % 60) + " s" : fmt(s, 1) + " s";
-}
-/* Each card's figures come from its measured times: files per second where the count is
-   what matters, otherwise GB per second; then the time saved. */
-function renderRates() {
-  cases.forEach(card => {
-    const ex = parseFloat(card.dataset.explorer), sa = parseFloat(card.dataset.saetta);
-    const files = parseFloat(card.dataset.files), bytes = parseFloat(card.dataset.bytes);
-    const rate = secs => files ? fmt(Math.round(files / secs), 0) : fmt(bytes / 1e9 / secs, 2) + " GB/s";
-    card.querySelector('[data-rate="ex"]').textContent = rate(ex);
-    card.querySelector('[data-rate="sa"]').textContent = rate(sa);
-    card.querySelector('[data-rate="saved"]').textContent = clock(ex - sa);
-  });
-}
-function race() {
-  if (racing || reduced) return;
-  racing = true;
-  const longest = 5200; /* each card's slowest bar takes this long, in ms */
-  const start = performance.now();
-  const rows = cases.flatMap(card => {
-    const ex = parseFloat(card.dataset.explorer), sa = parseFloat(card.dataset.saetta);
-    return [...card.querySelectorAll(".bar-row")].map(row => {
-      const secs = row.classList.contains("sa") ? sa : ex;
-      const fill = row.querySelector(".fill");
-      return { secs, ms: longest * secs / ex, fill, t: row.querySelector(".t"), w: fill.style.getPropertyValue("--w") };
-    });
-  });
-  rows.forEach(r => { r.fill.style.width = "0%"; });
-  function frame(now) {
-    const elapsed = now - start;
-    let running = false;
-    rows.forEach(r => {
-      const f = Math.min(1, elapsed / r.ms);
-      r.fill.style.width = "calc(" + r.w + " * " + f.toFixed(4) + ")";
-      if (f < 1) { r.t.textContent = clock(r.secs * f); running = true; }
-      else r.t.textContent = PAGE[r.t.dataset.final];
-    });
-    if (running) requestAnimationFrame(frame);
-    else { rows.forEach(r => { r.fill.style.width = ""; }); racing = false; }
-  }
-  requestAnimationFrame(frame);
-}
-document.getElementById("replay").addEventListener("click", () => { race(); if (window.SaettaCharts) window.SaettaCharts.play(); });
-/* The charts play once by themselves, the first time they come into view. */
-if ("IntersectionObserver" in window && !reduced && window.SaettaCharts) {
-  const charts = new IntersectionObserver(entries => {
-    if (entries.some(e => e.isIntersecting)) { charts.disconnect(); setTimeout(window.SaettaCharts.play, 250); }
-  }, { threshold: 0.35 });
-  charts.observe(document.getElementById("charts"));
-}
-/* Once by itself, the first time the cards come into view. Their bars are full until then. */
-if ("IntersectionObserver" in window && !reduced) {
-  const seen = new IntersectionObserver(entries => {
-    if (entries.some(e => e.isIntersecting)) { seen.disconnect(); setTimeout(race, 350); }
-  }, { threshold: 0.5 });
-  seen.observe(document.querySelector(".bench"));
-}
+    /* A refused autoplay (power saving, browser policy) shows the still instead of a black
+       frame; an interrupted play() (a pause or a replay) is not a failure. */
+    function play(v) {
+      const p = v.play();
+      if (p && p.catch) p.catch(e => { if (!e || e.name !== "AbortError") set({ still: true }); });
+    }
+    function playIntro() {
+      ++handoff;
+      started = true;
+      pendingStart = false;
+      if (startIo) { startIo.disconnect(); startIo = null; }
+      loop.pause();
+      loop.currentTime = 0;
+      intro.currentTime = 0;
+      set({ phase: "intro", still: false, stopped: false });
+      play(intro);
+    }
+    /* The loop plays under the intro, which holds its last frame and is hidden only once the
+       loop has painted: no blank frame. */
+    function toLoop() {
+      if (loopFailed || failed(loop)) { set({ still: true }); return; }
+      const token = handoff;
+      const go = () => { if (token === handoff) set({ phase: "loop" }); };
+      fetchLoop();
+      if (loop.requestVideoFrameCallback) loop.requestVideoFrameCallback(go);
+      else loop.addEventListener("playing", go, { once: true });
+      play(loop);
+    }
+    /* The first start: once the intro is ready, and only while the bolt's centre is on screen. */
+    function start() {
+      if (started || st.stopped || st.still) return;
+      if (midIn === false) { pendingStart = true; return; }
+      playIntro();
+    }
+    /* The loop is fetched once the intro is playing and wholly downloaded (2 s before its end
+       at the latest), so it never takes bandwidth from the intro. */
+    function fetchLoop() {
+      if (loop && loop.preload !== "auto") { loop.preload = "auto"; loop.load(); }
+    }
+    function onIntroProgress() {
+      if (!started || !intro.duration || !loop || loop.preload === "auto") return;
+      const b = intro.buffered;
+      if ((b.length && b.end(b.length - 1) >= intro.duration - 0.05) || intro.currentTime >= intro.duration - 2) fetchLoop();
+    }
+    /* Source errors do not bubble: listened to in capture. A missing loop lets the intro play
+       to its end, and the still follows it; any other failure shows the still at once. */
+    function onMediaError(e) {
+      const v = e.currentTarget;
+      if (!(v.error || v.networkState === 3)) return;
+      v.saFailed = true;
+      if (v === loop && st.phase === "intro" && !st.still && intro && !intro.ended && !failed(intro)) { loopFailed = true; return; }
+      set({ still: true, broken: st.broken || v === intro });
+    }
+    /* Start once the intro can play its whole flash without a stall, two frames later. Chrome
+       says canplaythrough after about 0.2 MB, but the flash is front-loaded: wait for 60 % of
+       the file. Not there after 4 s: the still (the button can try again). */
+    function whenReady(go) {
+      let done = false;
+      const enough = () => intro.readyState >= 4 && intro.duration > 0 && intro.buffered.length > 0 && intro.buffered.end(intro.buffered.length - 1) >= intro.duration * 0.6;
+      const stop = () => {
+        done = true;
+        clearTimeout(readyTimer);
+        intro.removeEventListener("canplaythrough", check);
+        intro.removeEventListener("progress", check);
+      };
+      const later = () => requestAnimationFrame(() => requestAnimationFrame(go));
+      function check() { if (!done && enough()) { stop(); later(); } }
+      if (enough()) { stop(); later(); return; }
+      intro.addEventListener("canplaythrough", check);
+      intro.addEventListener("progress", check);
+      readyTimer = setTimeout(() => { if (!done) { stop(); set({ still: true }); } }, 4000);
+    }
 
-/* What the scripts draw, in the page's language. */
-renderWindow();
-renderRates();
-if (window.SaettaCharts) window.SaettaCharts.render(lang, Object.assign({}, PAGE, T[lang], (window.SAETTA_CHART || {})[lang]));
+    if (button) {
+      button.addEventListener("click", () => {
+        if (!intro || !loop || failed(intro)) return;
+        if (st.still || st.stopped) { playIntro(); return; }
+        const token = ++handoff;
+        intro.pause();
+        loop.pause();
+        set({ stopped: true });
+        if (still) still.loading = "eager";
+        if (still && still.decode) still.decode().then(() => { if (token === handoff) set({ still: true }); }, () => {});
+        else set({ still: true });
+      });
+    }
+
+    if (reduce) { set({ still: true, reduce: true }); return; }
+    if (!intro || !loop) { set({ still: true, broken: true }); return; }
+    [intro, loop].forEach(v => {
+      v.addEventListener("error", onMediaError, true);
+      v.muted = true;
+      v.defaultMuted = true;
+      v.playsInline = true;
+    });
+    loop.loop = true;
+    intro.addEventListener("ended", toLoop);
+    ["playing", "progress", "suspend", "timeupdate"].forEach(t => intro.addEventListener(t, onIntroProgress));
+    render();
+    //The loop stays at preload none until the intro has arrived (onIntroProgress).
+    intro.preload = "auto";
+    intro.load();
+
+    /* Start when the bolt's centre is on screen: at once on a computer, on a phone when it is
+       scrolled to (the hero text comes first there). Ready while scrolled away: it waits. */
+    if (hasIo && mid) {
+      startIo = new IntersectionObserver(es => {
+        midIn = es[es.length - 1].isIntersecting;
+        if (!midIn) return;
+        if (!armed) { armed = true; whenReady(start); }
+        else if (pendingStart) { pendingStart = false; start(); }
+      }, { rootMargin: "0px 0px -20% 0px", threshold: 0 });
+      startIo.observe(mid);
+    } else { armed = true; whenReady(start); }
+
+    /* Off screen, the bolt pauses; back on screen, it goes on. */
+    if (hasIo) {
+      new IntersectionObserver(es => {
+        const e = es[es.length - 1];
+        if (!started || st.still || st.stopped) return;
+        const v = st.phase === "loop" ? loop : intro;
+        if (e.isIntersecting) { if (v.paused && !v.ended) play(v); }
+        else if (!v.paused) v.pause();
+      }).observe(wrap);
+    }
+  })();
+})();

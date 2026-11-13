@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="zh-Hans" data-lang="zh" data-page="changelog/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Saetta 更新日志：所有版本</title>
+<meta name="description" content="Saetta（Windows 快速文件复制工具）每个版本的变化：新功能和修复，从最新版本开始。">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#211D52">
+<!-- seo: written by tools/build-site.py -->
+<link rel="canonical" href="https://saetta.net/zh/changelog/">
+<link rel="alternate" hreflang="en" href="https://saetta.net/changelog/">
+<link rel="alternate" hreflang="it" href="https://saetta.net/it/changelog/">
+<link rel="alternate" hreflang="de" href="https://saetta.net/de/changelog/">
+<link rel="alternate" hreflang="es" href="https://saetta.net/es/changelog/">
+<link rel="alternate" hreflang="zh-Hans" href="https://saetta.net/zh/changelog/">
+<link rel="alternate" hreflang="x-default" href="https://saetta.net/changelog/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Saetta">
+<meta property="og:url" content="https://saetta.net/zh/changelog/">
+<meta property="og:title" content="Saetta 更新日志：所有版本">
+<meta property="og:description" content="Saetta（Windows 快速文件复制工具）每个版本的变化：新功能和修复，从最新版本开始。">
+<meta property="og:image" content="https://saetta.net/assets/saetta-512.png">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Saetta",
+  "alternateName": "Saetta – Fast File Copy",
+  "url": "https://saetta.net/zh/changelog/",
+  "description": "Saetta（Windows 快速文件复制工具）每个版本的变化：新功能和修复，从最新版本开始。",
+  "inLanguage": "zh-Hans",
+  "operatingSystem": "Windows 10, Windows 11",
+  "applicationCategory": "UtilitiesApplication",
+  "image": "https://saetta.net/assets/saetta-512.png",
+  "downloadUrl": "https://apps.microsoft.com/detail/9N3TNPDLFPZW",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Saetta",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "url": "https://apps.microsoft.com/detail/9N3TNPDLFPZW"
+    },
+    {
+      "@type": "Offer",
+      "name": "Saetta Professional",
+      "price": "29.99",
+      "priceCurrency": "EUR",
+      "url": "https://apps.microsoft.com/detail/9N3TNPDLFPZW"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Saetta",
+  "alternateName": "Saetta – Fast File Copy",
+  "url": "https://saetta.net/"
+}
+</script>
+<!-- /seo -->
+<script>/* html.js: scripts run. html.sa-js: the entrances wait, hidden from the first paint, until they come into view (js/site.js plays them); if that script never arrives, after 4 s everything shows. */(function (d) { d.classList.add("js"); try { if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) { d.classList.add("sa-js"); setTimeout(function () { if (!window.SAETTA_UI) d.classList.remove("sa-js"); }, 4000); } } catch (e) {} })(document.documentElement);</script>
+<link rel="icon" href="../../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/saetta-192.png">
+<link rel="apple-touch-icon" href="../../assets/saetta-256.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../css/site.css?v=42">
+<link rel="stylesheet" href="../../css/changelog.css?v=42">
+</head>
+<body>
+
+<header class="site-header" id="top">
+  <div class="container site-bar">
+    <a class="brand" href="../"><img src="../../assets/saetta-64.png" alt="" width="30" height="30"><span>Saetta</span></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="菜单" data-i18n-aria="nav.menu"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path class="ic-open" d="M3 6h16M3 11h16M3 16h16"></path><path class="ic-close" d="M5 5l12 12M17 5 5 17"></path></svg></button>
+    <nav class="site-nav" id="site-nav" aria-label="主要" data-i18n-aria="nav.label">
+      <a class="nav-link" href="../#cosa-fa" data-i18n="nav.features">功能</a>
+      <a class="nav-link" href="../benchmark/" data-i18n="nav.bench">基准测试</a>
+      <a class="nav-link" href="../#prezzi" data-i18n="nav.prices">价格</a>
+      <a class="nav-link" href="../#domande" data-i18n="nav.faq">常见问题</a>
+      <a class="nav-link" href="../changelog/" aria-current="page" data-i18n="foot.changelog">更新日志</a>
+      <span class="nav-tools">
+        <select class="chip lang-select" id="lang" aria-label="语言" data-i18n-aria="nav.lang"><option value="it" lang="it">IT</option><option value="en" lang="en">EN</option><option value="de" lang="de">DE</option><option value="es" lang="es">ES</option><option value="zh" lang="zh-Hans">中文</option></select>
+        <button class="chip theme-btn" id="theme" type="button" aria-label="浅色或深色主题" data-i18n-aria="nav.theme"><svg class="ic-moon" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg><svg class="ic-sun" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></button>
+      </span>
+      <a class="btn btn-light btn-sm store-link" href="https://apps.microsoft.com/detail/9N3TNPDLFPZW" data-i18n="nav.get">免费下载</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="page-hero" aria-labelledby="cl-title">
+  <div class="container">
+    <div class="stack-head">
+      <p class="eyebrow sa-in" data-i18n="cl.eyebrow">更新日志</p>
+      <h1 class="sa-in" id="cl-title" data-i18n="cl.title">Saetta 版本</h1>
+    </div>
+  </div>
+</section>
+
+<div class="section cl-section">
+  <div class="container">
+    <div class="cl-list">
+<!-- versions: written by tools/build-site.py from store/whats-new.md -->
+      <section class="glass cl-version" id="v1-4-6">
+        <h2>Saetta 1.4.6</h2>
+        <ul>
+          <li>新增免费的快速完整性校验。</li>
+          <li>70 多种完整性算法可选（BLAKE3、SHA-256、SHA-3、Whirlpool 等），用于校验副本和校验和文件，需 Saetta Professional。</li>
+          <li>复制到 U 盘的速度更快。</li>
+          <li>全新改版的反馈页面：消息直接从应用发出，可附加文件和匿名化的日志。</li>
+          <li>已修复：Saetta 在经典菜单（显示更多选项）中出现两次，且图标带有黑色背景。</li>
+          <li>已修复：移动文件后，文件资源管理器有时仍在源文件夹中显示这些文件，直到刷新为止。</li>
+          <li>已修复：窗口最大化时，“校验和”和“同步”窗口可能会闪烁。</li>
+          <li>已修复：在部分电脑上，窗口失去焦点时，文件资源管理器集成开关会自行关闭。</li>
+          <li>多项易用性、可靠性和安全性修复。</li>
+        </ul>
+      </section>
+      <section class="glass cl-version" id="v1-4-5">
+        <h2>Saetta 1.4.5</h2>
+        <ul>
+          <li>目标位置已有同名文件时，现在与 Windows 一样：替换、跳过，或比较两个文件后选择保留哪一个。</li>
+          <li>历史记录：现在可以暂停记录，删除一条或多条记录，每一行都会显示复制了什么以及从哪里到哪里。</li>
+          <li>“复制到…”和“移动到…”：复制一开始就会记住目标位置，最近使用的文件夹可以用 X 移除。</li>
+          <li>从 7-Zip 和 WinRAR 拖到文件资源管理器的文件，现在由 Saetta 复制。</li>
+          <li>复制窗口打开时现在会显示在最前面。</li>
+          <li>删除：先只显示确认，选择“是”之后才打开删除窗口。</li>
+          <li>速度图表更流畅，复制少量小文件时也能看到。</li>
+          <li>修复了自 1.4.2 起复制文件夹时没有使用 Saetta 引擎、速度变慢的问题。</li>
+          <li>修复了把文件夹复制到完全相同的文件夹上时不询问、并把文件算作已复制的问题。</li>
+          <li>修复了“替换”在只读或隐藏文件上可能提示“拒绝访问”的问题。</li>
+          <li>修复了窗口在有选中文本时关闭（包括更新期间）可能导致 Saetta 崩溃的问题。</li>
+          <li>错误修复和稳定性改进。</li>
+        </ul>
+      </section>
+      <section class="glass cl-version" id="v1-4-4">
+        <h2>Saetta 1.4.4</h2>
+        <ul>
+          <li>新增 MTP 协议支持，可与手机和相机交换文件。</li>
+          <li>修复了 Saetta 可能在复制开始后立即崩溃并留下空文件的问题。</li>
+          <li>修复了从 7-Zip、WinRAR 等程序中拖出文件时没有任何文件被复制的问题。</li>
+          <li>修复了云文件夹（如 OneDrive 或 Dropbox）未被完整计数和复制的问题。</li>
+          <li>修复了 Saetta 在开始更新时出错崩溃的问题。</li>
+          <li>链接的文件夹（联接点和符号链接）现在会被跳过，而不会被重复复制。</li>
+          <li>修复了仍有文件待复制时进度百分比可能显示 100% 的问题。</li>
+        </ul>
+      </section>
+      <section class="glass cl-version" id="v1-4-2">
+        <h2>Saetta 1.4.2</h2>
+        <ul>
+          <li>Saetta Professional 试用：使用试用码后，Professional 可使用 5 天，设置中会显示截止日期。</li>
+          <li>复制的文件夹会保留原始的创建和修改日期，与文件一样。</li>
+          <li>在应用内更新：进度条显示下载和安装进度；如果 Windows 第一次未完成更新，Saetta 会自动继续。</li>
+          <li>修复：Saetta 在经典右键菜单（显示更多选项）中出现两次。</li>
+          <li>复制窗口还会显示源驱动器和目标驱动器（例如 C:\…\照片 → E:\备份）。</li>
+        </ul>
+      </section>
+      <section class="glass cl-version" id="v1-4-1">
+        <h2>Saetta 1.4.1</h2>
+        <ul>
+          <li>Saetta 现在也会出现在 Windows 11 的经典菜单（显示更多选项）中，菜单项与主菜单相同。</li>
+          <li>修复：在某些语言的 Windows 上，Saetta 首次启动时提示 robocopy 已损坏并且无法启动。</li>
+        </ul>
+      </section>
+      <section class="glass cl-version" id="v1-4">
+        <h2>Saetta 1.4</h2>
+        <ul>
+          <li>全新的专有复制引擎，从零开发：可识别 SSD、机械硬盘、U 盘和 SD 卡，并为每种设备选择最快的方式。处理大量小文件时，速度最高可达文件资源管理器的 25 倍。</li>
+          <li>复制更快开始：窗口打开的同时引擎即已启动。</li>
+          <li>使用 Saetta 粘贴和拖放：开启该选项后，文件资源管理器中的粘贴和拖放文件也交由 Saetta 处理，不只是 Ctrl+V。</li>
+          <li>受保护的文件夹：如果某次复制需要管理员权限，只会出现 Windows 自身的提示，且仅针对这一次复制。复制仍由 Saetta 完成。</li>
+          <li>"复制到…"和"移动到…"现已免费。</li>
+          <li>速度限制现在属于 Saetta Professional。</li>
+          <li>打开校验和文件（.sha256、.md5、.b3 等）时，Saetta 会立即显示校验。</li>
+          <li>更新：启动时 Saetta 会提示新版本，可选择"立即更新"、"稍后"或"不再显示"。开启文件资源管理器集成后，即使 Saetta 已关闭也会提醒。</li>
+          <li>全新的概览页面。</li>
+          <li>替换已有文件更快；如果取消，尚未处理的文件保持不变。</li>
+          <li>修复了复制过程中 Windows 更改主题或颜色时 Saetta 意外关闭的问题。</li>
+          <li>大量可靠性和安全性修复。</li>
+        </ul>
+      </section>
+      <section class="glass cl-version" id="v1-3-6">
+        <h2>Saetta 1.3.6</h2>
+        <ul>
+          <li>修复：打开设置后，速度限制可能会自行开启为 10 MB/s。受影响的用户将自动恢复全速。</li>
+          <li>新增：有可用更新时，Saetta 会在概览中提示，并可一键安装。</li>
+          <li>概览页面更整洁、更易读。</li>
+          <li>复制页面重新整理：进度窗口、速度、删除、数据完整性和任务结束后。“开机时检查中断的复制”选项现在位于数据完整性中。</li>
+        </ul>
+      </section>
+<!-- /versions -->
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-bar">
+    <span data-i18n="foot.copy">© 2026 WumingDev。保留所有权利。</span>
+    <nav class="footer-nav" aria-label="法律声明" data-i18n-aria="foot.label">
+      <a href="../changelog/" aria-current="page" data-i18n="foot.changelog">更新日志</a>
+      <a href="../../terms.html" data-i18n="foot.terms">条款</a>
+      <a href="../../privacy.html" data-i18n="foot.privacy">隐私</a>
+      <a href="../../third-party-notices.txt" data-i18n="foot.licenses">第三方声明</a>
+      <a href="mailto:wumingdev9472@gmail.com" data-i18n="foot.contact">联系方式</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="../../js/i18n-zh.js?v=42"></script>
+<script src="../../js/site.js?v=42"></script>
+</body>
+</html>

@@ -29,6 +29,9 @@ Saetta.
    Source: https://github.com/microsoft/wil
    License: MIT (full text in section A)
    Copyright (c) Microsoft Corporation
+   WIL incorporates material from libc++:
+   License: MIT (full text in section A)
+   Copyright (c) 2009-2014 by the contributors listed in CREDITS.TXT
 
 5. Windows Community Toolkit - Notifications (Microsoft.Toolkit.Uwp.Notifications)
    Source: https://github.com/CommunityToolkit/WindowsCommunityToolkit
@@ -43,7 +46,7 @@ Saetta.
 7. spdlog
    Source: https://github.com/gabime/spdlog
    License: MIT (full text in section A)
-   Copyright (c) 2016 Gabi Melman
+   Copyright (c) 2016 - present, Gabi Melman and spdlog contributors.
 
 8. Boost C++ Libraries (Process, Asio, Regex, Algorithm, Filesystem, Container)
    Source: https://www.boost.org
@@ -58,7 +61,7 @@ Saetta.
    Source: https://github.com/BLAKE3-team/BLAKE3
    License: used under CC0 1.0 Universal (public domain dedication); also offered
    under Apache License 2.0
-   Copyright (c) Jack O'Connor and Samuel Neves
+   Copyright 2019 Jack O'Connor and Samuel Neves
 
 11. Windows App SDK project and item templates
    Some of Saetta's source files started from Microsoft's WinUI 3 templates.
@@ -66,6 +69,51 @@ Saetta.
    License: MIT (full text in section A)
    Copyright (c) Microsoft Corporation and Contributors
 
+
+12. HashLib4Pascal
+   Saetta's Panama, RadioGatun, Grindahl and Tiger code (Tiger, Tiger2 and the Tiger core
+   of TTH), the tables of Tiger and Grindahl and the way Whirlpool is built are ported from
+   HashLib4Pascal; BLAKE2, Keccak, SHA-3 and RIPEMD follow its conventions.
+   Source: https://github.com/Xor-el/HashLib4Pascal
+   License: MIT (full text in section A)
+   Copyright (c) 2016 - 2026 Ugochukwu Mmaduekwe
+
+13. RHash (librhash: GOST R 34.11-94, GOST R 34.11-2012 "Streebog", HAS-160; the rules of
+   TTH and ED2K)
+   Source: https://github.com/rhash/RHash
+   License: BSD Zero Clause License (0BSD)
+   Copyright (c) 2005, Aleksey Kravchenko
+
+14. sphlib (Groestl and JH)
+   Source: sphlib 3.0, Projet RNRT SAPHIR
+   License: MIT (full text in section A)
+   Copyright (c) 2007-2010 Projet RNRT SAPHIR
+
+15. Skein reference implementation (Skein-256, Skein-512, Skein-1024, version 1.3)
+   Source: Doug Whiting's reference code, as kept in https://github.com/wernerd/Skein3Fish
+   License: public domain
+   The two portability headers that come with it (brg_types.h, brg_endian.h) are Brian
+   Gladman's: see item 17.
+
+16. Ascon (Ascon-Hash256, NIST SP 800-232)
+   Saetta's Ascon-Hash256 follows the reference implementation and its test vectors.
+   Source: https://github.com/ascon/ascon-c
+   License: CC0 1.0 Universal (public domain dedication)
+
+17. Brian Gladman's brg_types.h and brg_endian.h (with the Skein reference code)
+   License: Brian Gladman's license terms (full text in section E)
+   Copyright (c) 1998-2006, Brian Gladman, Worcester, UK. All rights reserved.
+   Copyright (c) 2003, Dr Brian Gladman, Worcester, UK.   All rights reserved.
+
+18. C++/WinRT
+   Source: https://github.com/microsoft/cppwinrt
+   License: MIT (full text in section A)
+   Copyright (c) Microsoft Corporation.
+
+19. Microsoft Edge WebView2 SDK (Microsoft.Web.WebView2)
+   Source: https://www.nuget.org/packages/Microsoft.Web.WebView2
+   License: BSD-style (full text in section D)
+   Copyright (C) Microsoft Corporation. All rights reserved.
 
 A. MIT License
 --------------
@@ -142,3 +190,68 @@ ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
 LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
 ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+D. Microsoft Edge WebView2 SDK License
+--------------------------------------
+
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+   * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+   * The name of Microsoft Corporation, or the names of its contributors
+may not be used to endorse or promote products derived from this
+software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+E. Brian Gladman's license terms (brg_types.h, brg_endian.h)
+-------------------------------------------------------------
+
+ Copyright (c) 1998-2006, Brian Gladman, Worcester, UK. All rights reserved.
+ Copyright (c) 2003, Dr Brian Gladman, Worcester, UK.   All rights reserved.
+
+ LICENSE TERMS
+
+ The free distribution and use of this software in both source and binary
+ form is allowed (with or without changes) provided that:
+
+   1. distributions of this source code include the above copyright
+      notice, this list of conditions and the following disclaimer;
+
+   2. distributions in binary form include the above copyright
+      notice, this list of conditions and the following disclaimer
+      in the documentation and/or other associated materials;
+
+   3. the copyright holder's name is not used to endorse products
+      built using this software without specific written permission.
+
+ ALTERNATIVELY, provided that this notice is retained in full, this product
+ may be distributed under the terms of the GNU General Public License (GPL),
+ in which case the provisions of the GPL apply INSTEAD OF those given above.
+
+ DISCLAIMER
+
+ This software is provided 'as is' with no explicit or implied warranties
+ in respect of its properties, including, but not limited to, correctness
+ and/or fitness for purpose.

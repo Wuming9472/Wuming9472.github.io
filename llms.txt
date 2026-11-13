@@ -7,11 +7,12 @@
 - Copy, move and delete from the File Explorer right-click menu (both the Windows 11 menu and the classic one), or by dragging files with the right mouse button.
 - Optional File Explorer integration: you copy or cut as usual, and when you paste (Paste, Ctrl+V), drag files with the left mouse button or press Delete, Saetta does the work.
 - Measured on the same PC with the same files (2026-10-21/22, Saetta 1.4 from the app against File Explorer, median of three runs, SSD to SSD): copying 20,000 small files (64 KB each, 1.3 GB) took 7.7 s with Saetta and 3 min 11 s with File Explorer (24.7 times faster); deleting 20,000 files took 2.8 s against 13.0 s (4.6 times faster); copying three 4 GB files took 7.0 s against 7.9 s (11% less time). Every measurement, hard disks, USB sticks and SD cards included: https://saetta.net/benchmark/
-- Against TeraCopy 4.0.5 and FastCopy 5.12 (same PC and battery, SSD to SSD and SSD to hard disk only): Saetta was the fastest in 15 of 15 comparisons with TeraCopy and in 12 of 15 with FastCopy. Copying 20,000 files of 64 KB from SSD to SSD took 7.7 s with Saetta, 16.1 s with TeraCopy and 19.4 s with FastCopy; with very large files FastCopy was slightly faster (three 4 GB files, SSD to SSD: 5.9 s against 7.0 s). All of them: https://saetta.net/benchmark/#teracopy-ssd and https://saetta.net/benchmark/#fastcopy-ssd
+- Against TeraCopy 4.0.5, FastCopy 5.11.1 and robocopy 10.0.26100 (same PC, median of three runs; copies between the SSD and USB hard disks, and for FastCopy also deletion, measured 2026-11-04 with Saetta 1.4.5; copies from the SSD to a USB stick and to an SD card measured 2026-11-07/08 with Saetta 1.4.6): Saetta was faster in 37 of 37 comparisons with TeraCopy, in 42 of 44 with FastCopy and in 36 of 37 with robocopy. Copying 20,000 files of 64 KB from SSD to SSD took 7.12 s with Saetta, 14.82 s with TeraCopy, 15.95 s with FastCopy and 15.68 s with robocopy; three 4 GB files, SSD to SSD, took 5.67 s with Saetta, 5.71 s with robocopy, 5.81 s with FastCopy and 10.13 s with TeraCopy; 4,000 files of 64 KB from the SSD to the USB stick took 134.96 s with Saetta, 189.50 s with TeraCopy, 205.65 s with FastCopy and 242.04 s with robocopy. Saetta was slower in three comparisons, each by less than 3%: FastCopy copying three 4 GB files from the SSD to a hard disk and deleting 20,000 files of 64 KB on the SSD, robocopy copying 10,000 files of 1 MB from the SSD to a hard disk. All of them: https://saetta.net/benchmark/#teracopy-ssd, https://saetta.net/benchmark/#fastcopy-ssd and https://saetta.net/benchmark/#robocopy-ssd
 
 ## Free
 
 - Real speed, time remaining, pause and resume at any moment.
+- Verified copies: when a copy ends, Saetta reads every file back from the disk and compares its xxHash3 fingerprint with the original's; if even one byte differs, it says so, and that file alone can be copied again.
 - A file in use does not stop the job: Saetta skips it and reports it at the end.
 - Files that already exist in the destination: keep both, replace or skip.
 - Fast, permanent deletion, without the Recycle Bin, after a confirmation.
@@ -20,9 +21,9 @@
 - Copy to… and Move to…: files and folders to several locations at once, with favorite folders.
 - Protected folders: when a copy needs administrator permission, only Windows' own prompt appears, for that copy only.
 
-## Saetta Professional (one-time purchase)
+## Saetta Professional (one-time purchase in the app, through the Microsoft Store)
 
-- Verified copies: every copy is read back from the disk and compared with the original (xxHash3, BLAKE3 or SHA-256).
+- Verification with over 70 algorithms: BLAKE3, SHA-256, SHA-3, Whirlpool, CRC, TIGER and many more.
 - Safe resume: after a restart or a power outage, Saetta asks whether to resume the interrupted copy and checks the files already copied.
 - Folder sync with a preview before anything changes.
 - Scheduled backups of a folder or a whole drive to another folder, an external drive or a NAS: daily, weekly, monthly or yearly, even with Saetta closed.
@@ -32,7 +33,7 @@
 
 ## Facts
 
-- Privacy: no account, no telemetry, no data collection. The network is used only through Windows and the Microsoft Store: to check the Saetta Professional license and whether a new version is available (when Saetta starts, when Settings opens and, if the File Explorer integration is on, at sign-in and then every six hours).
+- Privacy: no account, no telemetry, no data collection. The network is used through Windows and the Microsoft Store to check the Saetta Professional license and whether a new version is available (when Saetta starts, when Settings opens and, if the File Explorer integration is on, at sign-in and then every six hours), and through Saetta's own server only for a sales-status check that carries nothing but Saetta's version and, when the user sends one, to deliver a message from the Feedback page to the developer (logs anonymized first, nothing stored on the server).
 - Languages: English, Italian, German, Spanish and Simplified Chinese.
 - Requirements: Windows 11 or Windows 10 (version 1809 or later), 64-bit PC. Administrator permission is asked for only when a copy needs it.
 - Category: file copy utilities for Windows, like TeraCopy, FastCopy or Ultracopier.

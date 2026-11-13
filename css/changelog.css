@@ -1,0 +1,30 @@
+/* The "What's new" page (it/changelog/ and the other languages), on top of site.css. One row
+   per version, newest first, as the home page lays out its features: the version on the left,
+   its points on the right, a thin rule between versions. tools/build-site.py writes the rows
+   (section.glass.cl-version > h2 + ul) from store/whats-new.md; the rules below undo the card
+   look .glass would give them. */
+
+.cl-section { padding-top: 64px; }
+.cl-list { max-width: 1080px; border-bottom: 1px solid var(--line); }
+.cl-list > .cl-version {
+  display: grid; grid-template-columns: minmax(180px, 280px) minmax(0, 1fr); gap: 16px 56px;
+  padding: 44px 0; border: 0; border-top: 1px solid var(--line); border-radius: 0; background: none;
+  scroll-margin-top: 24px;
+}
+.cl-version h2 { font-stretch: 86%; font-weight: 720; font-size: 32px; line-height: 1.1; letter-spacing: -.02em; }
+/* The newest version in the accent. */
+.cl-list > .cl-version:first-child h2 { color: var(--accent); }
+.cl-version ul { display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.cl-version li { position: relative; padding-left: 22px; color: var(--muted); }
+.cl-version li::before { content: ""; position: absolute; left: 2px; top: .68em; width: 7px; height: 7px; border-radius: 2px; background: var(--accent); }
+/* A version opened from a link (#v1-4-6, as the app's release notes do). */
+.cl-list > .cl-version:target h2 { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 8px; text-decoration-color: var(--accent); }
+
+@media (max-width: 720px) {
+  .cl-section { padding-top: 40px; }
+  .cl-list > .cl-version { grid-template-columns: minmax(0, 1fr); padding: 32px 0; }
+  .cl-version h2 { font-size: 28px; }
+}
+@media (forced-colors: active) {
+  .cl-version li::before { background: CanvasText; }
+}

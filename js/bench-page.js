@@ -1,20 +1,19 @@
-/* The full benchmarks page: language and theme as on the home page, then the results from
-   js/bench-full.js (window.SAETTA_BENCH_FULL, written by tools/bench-site-data.py from the
-   measuring scripts' results). Until that file holds results, the page says they are coming.
+/* The full benchmarks page: the results from js/bench-full.js (window.SAETTA_BENCH_FULL,
+   written by tools/bench-site-data.py from the measuring scripts' results). Until that file
+   holds results, the page says they are coming. The header (language, theme, the phone menu)
+   and the Store link are js/site.js's, as on every page; the language picker keeps the hash,
+   so the other language opens on the same comparison and scenario.
    Saetta is compared with one program at a time, picked at the top: File Explorer, TeraCopy,
-   FastCopy or robocopy, each from the battery that measured it beside Saetta.
+   FastCopy or robocopy, each scenario from the most recent battery that measured that program
+   beside Saetta there (the versions line names each battery's date and versions).
    The texts drawn here are Italian below; the other languages' come from their dictionaries
    (bm.* keys in js/i18n-<lang>.js). */
 (function () {
-  const STORE_URL = "https://apps.microsoft.com/detail/9N3TNPDLFPZW";   /* as in site.js */
   const lang = document.documentElement.dataset.lang || "it";
-  const page = document.documentElement.dataset.page || "";
-  const PAGES = { en: "/", it: "/it/", de: "/de/", es: "/es/", zh: "/zh/" };
   const LOCALES = { it: "it-IT", en: "en-US", de: "de-DE", es: "es-ES", zh: "zh-CN" };
 
   const IT = {
     "bm.title": "Saetta contro Esplora file", "bm.titleVs": "Saetta contro {name}",
-    "bm.vsNote": "Le prove con {name} su chiavetta USB e scheda SD sono in corso: le aggiungiamo appena finite.",
     "bm.explorer": "Esplora file",
     "bm.sc.ssd": "SSD → SSD", "bm.sc.ssd.text": "Copia da un SSD allo stesso SSD.",
     "bm.sc.ce": "SSD → disco rigido", "bm.sc.ce.text": "Copia dall'SSD a un disco rigido esterno USB.",
@@ -22,6 +21,7 @@
     "bm.sc.ee": "Stesso disco rigido", "bm.sc.ee.text": "Copia da una cartella a un'altra dello stesso disco rigido esterno: lettura e scrittura sullo stesso disco.",
     "bm.sc.de": "Tra due dischi rigidi", "bm.sc.de.text": "Copia da un disco rigido esterno USB a un altro.",
     "bm.sc.stick": "Chiavetta USB", "bm.sc.stick.text": "Copia dall'SSD a una chiavetta USB formattata FAT32, come escono dalla fabbrica quelle fino a 32 GB.",
+    "bm.sc.stick-exfat.text": "Copia dall'SSD a una chiavetta USB formattata exFAT, collegata a velocità USB 2.0.",
     "bm.sc.sd": "Scheda SD", "bm.sc.sd.text": "Copia dall'SSD a una scheda SD formattata exFAT, nel lettore del portatile.",
     "bm.sc.del-ssd": "Eliminazione su SSD", "bm.sc.del-ssd.text": "Eliminazione definitiva, senza Cestino, su un SSD.",
     "bm.sc.del-hdd": "Eliminazione su disco rigido", "bm.sc.del-hdd.text": "Eliminazione definitiva, senza Cestino, su un disco rigido esterno USB.",
@@ -43,26 +43,13 @@
     "bm.sumWins": "volte Saetta è la più veloce, su {n}",
     "bm.sumBest": "più veloce di Esplora file, al massimo", "bm.sumBestVs": "più veloce di {name}, al massimo",
     "bm.versions": "Misurato il {date}. PC: {pc}. Versioni: {versions}.",
+    "bm.versionsAlso": "{scenarios}: misure del {date}, versioni: {versions}.",
   };
   const dict = window["SAETTA_" + lang.toUpperCase()] || {};
   const t = key => (lang !== "it" && dict[key]) || IT[key] || key;
   const fill = (text, values) => text.replace(/\{(\w+)\}/g, (_, k) => (k in values ? values[k] : "{" + k + "}"));
   const fmt = (n, digits) => n.toLocaleString(LOCALES[lang] || "en-US", { minimumFractionDigits: digits, maximumFractionDigits: digits, useGrouping: "always" });
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-
-  /* ---------- the page's common parts ---------- */
-  const select = document.getElementById("lang");
-  select.value = lang;
-  select.addEventListener("change", e => {
-    try { localStorage.setItem("saetta-language", e.target.value); } catch (err) {}
-    location.href = PAGES[e.target.value] + page + location.hash;   /* the same comparison and scenario */
-  });
-  document.getElementById("theme").addEventListener("click", () => {
-    const root = document.documentElement;
-    const current = root.dataset.theme || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
-    root.dataset.theme = current === "light" ? "dark" : "light";
-  });
-  document.querySelectorAll(".store-link").forEach(a => { a.href = STORE_URL; a.target = "_blank"; a.rel = "noopener"; });
 
   /* ---------- the results ---------- */
   const data = window.SAETTA_BENCH_FULL;
@@ -78,16 +65,22 @@
   const NAMES = { saetta: "Saetta", teracopy: "TeraCopy", fastcopy: "FastCopy", robocopy: "robocopy" };
   const NAME = p => NAMES[p] || t("bm.explorer");
   const has = (row, p) => !!(row.runs[p] && row.runs[p].length);
-  /* In a battery, the scenarios, and in each the rows, where Saetta and that program both ran. */
-  const pairs = (b, p) => b.scenarios.map(s => ({ id: s.id, rows: s.rows.filter(r => has(r, "saetta") && has(r, p)) })).filter(s => s.rows.length);
-  /* The most recent battery that measured that program. */
-  const sourceOf = p => batteries.slice().reverse().find(b => pairs(b, p).length) || null;
-  const against = p => { const b = sourceOf(p); return b ? pairs(b, p) : []; };
+  /* In a battery, the scenarios, and in each the rows, where Saetta and that program both ran;
+     a scenario may describe its medium with its own text. */
+  const pairs = (b, p) => b.scenarios.map(s => ({ id: s.id, text: s.text || s.id, battery: b, rows: s.rows.filter(r => has(r, "saetta") && has(r, p)) })).filter(s => s.rows.length);
+  /* Each scenario from the most recent battery that measured that program in it, in the order
+     the scenarios first appear in the data. */
+  const ORDER = [...new Set(batteries.flatMap(b => b.scenarios.map(s => s.id)))];
+  const against = p => {
+    const found = {};
+    batteries.slice().reverse().forEach(b => pairs(b, p).forEach(s => { if (!found[s.id]) found[s.id] = s; }));
+    return ORDER.filter(id => found[id]).map(id => found[id]);
+  };
   const rivals = RIVALS.filter(p => against(p).length);
-  let rival = rivals[0], source = sourceOf(rival), view = against(rival), current = null;
+  let rival = rivals[0], view = against(rival), current = null;
   /* File Explorer's own texts (some languages give it an article); the others take the name. */
   const tv = (key, values) => fill(t(rival === "explorer" ? key : key + "Vs"), Object.assign({ name: NAME(rival) }, values));
-  const SIZES = { "4K": "4 KB", "64K": "64 KB", "1M": "1 MB", "16M": "16 MB", "256M": "256 MB", "4G": "4 GB" };
+  const SIZES = { "4K": "4\u00a0KB", "64K": "64\u00a0KB", "1M": "1\u00a0MB", "16M": "16\u00a0MB", "256M": "256\u00a0MB", "4G": "4\u00a0GB" };
   const median = runs => { const s = runs.slice().sort((a, b) => a - b); const m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
   const clock = s => {
     if (s < 10) return fmt(s, 2) + " s";
@@ -122,13 +115,12 @@
     }));
     const tiles = [[fmt(cases, 0), t("bm.sumCases")], [fmt(wins, 0), fill(t("bm.sumWins"), { n: fmt(cases, 0) })]];
     if (best > 1) tiles.push([fmt(best, 1) + "×", tv("bm.sumBest")]);
-    document.getElementById("bm-summary").innerHTML = tiles.map(([b, s]) => '<div class="glass bm-stat"><b>' + esc(b) + '</b><span>' + esc(s) + '</span></div>').join("");
+    document.getElementById("bm-summary").innerHTML = tiles.map(([b, s]) => '<div class="bm-stat"><b>' + esc(b) + '</b><span>' + esc(s) + '</span></div>').join("");
   }
 
   const heading = document.querySelector(".bm-hero h1");
   const vsBox = document.getElementById("bm-vs");
   const vs = document.getElementById("bm-vs-options");
-  const vsNote = document.getElementById("bm-vs-note");
   const legend = document.getElementById("bm-legend");
   const rowsBox = document.getElementById("bm-rows");
   const tabs = document.getElementById("bm-tabs");
@@ -139,48 +131,49 @@
   tip.className = "bm-tip"; tip.hidden = true; tip.setAttribute("role", "tooltip");
   document.body.appendChild(tip);
 
+  let keepHash = false;
   function render(id) {
     const s = view.find(x => x.id === id) || view.find(x => x.id === current) || view[0];
     current = s.id;
     [...tabs.children].forEach(b => b.setAttribute("aria-selected", String(b.dataset.id === s.id)));
     [...tabs.children].forEach(b => (b.tabIndex = b.dataset.id === s.id ? 0 : -1));
-    scenarioText.textContent = t("bm.sc." + s.id + ".text");
+    scenarioText.textContent = t("bm.sc." + s.text + ".text");
     const shown = ["saetta", rival];
     legend.innerHTML = shown.map(p => '<span><i class="' + p + '"></i>' + esc(NAME(p)) + '</span>').join("");
     rowsBox.innerHTML = s.rows.map((r, i) => {
       const m = medians(r), win = fastest(m), top = Math.max(...Object.values(m));
       const x = m[rival] / m.saetta;
       const gain = x >= 1.05 ? tv("bm.faster", { x: fmt(x, 1) }) : x <= 0.95 ? tv("bm.slower", { x: fmt(1 / x, 1) }) : esc(tv("bm.even"));
+      const gainClass = x >= 1.05 ? "" : x <= 0.95 ? " is-slower" : " is-even";
       const bars = shown.map(p => {
         if (!(p in m)) return '<div class="bm-bar missing ' + p + '"><span class="who">' + esc(NAME(p)) + '</span><div class="track"></div><span class="t">' + esc(t("bm.notMeasured")) + '</span></div>';
         const width = Math.max(0.6, m[p] / top * 100);
         const runs = r.runs[p].map(v => clock(v)).join(" · ");
-        return '<div class="bm-bar ' + p + (p === win ? " win" : "") + '" tabindex="0" data-tip="' + esc(NAME(p) + "|" + fill(t("bm.tip"), { m: clock(m[p]), runs: runs })) + '"' +
-          ' aria-label="' + esc(NAME(p) + ": " + clock(m[p])) + '">' +
+        const tipText = fill(t("bm.tip"), { m: clock(m[p]), runs: runs });
+        return '<div class="bm-bar ' + p + (p === win ? " win" : "") + '" role="img" data-tip="' + esc(NAME(p) + "|" + tipText) + '"' +
+          ' aria-label="' + esc(NAME(p) + ": " + tipText) + '">' +
           '<span class="who">' + esc(NAME(p)) + '</span>' +
           '<div class="track"><i class="fill" style="width:' + width.toFixed(2) + '%"></i></div>' +
           '<span class="t">' + esc(clock(m[p])) + (p === win ? '<small>' + esc(t("bm.fastest")) + '</small>' : "") + '</span></div>';
       }).join("");
-      return '<article class="glass bm-row"><header><h3>' + esc(label(r)) + '<small>' + esc(sub(r)) + '</small></h3>' +
-        '<span class="bm-gain">' + gain + '</span></header><div class="bm-bars">' + bars + '</div></article>';
+      return '<article class="card bm-row"><header><h3>' + esc(label(r)) + '<small>' + esc(sub(r)) + '</small></h3>' +
+        '<span class="bm-gain' + gainClass + '">' + gain + '</span></header><div class="bm-bars">' + bars + '</div></article>';
     }).join("");
     tableBox.innerHTML = '<table><thead><tr><th>' + esc(t("bm.kind")) + '</th>' + shown.map(p => '<th>' + esc(NAME(p)) + '</th>').join("") + '</tr></thead><tbody>' +
       s.rows.map(r => {
         const m = medians(r), win = fastest(m);
         return '<tr><td>' + esc(label(r)) + '</td>' + shown.map(p => '<td' + (p === win ? ' class="win"' : "") + '>' + (p in m ? esc(clock(m[p])) : "—") + '</td>').join("") + '</tr>';
       }).join("") + '</tbody></table>';
-    try { history.replaceState(null, "", "#" + (rival === "explorer" ? "" : rival + "-") + s.id); } catch (e) {}
+    if (!keepHash) try { history.replaceState(null, "", "#" + (rival === "explorer" ? "" : rival + "-") + s.id); } catch (e) {}
+    keepHash = false;
   }
 
   /* The program Saetta is compared with: the title, the summary, the scenarios it ran in. */
   function choose(p, scenario) {
     rival = rivals.includes(p) ? p : rivals[0];
-    source = sourceOf(rival);
     view = against(rival);
     [...vs.children].forEach(b => { const on = b.dataset.id === rival; b.setAttribute("aria-checked", String(on)); b.tabIndex = on ? 0 : -1; });
     heading.textContent = tv("bm.title");
-    vsNote.hidden = rival === "explorer";
-    vsNote.textContent = rival === "explorer" ? "" : fill(t("bm.vsNote"), { name: NAME(rival) });
     tabs.innerHTML = view.map(s => '<button type="button" role="tab" data-id="' + esc(s.id) + '">' + esc(t("bm.sc." + s.id)) + '</button>').join("");
     summary();
     versions();
@@ -213,7 +206,7 @@
     toggle.textContent = t(open ? "bm.hideTable" : "bm.showTable");
   });
 
-  /* The three runs behind each bar, on hover or keyboard focus. */
+  /* The three runs behind each bar, on hover (screen readers have them in the bar's name). */
   function showTip(bar, x, y) {
     const [who, text] = bar.dataset.tip.split("|");
     tip.innerHTML = "<b>" + esc(who) + "</b><span>" + esc(text) + "</span>";
@@ -227,21 +220,35 @@
   rowsBox.addEventListener("focusin", e => { const bar = e.target.closest(".bm-bar[data-tip]"); if (bar) { const r = bar.getBoundingClientRect(); showTip(bar, r.left + r.width / 2, r.top); } });
   rowsBox.addEventListener("focusout", () => { tip.hidden = true; });
 
-  /* When, on what and with which versions the comparison on screen was measured. */
+  /* When, on what and with which versions the comparison on screen was measured: the battery
+     behind most of its scenarios first, then the scenarios that come from another one. */
   function versions() {
-    if (!source) return;
-    const v = source.versions || {};
-    const list = ["Saetta " + (v.saetta || "")];
-    if (v[rival]) list.push(NAME(rival) + " " + v[rival]);
-    if (v.os) list.push(v.os);
-    const day = /^\d{4}-\d{2}-\d{2}$/.test(source.date || "")
-      ? new Date(source.date + "T12:00:00").toLocaleDateString(LOCALES[lang] || "en-US", { day: "numeric", month: "long", year: "numeric" })
-      : source.date || "";
-    document.getElementById("bm-versions").textContent = fill(t("bm.versions"),
-      { date: day, pc: data.pc || (data.meta && data.meta.pc) || "", versions: list.join(lang === "zh" ? "、" : ", ") });
+    const groups = [];
+    view.forEach(s => {
+      let g = groups.find(x => x.battery === s.battery);
+      if (!g) groups.push(g = { battery: s.battery, names: [] });
+      g.names.push(t("bm.sc." + s.id));
+    });
+    if (!groups.length) return;
+    groups.sort((a, b) => b.names.length - a.names.length);
+    const list = b => {
+      const v = b.versions || {}, out = ["Saetta " + (v.saetta || "")];
+      if (v[rival]) out.push(NAME(rival) + " " + v[rival]);
+      if (v.os) out.push(v.os);
+      return out.join(lang === "zh" ? "、" : ", ");
+    };
+    const day = b => /^\d{4}-\d{2}-\d{2}$/.test(b.date || "")
+      ? new Date(b.date + "T12:00:00").toLocaleDateString(LOCALES[lang] || "en-US", { day: "numeric", month: "long", year: "numeric" })
+      : b.date || "";
+    const and = names => { try { return new Intl.ListFormat(LOCALES[lang] || "en-US", { type: "conjunction" }).format(names); } catch (e) { return names.join(", "); } };
+    const main = groups[0].battery;
+    const parts = [fill(t("bm.versions"), { date: day(main), pc: data.pc || (data.meta && data.meta.pc) || "", versions: list(main) })]
+      .concat(groups.slice(1).map(g => fill(t("bm.versionsAlso"), { scenarios: and(g.names), date: day(g.battery), versions: list(g.battery) })));
+    document.getElementById("bm-versions").textContent = parts.join(lang === "zh" ? "" : " ");
   }
 
   /* #ssd is File Explorer's SSD → SSD, #teracopy-ssd TeraCopy's, #robocopy-ssd robocopy's. */
   const hash = (location.hash || "").slice(1), picked = /^(teracopy|fastcopy|robocopy)(?:-(.+))?$/.exec(hash);
+  keepHash = !picked && !!hash && !!document.getElementById(hash);
   choose(picked ? picked[1] : "explorer", picked ? picked[2] : hash);
 })();
