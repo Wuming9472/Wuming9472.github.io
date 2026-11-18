@@ -108,6 +108,22 @@
   <div class="container">
     <div class="cl-list">
 <!-- versions: written by tools/build-site.py from store/whats-new.md -->
+      <section class="glass cl-version" id="v1-4-7">
+        <h2>Saetta 1.4.7</h2>
+        <ul>
+          <li>在文件资源管理器中按 Ctrl+Z，可撤消上一次复制或移动。</li>
+          <li>通过文件资源管理器集成发起的复制启动快得多，在同一驱动器上移动文件也快得多。</li>
+          <li>选择“保留两者”时，与现有文件完全相同的文件不再重复复制。</li>
+          <li>快速连按多次 Ctrl+V 或 Delete 只会启动一次操作。</li>
+          <li>大于可用空间的文件，或 FAT32 U 盘上超过 4 GB 的文件，会立即被拒绝，而不是复制到一半才失败。</li>
+          <li>崩溃或断电后，复制到一半的文件会在下次复制时重新复制。</li>
+          <li>已修复：使用 Windows 的 Administrator 帐户时，从文件资源管理器发起的复制无法开始。</li>
+          <li>已修复：拒绝管理员权限请求后，复制会无声无息地消失。</li>
+          <li>已修复：“完成后：关机”可能在以管理员身份运行的复制尚未完成时关闭电脑。</li>
+          <li>已修复：取消已暂停的复制时，窗口可能卡住几秒。</li>
+          <li>多项可靠性和安全性修复。</li>
+        </ul>
+      </section>
       <section class="glass cl-version" id="v1-4-6">
         <h2>Saetta 1.4.6</h2>
         <ul>

@@ -122,6 +122,22 @@
   <div class="container">
     <div class="cl-list">
 <!-- versions: written by tools/build-site.py from store/whats-new.md -->
+      <section class="glass cl-version" id="v1-4-7">
+        <h2>Saetta 1.4.7</h2>
+        <ul>
+          <li>Ctrl+Z in File Explorer undoes the last copy or move.</li>
+          <li>Copies started through File Explorer integration start much faster, and moving files on the same drive is much faster.</li>
+          <li>With “Keep both”, files identical to those already there are no longer duplicated.</li>
+          <li>Pressing Ctrl+V or Delete several times in a row starts only one operation.</li>
+          <li>Files larger than the free space, or over 4 GB on FAT32 USB sticks, are refused right away instead of halfway through.</li>
+          <li>After a crash or a power cut, half-copied files are copied again by the next copy.</li>
+          <li>Fixed: with the Windows Administrator account, copies started from File Explorer did not start.</li>
+          <li>Fixed: declining the administrator prompt made the copy disappear without a word.</li>
+          <li>Fixed: “When done: shut down” could turn the PC off while a copy as administrator was still running.</li>
+          <li>Fixed: the window could freeze for a few seconds when cancelling a paused copy.</li>
+          <li>Various reliability and security fixes.</li>
+        </ul>
+      </section>
       <section class="glass cl-version" id="v1-4-6">
         <h2>Saetta 1.4.6</h2>
         <ul>
